@@ -69,7 +69,7 @@ export async function queryMinecraftServer(
       motd: "§9Ventrix §7— §fFrontier\n§8An uncharted adventure awaits.",
       motdClean: "Ventrix — Frontier\nAn uncharted adventure awaits.",
       tps: 20.0,
-      bluemapUrl: "https://map.ventrixagency.com",
+      bluemapUrl: "/map/#world:0:0:0:1500:0:0:0:0:perspective",
       updatedAt: new Date().toISOString(),
     };
 
@@ -157,7 +157,7 @@ export async function queryMinecraftServer(
             motd: motdRaw,
             motdClean: cleanMotd(motdRaw),
             tps: 20.0,
-            bluemapUrl: "https://map.ventrixagency.com",
+            bluemapUrl: "/map/#world:0:0:0:1500:0:0:0:0:perspective",
             updatedAt: new Date().toISOString(),
           });
         }

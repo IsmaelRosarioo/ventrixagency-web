@@ -10,7 +10,7 @@ interface BlueMapModalProps {
 }
 
 export function BlueMapModal({ isOpen, onClose }: BlueMapModalProps) {
-  const bluemapUrl = "/map";
+  const bluemapUrl = "/map/#world:0:0:0:1500:0:0:0:0:perspective";
 
   return (
     <AnimatePresence>

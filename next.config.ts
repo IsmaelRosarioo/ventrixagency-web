@@ -10,8 +10,24 @@ const nextConfig: NextConfig = {
         destination: `${MAP_UPSTREAM}/:path*`,
       },
       {
-        source: "/map",
-        destination: `${MAP_UPSTREAM}/`,
+        source: "/assets/:path*",
+        destination: `${MAP_UPSTREAM}/assets/:path*`,
+      },
+      {
+        source: "/settings.json",
+        destination: `${MAP_UPSTREAM}/settings.json`,
+      },
+      {
+        source: "/maps/:path*",
+        destination: `${MAP_UPSTREAM}/maps/:path*`,
+      },
+      {
+        source: "/data/:path*",
+        destination: `${MAP_UPSTREAM}/data/:path*`,
+      },
+      {
+        source: "/textures.json",
+        destination: `${MAP_UPSTREAM}/textures.json`,
       },
     ];
   },
