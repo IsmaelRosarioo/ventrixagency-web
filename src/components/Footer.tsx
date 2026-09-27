@@ -11,8 +11,14 @@ interface FooterProps {
 
 export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
   return (
-    <footer className="bg-[#050608] pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-zinc-400">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-white/[0.06]">
+    <footer className="relative bg-gradient-to-b from-[#0c0d14] via-[#07080c] to-[#040507] rounded-t-[48px] sm:rounded-t-[64px] md:rounded-t-[80px] border-t border-white/[0.08] pt-16 sm:pt-20 pb-8 px-4 sm:px-6 lg:px-8 text-zinc-400 overflow-hidden shadow-[0_-24px_80px_rgba(0,0,0,0.7)]">
+      {/* Specular hairline top rim highlight */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+
+      {/* Atmospheric upward ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-44 bg-radial from-white/[0.035] via-transparent to-transparent pointer-events-none blur-3xl" />
+
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-white/[0.06]">
         {/* Brand Identity */}
         <div className="md:col-span-5 flex flex-col justify-between">
           <div>
@@ -148,13 +154,20 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
       </div>
 
       {/* Legal & Attribution */}
-      <div className="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-zinc-600">
+      <div className="relative z-10 max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-zinc-600">
         <div>
           © {new Date().getFullYear()} Ventrix Agency (ventrixagency.com).
         </div>
         <div>
           Not an official Minecraft product. Not affiliated with Mojang or Microsoft.
         </div>
+      </div>
+
+      {/* Monumental 13vw Masked Watermark 'VENTRIX' */}
+      <div className="relative z-0 mt-8 sm:mt-12 w-full select-none pointer-events-none overflow-hidden flex justify-center">
+        <span className="text-[13vw] font-bold tracking-[-0.04em] leading-none uppercase bg-gradient-to-b from-white/[0.12] via-white/[0.03] to-transparent bg-clip-text text-transparent font-sans whitespace-nowrap block text-center">
+          VENTRIX
+        </span>
       </div>
     </footer>
   );

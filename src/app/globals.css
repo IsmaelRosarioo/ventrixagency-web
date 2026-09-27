@@ -15,6 +15,13 @@
   --ease-apple-subtle: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
   --ease-liquid: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* SignalView & Bebored Easing & Motion Physics */
+  --ease-signalview: cubic-bezier(0.25, 1, 0.35, 1);
+  --ease-sheen: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-bebored: cubic-bezier(0.2, 0.9, 0.25, 1);
+  --spring-bebored: cubic-bezier(0.34, 1.26, 0.44, 1);
+  --nav-sheen: rgba(255, 255, 255, 0.22);
 }
 
 @theme inline {
@@ -176,6 +183,57 @@ body {
   }
 }
 
+@keyframes sheenDrift {
+  from {
+    transform: translate3d(-6%, -4%, 0) rotate(-6deg);
+  }
+  to {
+    transform: translate3d(6%, 4%, 0) rotate(8deg);
+  }
+}
+
+@keyframes sheenOnce {
+  from {
+    left: -35%;
+  }
+  to {
+    left: 135%;
+  }
+}
+
+@keyframes navDrop {
+  from {
+    transform: translateX(-50%) translateY(-140%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes navDropSimple {
+  from {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes islandPulse {
+  0%, 100% {
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.65), 0 0 0 4px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+}
+
 .animate-float-slow {
   animation: floatSlow 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   will-change: transform;
@@ -200,12 +258,48 @@ body {
   animation: luminousPulse 4s ease-in-out infinite;
 }
 
+.animate-sheen-drift {
+  animation: sheenDrift 14s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  will-change: transform;
+}
+
+.animate-nav-drop {
+  animation: navDrop 0.8s cubic-bezier(0.25, 1, 0.35, 1) 0.3s both;
+  will-change: transform, opacity;
+}
+
+.animate-nav-drop-simple {
+  animation: navDropSimple 0.8s cubic-bezier(0.25, 1, 0.35, 1) 0.3s both;
+  will-change: transform, opacity;
+}
+
+.animate-island-pulse {
+  animation: islandPulse 4.5s ease-in-out infinite;
+  will-change: box-shadow, border-color;
+}
+
 .transition-apple {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.transition-apple-subtle {
+  transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
 .transition-liquid {
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.transition-signalview {
+  transition-timing-function: cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+.transition-bebored {
+  transition-timing-function: cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+
+.transition-bebored-spring {
+  transition-timing-function: cubic-bezier(0.34, 1.26, 0.44, 1);
 }
 
 /* ==========================================================================
@@ -372,6 +466,83 @@ body {
   );
 }
 
+/* Atmospheric Hero Corner Clouds & Floor Haze (SignalView / Cinematic Frontier) */
+.hero-cloud {
+  position: absolute;
+  border-radius: 100%;
+  pointer-events: none;
+  filter: blur(90px);
+  opacity: 0.42;
+  will-change: transform, opacity;
+  z-index: 5;
+}
+
+.hero-cloud.left {
+  top: -12%;
+  left: -14%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    circle at 45% 45%,
+    rgba(56, 189, 248, 0.18) 0%,
+    rgba(99, 102, 241, 0.12) 35%,
+    rgba(16, 185, 129, 0.06) 65%,
+    transparent 80%
+  );
+  animation: floatSlow 18s ease-in-out infinite alternate;
+}
+
+.hero-cloud.right {
+  top: 2%;
+  right: -12%;
+  width: 760px;
+  height: 760px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(139, 92, 246, 0.16) 0%,
+    rgba(59, 130, 246, 0.10) 38%,
+    rgba(244, 63, 94, 0.04) 70%,
+    transparent 85%
+  );
+  animation: floatSlow 22s ease-in-out infinite alternate-reverse;
+}
+
+.hero-haze {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 440px;
+  background: linear-gradient(
+    to top,
+    #050608 0%,
+    rgba(5, 6, 8, 0.96) 28%,
+    rgba(5, 6, 8, 0.65) 60%,
+    rgba(5, 6, 8, 0.2) 85%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+.hero-haze::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 120% 70% at 50% 100%,
+    rgba(16, 185, 129, 0.06) 0%,
+    rgba(59, 130, 246, 0.04) 45%,
+    transparent 80%
+  );
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.hero-headline-shadow {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.7), 0 4px 60px rgba(0, 0, 0, 0.5);
+}
+
 /* Subtle Geometric Grid with Radial Fade */
 .bg-subtle-grid {
   background-size: 32px 32px;
@@ -474,3 +645,395 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.25);
 }
+
+/* ==========================================================================
+   SignalView & Bebored Architecture: Liquid Capsule, Sheen, Island, Globe
+   ========================================================================== */
+
+/* ── 1. Liquid Glass Header Capsule & Mini Morph ── */
+.header-nav {
+  --nav-bg: rgba(10, 12, 16, 0.75);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --nav-sheen: rgba(255, 255, 255, 0.22);
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1140px, 92%);
+  height: 60px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  border: 1px solid var(--nav-border);
+  border-radius: 9999px;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+  animation: navDrop 0.8s cubic-bezier(0.25, 1, 0.35, 1) 0.3s both;
+  box-shadow:
+    0 0 2px 1px rgba(0, 0, 0, 0.12) inset,
+    0 1px 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+.header-nav::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 100% 80% at 20% -30%, var(--nav-sheen), transparent 55%);
+  filter: blur(12px);
+  opacity: 0.35;
+  animation: sheenDrift 14s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.header-nav::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.header-nav.scrolling {
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+
+.header-nav.capsule-mini {
+  width: 56px;
+  height: 28px;
+  padding: 0;
+  justify-content: center;
+  background: rgba(14, 16, 24, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.header-nav.capsule-mini .brand-group,
+.header-nav.capsule-mini .nav-links,
+.header-nav.capsule-mini .header-cta,
+.header-nav.capsule-mini > *:not(.capsule-indicator-bar) {
+  opacity: 0;
+  transform: scale(0.85) translateY(6px);
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.header-nav.capsule-mini .capsule-indicator-bar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.capsule-indicator-bar {
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 9999px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ── 2. Sheen Sweep Classes (CTA buttons & Glass highlights) ── */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-sheen::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: -35%;
+  width: 60px;
+  transform: rotate(14deg);
+  pointer-events: none;
+  filter: blur(6px);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+}
+
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: -25%;
+  width: 24px;
+  transform: rotate(14deg);
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+}
+
+.btn-sheen:hover::before {
+  animation: sheenOnce 1.15s ease;
+}
+
+.btn-sheen:hover::after {
+  animation: sheenOnce 0.9s ease;
+}
+
+.capsule-sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.capsule-sheen::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 100% 80% at 20% -30%, rgba(255, 255, 255, 0.16), transparent 55%);
+  filter: blur(14px);
+  opacity: 0.6;
+  animation: sheenDrift 14s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+/* ── 3. Floating Island Interactive Widget & Pulse ── */
+.island {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 38px;
+  padding: 0 10px 0 12px;
+  background: #0c0d12;
+  border-radius: 9999px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  transition: transform 0.42s var(--spring-bebored),
+              box-shadow 0.42s var(--ease-bebored),
+              border-color 0.3s var(--ease-apple),
+              gap 0.42s var(--spring-bebored),
+              padding 0.42s var(--spring-bebored);
+  animation: islandPulse 4.5s ease-in-out infinite;
+  user-select: none;
+}
+
+.island:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.island:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.island-mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.island-w {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.island-t {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  color: #a1a1aa;
+}
+
+.island-verdict {
+  font-size: 11px;
+  padding: 4px 11px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  opacity: 0;
+  width: 0;
+  padding-inline: 0;
+  overflow: hidden;
+  transition: opacity 0.3s var(--ease-bebored),
+              width 0.42s var(--spring-bebored),
+              padding 0.42s var(--spring-bebored);
+}
+
+.island[data-state="active"] .island-verdict,
+.island[data-state="online"] .island-verdict,
+.island[data-state="work"] .island-verdict {
+  opacity: 1;
+  width: auto;
+  padding-inline: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #050608;
+  font-weight: 500;
+}
+
+.island[data-state="expedition"] .island-verdict,
+.island[data-state="dist"] .island-verdict {
+  opacity: 1;
+  width: auto;
+  padding-inline: 10px;
+  background: #d97706;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.island[data-state="orbital"] .island-verdict,
+.island[data-state="other"] .island-verdict {
+  opacity: 1;
+  width: auto;
+  padding-inline: 10px;
+  background: #6366f1;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.island[data-state="directive"] .island-verdict,
+.island[data-state="ask"] .island-verdict {
+  opacity: 1;
+  width: auto;
+  padding-inline: 10px;
+  background: #10b981;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* ── 4. Interactive 3D Canvas Dotted Globe & Orbit Physics ── */
+.globe-canvas-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.globe-canvas-container:active {
+  cursor: grabbing;
+}
+
+#globeCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.globe-chip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(18, 20, 28, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: box-shadow 0.3s var(--ease-apple),
+              border-color 0.3s var(--ease-apple),
+              transform 0.15s ease-out;
+}
+
+.globe-chip:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.15);
+  z-index: 200;
+}
+
+.globe-chip.active {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2), 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+.globe-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background: rgba(14, 16, 22, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translate(-50%, -140%);
+  transition: opacity 0.25s var(--ease-apple), transform 0.25s var(--ease-apple);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 250;
+}
+
+.globe-tooltip.visible {
+  opacity: 1;
+  transform: translate(-50%, -150%);
+}
+
+/* ==========================================================================
+   SignalView AI Immersive Showcase Specification
+   ========================================================================== */
+.feature-section.immersive-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.floating-showcase-panel {
+  border-radius: 30px;
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: radial-gradient(120% 120% at 50% 0%, rgba(255, 255, 255, 0.04) 0%, rgba(14, 16, 22, 0.72) 40%, rgba(7, 8, 12, 0.94) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  position: relative;
+}
+
+.floating-showcase-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  pointer-events: none;
+  z-index: 10;
+}
+
