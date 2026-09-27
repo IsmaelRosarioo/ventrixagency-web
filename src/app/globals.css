@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #06080d;
-  --foreground: #f1f5f9;
-  --surface-card: rgba(13, 17, 26, 0.7);
+  --background: #050608;
+  --foreground: #f4f4f5;
+  --surface-card: rgba(14, 16, 22, 0.85);
   --surface-border: rgba(255, 255, 255, 0.08);
-  --accent-cyan: #06b6d4;
-  --accent-blue: #3b82f6;
-  --accent-violet: #8b5cf6;
+  --surface-border-hover: rgba(255, 255, 255, 0.18);
+  --accent-white: #ffffff;
+  --accent-muted: #71717a;
 }
 
 @theme inline {
@@ -17,68 +17,85 @@
   --font-mono: var(--font-geist-mono);
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
-  selection-background-color: rgba(6, 182, 212, 0.25);
+  selection-background-color: rgba(255, 255, 255, 0.2);
   selection-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Glassmorphism primitives */
-.glass-panel {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(10, 13, 20, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-card {
+/* Precision Hairline Cards & Panels */
+.editorial-card {
+  background: rgba(12, 14, 18, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  background: rgba(14, 19, 30, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card:hover {
-  border-color: rgba(59, 130, 246, 0.35);
-  background: rgba(20, 28, 45, 0.65);
-  box-shadow: 0 16px 40px -10px rgba(6, 182, 212, 0.12);
-  transform: translateY(-2px);
+.editorial-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(16, 19, 26, 0.85);
 }
 
-/* Radiant glow effects */
-.glow-cyan {
-  box-shadow: 0 0 50px -10px rgba(6, 182, 212, 0.25);
+.editorial-panel {
+  background: rgba(10, 11, 15, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
-.glow-blue {
-  box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.25);
+/* Refined Subtle Radial Spotlight */
+.hero-spotlight {
+  background: radial-gradient(
+    60% 50% at 50% 0%,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.015) 45%,
+    transparent 80%
+  );
 }
 
-.glow-text-cyan {
-  text-shadow: 0 0 25px rgba(6, 182, 212, 0.45);
-}
-
-/* Background grid mesh */
-.bg-grid-pattern {
-  background-size: 40px 40px;
+/* Subtle Geometric Grid with Radial Fade */
+.bg-subtle-grid {
+  background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 85%);
 }
 
-/* Smooth custom scrollbars */
+/* Technical Monospace Micro-labels */
+.tech-label {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #71717a;
+}
+
+/* Sleek Minimal Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #06080d;
+  background: #050608;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -87,5 +104,5 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.4);
+  background: rgba(255, 255, 255, 0.25);
 }

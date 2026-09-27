@@ -1,381 +1,435 @@
 "use client";
 
 import React, { useState } from "react";
-import { Rocket, Cog, Flame, CloudRain, Compass, ArrowRight, ShieldAlert, Sparkles, Database } from "lucide-react";
+import { Rocket, Cog, Cpu, Globe, Compass, ArrowRight, Shield, Zap, Activity } from "lucide-react";
 
 interface PlanetSpec {
+  id: string;
   name: string;
   tier: string;
   gravity: string;
   atmosphere: string;
   hazard: string;
-  minerals: string[];
+  keyMinerals: string[];
   description: string;
 }
 
 const PLANETS: PlanetSpec[] = [
   {
+    id: "moon",
     name: "The Moon",
     tier: "Tier 1 Rocket",
     gravity: "0.166g (Low Gravity)",
-    atmosphere: "Vacuum (Oxygen Required)",
-    hazard: "Extreme Freezing Nights",
-    minerals: ["Desh Ore", "Cheese Ore", "Moon Stone"],
-    description: "Your first cosmic proving ground. Explore ancient Lunarian ruins, harvest Desh for Tier 2 engines, and establish permanent pressurized lunar bases.",
+    atmosphere: "Total Vacuum (O2 Required)",
+    hazard: "Extreme Freezing Lunar Nights",
+    keyMinerals: ["Desh Ore", "Cheese Ore", "Moon Stone"],
+    description: "The primary proving ground. Establish pressurized surface bases, explore Lunarian subterranean ruins, and smelt Desh ingots for deep-space propulsion.",
   },
   {
+    id: "mars",
     name: "Mars",
     tier: "Tier 2 Rocket",
-    gravity: "0.38g",
-    atmosphere: "Carbon Dioxide (Toxic)",
-    hazard: "Sulfur Dust Storms & Martian Pyramids",
-    minerals: ["Ostrum Ore", "Mars Iron", "Ice Shards"],
-    description: "Dune rovers race across rust-red canyon plateaus. Conquer underground Martian boss vaults to unlock deep-space rocketry.",
+    gravity: "0.380g",
+    atmosphere: "Toxic Carbon Dioxide",
+    hazard: "Ferrous Dust Storms & Martian Vaults",
+    keyMinerals: ["Ostrum Ore", "Mars Iron", "Sub-surface Ice"],
+    description: "Expansive rust-red canyon plateaus. Deploy pressurized rovers, excavate underground pyramidal dungeons, and extract Ostrum for heavy rocketry.",
   },
   {
+    id: "venus",
     name: "Venus",
     tier: "Tier 3 Rocket",
     gravity: "0.904g",
-    atmosphere: "Corrosive Acid Rain",
-    hazard: "Supercritical Magma & Heat",
-    minerals: ["Calorite Ore", "Venus Gold", "Sulfur"],
-    description: "An infernal, suffocating pressure vessel. Requires high-temp Netherite thermal space suits and reinforced acid-resistant rovers.",
+    atmosphere: "Supercritical Acid Vapor",
+    hazard: "Extreme Thermal Compression & Magma",
+    keyMinerals: ["Calorite Ore", "Venus Gold", "Sulfur"],
+    description: "A hostile pressure vessel. Requires high-temp Netherite thermal space suits and acid-resistant rovers to mine Calorite from volcanic geysers.",
   },
   {
+    id: "mercury",
     name: "Mercury",
     tier: "Tier 3 Rocket",
-    gravity: "0.38g",
-    atmosphere: "Solar Scorching Vacuum",
+    gravity: "0.380g",
+    atmosphere: "Solar Vacuum",
     hazard: "Extreme Solar Radiation",
-    minerals: ["Raw Iron", "Solar Crystals", "Calorite"],
-    description: "Harness unlimited solar energy right next to the Sun. Construct orbital beam arrays with zero day-night disruption.",
+    keyMinerals: ["Solar Crystals", "Calorite", "Pure Iron"],
+    description: "Proximal solar orbit. Build orbital beam collectors that capture uninterrupted, high-yield solar energy with zero day-night disruption.",
   },
   {
+    id: "glacio",
     name: "Glacio",
-    tier: "Tier 4 Rocket (Deep Space)",
-    gravity: "1.12g (High Gravity)",
-    atmosphere: "Thin Oxygen (Breathable in Valleys)",
-    hazard: "Permafrost & Glacio Rams",
-    minerals: ["Permafrost Steel", "Glacio Ice", "Calorite"],
-    description: "An extrasolar planet in a distant star system. Home to alien megafauna, icy primordial forests, and enigmatic ancient structures.",
+    tier: "Tier 4 Deep Space",
+    gravity: "1.120g (High Gravity)",
+    atmosphere: "Thin Oxygen (Habitable in Valleys)",
+    hazard: "Glacial Permafrost & Megafauna",
+    keyMinerals: ["Permafrost Steel", "Glacio Ice", "Calorite"],
+    description: "An extrasolar terrestrial body in a distant star system. Home to alien megafauna, frozen primordial forests, and ancient monolith structures.",
   },
 ];
 
 export function ModpackPillars() {
-  const [activeTab, setActiveTab] = useState<"cosmos" | "kinetic" | "arcane" | "realism">("cosmos");
+  const [activeTab, setActiveTab] = useState<"cosmos" | "kinetic" | "ae2" | "ecology">("cosmos");
   const [selectedPlanetIndex, setSelectedPlanetIndex] = useState(0);
 
   const selectedPlanet = PLANETS[selectedPlanetIndex];
 
   return (
-    <section id="pillars" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
+    <section id="pillars" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/[0.06]">
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-4">
-          <Compass className="w-3.5 h-3.5" />
-          The Architectural Pillars
+      <div className="max-w-3xl mb-16 text-left">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-zinc-400 font-mono text-[11px] uppercase tracking-widest mb-4">
+          <Compass className="w-3 h-3 text-zinc-400" />
+          SYSTEM ARCHITECTURE
         </div>
-        <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-          Engineered for Wonder & Progression
+        <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-[-0.03em] mb-4">
+          Four Core Pillars. Bound by One Engine.
         </h2>
-        <p className="text-slate-400 text-base sm:text-lg">
-          No generic filler or chaotic item bloat. Every mechanic connects deeply into our unified survival loop.
+        <p className="text-zinc-400 text-base sm:text-lg font-normal leading-relaxed">
+          Ventrix: Frontier eliminates mod bloat and conflicting mechanics. Each modification connects directly into a unified progression framework.
         </p>
 
-        {/* Pillar Switcher Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mt-8 p-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md max-w-2xl mx-auto">
+        {/* Minimalist Tab Navigation */}
+        <div className="flex flex-wrap gap-2 mt-8">
           <button
             onClick={() => setActiveTab("cosmos")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+            className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all cursor-pointer ${
               activeTab === "cosmos"
-                ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/20"
-                : "text-slate-400 hover:text-slate-200"
+                ? "bg-white text-black font-medium"
+                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white"
             }`}
           >
-            <Rocket className="w-4 h-4" />
-            The Cosmos
+            01 // Orbital Cosmos
           </button>
 
           <button
             onClick={() => setActiveTab("kinetic")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+            className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all cursor-pointer ${
               activeTab === "kinetic"
-                ? "bg-gradient-to-r from-amber-600 to-orange-500 text-white shadow-lg shadow-amber-500/20"
-                : "text-slate-400 hover:text-slate-200"
+                ? "bg-white text-black font-medium"
+                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white"
             }`}
           >
-            <Cog className="w-4 h-4" />
-            Kinetic Engineering
+            02 // Kinetic Engineering
           </button>
 
           <button
-            onClick={() => setActiveTab("arcane")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-              activeTab === "arcane"
-                ? "bg-gradient-to-r from-purple-600 to-indigo-500 text-white shadow-lg shadow-purple-500/20"
-                : "text-slate-400 hover:text-slate-200"
+            onClick={() => setActiveTab("ae2")}
+            className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all cursor-pointer ${
+              activeTab === "ae2"
+                ? "bg-white text-black font-medium"
+                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white"
             }`}
           >
-            <Flame className="w-4 h-4" />
-            Arcane Mysteries
+            03 // Quantum Logistics
           </button>
 
           <button
-            onClick={() => setActiveTab("realism")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-              activeTab === "realism"
-                ? "bg-gradient-to-r from-teal-600 to-emerald-500 text-white shadow-lg shadow-teal-500/20"
-                : "text-slate-400 hover:text-slate-200"
+            onClick={() => setActiveTab("ecology")}
+            className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all cursor-pointer ${
+              activeTab === "ecology"
+                ? "bg-white text-black font-medium"
+                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white"
             }`}
           >
-            <CloudRain className="w-4 h-4" />
-            Living Atmosphere
+            04 // Planetary Ecology
           </button>
         </div>
       </div>
 
-      {/* Tab Content Display */}
-
-      {/* 1. THE COSMOS */}
+      {/* 01 // ORBITAL COSMOS */}
       {activeTab === "cosmos" && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          {/* Planet selector list */}
-          <div className="lg:col-span-4 flex flex-col gap-3">
-            <h3 className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider px-2">
-              Select Planetary Destination
-            </h3>
+          {/* Planet Selector Deck */}
+          <div className="lg:col-span-4 flex flex-col gap-2">
             {PLANETS.map((planet, index) => (
               <button
-                key={planet.name}
+                key={planet.id}
                 onClick={() => setSelectedPlanetIndex(index)}
-                className={`w-full flex items-center justify-between p-4 rounded-xl text-left border transition-all cursor-pointer ${
+                className={`p-4 rounded-xl text-left border transition-all cursor-pointer ${
                   selectedPlanetIndex === index
-                    ? "bg-blue-600/15 border-cyan-500/50 shadow-md shadow-cyan-500/10"
-                    : "bg-[#0b0e17]/60 border-white/[0.06] hover:bg-white/[0.04] text-slate-300"
+                    ? "bg-[#10131a] border-white/[0.2] text-white shadow-lg"
+                    : "bg-[#090b10] border-white/[0.06] hover:bg-white/[0.02] text-zinc-400 hover:text-zinc-200"
                 }`}
               >
-                <div>
-                  <div className="text-sm font-bold text-white flex items-center gap-2">
-                    {planet.name}
-                    {index === 4 && (
-                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                        DEEP SPACE
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-xs text-slate-400 font-mono mt-0.5">{planet.tier}</div>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-sm text-white">{planet.name}</span>
+                  <span className="font-mono text-[10px] text-zinc-400 uppercase">{planet.tier}</span>
                 </div>
-                <ArrowRight className={`w-4 h-4 ${selectedPlanetIndex === index ? "text-cyan-400" : "text-slate-600"}`} />
+                <div className="text-xs font-mono text-zinc-400">
+                  {planet.gravity} • {planet.atmosphere.split(" ")[0]}
+                </div>
               </button>
             ))}
           </div>
 
-          {/* Interactive Spec Deck for Selected Planet */}
-          <div className="lg:col-span-8 bg-[#0b0e17]/80 backdrop-blur-xl border border-white/[0.1] rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
-
+          {/* Telemetry Display HUD */}
+          <div className="lg:col-span-8 bg-[#0b0d13] border border-white/[0.08] rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
             <div>
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.06] mb-6">
                 <div>
-                  <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider">Planetary Telemetry</span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">{selectedPlanet.name}</h3>
+                  <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-400">
+                    DESTINATION TELEMETRY // {selectedPlanet.tier}
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mt-1">
+                    {selectedPlanet.name}
+                  </h3>
                 </div>
-                <div className="px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.1] font-mono text-xs text-slate-300">
-                  {selectedPlanet.tier} Required
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.08] font-mono text-xs text-zinc-300">
+                  <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>TRAJECTORY READY</span>
                 </div>
               </div>
 
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+              <p className="text-zinc-300 text-sm sm:text-base leading-relaxed mb-8">
                 {selectedPlanet.description}
               </p>
 
-              {/* Data Specs Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              {/* Data Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                 <div className="p-4 rounded-xl bg-black/40 border border-white/[0.06]">
-                  <span className="text-[11px] font-mono text-slate-500 uppercase">Gravity Metric</span>
-                  <div className="text-sm font-bold text-cyan-300 mt-1">{selectedPlanet.gravity}</div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-400 block mb-1">
+                    Gravity Coefficient
+                  </span>
+                  <span className="font-mono text-sm font-semibold text-white">{selectedPlanet.gravity}</span>
                 </div>
                 <div className="p-4 rounded-xl bg-black/40 border border-white/[0.06]">
-                  <span className="text-[11px] font-mono text-slate-500 uppercase">Atmosphere Class</span>
-                  <div className="text-sm font-bold text-amber-300 mt-1">{selectedPlanet.atmosphere}</div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-400 block mb-1">
+                    Atmosphere Matrix
+                  </span>
+                  <span className="font-mono text-sm font-semibold text-zinc-200">{selectedPlanet.atmosphere}</span>
                 </div>
                 <div className="p-4 rounded-xl bg-black/40 border border-white/[0.06]">
-                  <span className="text-[11px] font-mono text-slate-500 uppercase">Primary Environmental Threat</span>
-                  <div className="text-sm font-bold text-rose-300 mt-1">{selectedPlanet.hazard}</div>
-                </div>
-              </div>
-
-              {/* Minerals & Resources */}
-              <div>
-                <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block mb-2.5">
-                  Exclusive Minerals & Tech Components
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {selectedPlanet.minerals.map((m) => (
-                    <span
-                      key={m}
-                      className="px-3 py-1 rounded-lg bg-blue-500/10 border border-blue-500/20 text-xs font-medium text-cyan-300 font-mono"
-                    >
-                      {m}
-                    </span>
-                  ))}
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-400 block mb-1">
+                    Environmental Hazard
+                  </span>
+                  <span className="font-mono text-sm font-semibold text-zinc-200">{selectedPlanet.hazard}</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 mt-8 border-t border-white/[0.08] flex items-center justify-between text-xs text-slate-400 font-mono">
-              <span>Mod: Ad Astra 1.16.25 + Giselle Addon</span>
-              <span>Fully Compatible with Live 3D BlueMap</span>
+            {/* Mineral Spec Footprint */}
+            <div className="pt-4 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+              <span className="text-zinc-400">TARGET MINERAL STRATIGRAPHY:</span>
+              <div className="flex flex-wrap gap-1.5">
+                {selectedPlanet.keyMinerals.map((mineral) => (
+                  <span key={mineral} className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-zinc-300">
+                    {mineral}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* 2. KINETIC ENGINEERING */}
+      {/* 02 // KINETIC ENGINEERING */}
       {activeTab === "kinetic" && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08] flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-6">
-                <Cog className="w-6 h-6 animate-[spin_10s_linear_infinite]" />
+              <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
+                <Cog className="w-4 h-4" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Rotational Power</h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                Harness water wheels, steam engines, and windmills to drive kinetic stress networks. Precision speed controllers regulate intricate mechanical assemblies.
+              <h3 className="text-lg font-semibold text-white mb-2">Rotational Drivetrains</h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                Harness water wheels, steam engines, and windmills to generate Stress Units (SU). Manage torque ratios through precision brass gearboxes.
               </p>
             </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-amber-400">
-              Create: Connected + Brass Gearboxes
+            <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-1">
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Max Network RPM:</span>
+                <span>256 RPM</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Boiler Capacity:</span>
+                <span>Level 18 Steam Engine</span>
+              </div>
             </div>
           </div>
 
-          <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08] flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 mb-6">
-                <Compass className="w-6 h-6" />
+              <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
+                <Compass className="w-4 h-4" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Automated Railways</h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                Construct transcontinental trains that transport cargo and players across thousands of blocks. Real-time train schedules, signals, and station display boards.
+              <h3 className="text-lg font-semibold text-white mb-2">Automated Rail Networks</h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                Engineer high-speed train networks connecting remote quarries and space centers with automated schedule tables and signal blocks.
               </p>
             </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-orange-400">
-              Railways Navigator + Pocket Nav
+            <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-1">
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Signal Frequency:</span>
+                <span>Sub-tick Block Sync</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Track Gauge:</span>
+                <span>Standard & Narrow Rail</span>
+              </div>
             </div>
           </div>
 
-          <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08] flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 mb-6">
-                <Database className="w-6 h-6" />
+              <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
+                <Zap className="w-4 h-4" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Matter Replication</h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                Scan items once, feed raw matter to disintegrators, and synthesize copies on demand. Full integration with Create logistical belts and storage vaults.
+              <h3 className="text-lg font-semibold text-white mb-2">Sequenced Assembly</h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                Construct conveyor loops with mechanical arms, deployers, and spouts for multi-stage precision crafting of electronic circuits.
               </p>
             </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-yellow-400">
-              Replication + Digital Logistics
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* 3. ARCANE MYSTERIES */}
-      {activeTab === "arcane" && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-6">
-                <Sparkles className="w-6 h-6" />
+            <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-1">
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Throughput:</span>
+                <span>64 Items / 2.4s Cycle</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Malum Spirit Forging</h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                Reap spirit motes from fallen foes using enchanted scythes. Channel sacred and aerial spirits through stone altars to craft soul-stained steel relics.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-purple-400">
-              Malum + Lodestone Engine
-            </div>
-          </div>
-
-          <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6">
-                <Flame className="w-6 h-6" />
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Precision:</span>
+                <span>100% Zero-Loss Yield</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Hexerei Witchery</h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                Brew herbal concoctions in large heated mixing cauldrons. Fly on custom willow brooms, tame courier crows for player errands, and harvest wild sage.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-indigo-400">
-              Hexerei Witchcraft & Herbology
-            </div>
-          </div>
-
-          <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-fuchsia-500/10 border border-fuchsia-500/20 flex items-center justify-center text-fuchsia-400 mb-6">
-                <ShieldAlert className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Mowzie&apos;s Boss Hunts</h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                Face handcrafted mini-bosses in procedural wilderness: defeat the Frostmaw in icy caves, break the impenetrable Ferrous Wroughtnaut, and raid Umvuthana groves.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-fuchsia-400">
-              Mowzie&apos;s Mobs + Unique Drops
             </div>
           </div>
         </div>
       )}
 
-      {/* 4. LIVING ATMOSPHERE */}
-      {activeTab === "realism" && (
+      {/* 03 // QUANTUM LOGISTICS (AE2) */}
+      {activeTab === "ae2" && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08] flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 mb-6">
-                <CloudRain className="w-6 h-6" />
+              <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
+                <Cpu className="w-4 h-4" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Dynamic Seasons</h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                Full 4-season agricultural cycles via Serene Seasons. Rivers freeze in winter, snow physically accumulates on exposed machinery, and crops require greenhouse warmth.
+              <h3 className="text-lg font-semibold text-white mb-2">Matter Digitalization</h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                Dematerialize millions of physical items into crystalline ME storage drives. Access infinite inventory instantly from any terminal.
               </p>
             </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-teal-400">
-              Serene Seasons + GlitchCore
+            <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-1">
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Storage Density:</span>
+                <span>Up to 256K Byte Cells</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Channel Mode:</span>
+                <span>Smart Cable Bus (32 Ch)</span>
+              </div>
             </div>
           </div>
 
-          <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08] flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6">
-                <ShieldAlert className="w-6 h-6" />
+              <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
+                <Zap className="w-4 h-4" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Severe Weather & Defenses</h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                Dynamic localized F1-F5 supercells, weather radar screens, pocket storm detectors, and Weather Deflector shields protect your bases against violent microbursts.
+              <h3 className="text-lg font-semibold text-white mb-2">Quantum Network Bridging</h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                Link sub-bases across space dimensions (Earth to Mars to Glacio) using Quantum Entangled Singularities with zero latency.
               </p>
             </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-emerald-400">
-              Weather2 + Expanded Dynamics
+            <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-1">
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Transfer Latency:</span>
+                <span>0.0ms Interdimensional</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Power Drain:</span>
+                <span>Dynamic AE/t Scaling</span>
+              </div>
             </div>
           </div>
 
-          <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08] flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6">
-                <Sparkles className="w-6 h-6" />
+              <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
+                <Activity className="w-4 h-4" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Acoustic Immersion</h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                Sound Physics Remastered calculates realistic cave echoes and storm baffling inside underground bunkers. Step sounds crunch dynamically on snow and gravel.
+              <h3 className="text-lg font-semibold text-white mb-2">Auto-Crafting Arrays</h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                Assemble multi-core CPU co-processors to compute complex molecular recipes on demand in seconds without manual intervention.
               </p>
             </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-cyan-400">
-              Sound Physics + Presence Footsteps
+            <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-1">
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Parallel Threads:</span>
+                <span>64 Co-processors / Task</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Recursive Solver:</span>
+                <span>Instant Tree Compute</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 04 // PLANETARY ECOLOGY */}
+      {activeTab === "ecology" && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08] flex flex-col justify-between">
+            <div>
+              <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
+                <Globe className="w-4 h-4" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Terralith Biome Engine</h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                Over 85 realistic procedural biomes including caldera peaks, glacial canyons, and temperate rainforests built entirely with vanilla blocks.
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-1">
+              <div className="flex justify-between">
+                <span className="text-zinc-400">World Height:</span>
+                <span>Y=-64 to Y=320</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Cave Systems:</span>
+                <span>Volumetric Megacaves</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08] flex flex-col justify-between">
+            <div>
+              <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
+                <Activity className="w-4 h-4" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Acoustic Sound Raytracing</h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                Sound Physics Remastered calculates real-time audio reverberation, absorption, and occlusion through solid rock, caves, and chambers.
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-1">
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Audio Engine:</span>
+                <span>3D Positional Raycasting</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Echo Simulation:</span>
+                <span>Material Absorption Models</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08] flex flex-col justify-between">
+            <div>
+              <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
+                <Shield className="w-4 h-4" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Dynamic Wildlife Ecology</h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                Alex&apos;s Mobs introduces 89+ biologically authentic creatures with unique drops, taming behaviors, and natural food-chain interactions.
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-1">
+              <div className="flex justify-between">
+                <span className="text-zinc-400">Species Roster:</span>
+                <span>89+ Dynamic Fauna</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-zinc-400">AI Tick Rate:</span>
+                <span>Optimized Server Ticking</span>
+              </div>
             </div>
           </div>
         </div>

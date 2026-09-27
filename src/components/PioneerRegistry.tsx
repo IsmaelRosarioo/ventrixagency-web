@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { UserPlus, CheckCircle, AlertCircle, Shield, Sparkles, Users } from "lucide-react";
-import confetti from "canvas-confetti";
+import { Users, CheckCircle, AlertCircle, Terminal, ArrowRight } from "lucide-react";
 
 interface Pioneer {
   id: string;
@@ -56,21 +55,15 @@ export function PioneerRegistry() {
       const data = await res.json();
 
       if (res.ok) {
-        setStatusMsg({ type: "success", text: data.message });
+        setStatusMsg({ type: "success", text: "Identity verified. Registered in the Pioneer Manifest." });
         setUsername("");
         setDiscordTag("");
-        confetti({
-          particleCount: 50,
-          spread: 70,
-          origin: { y: 0.8 },
-          colors: ["#3b82f6", "#06b6d4", "#10b981", "#8b5cf6"],
-        });
         fetchPioneers();
       } else {
-        setStatusMsg({ type: "error", text: data.error || "Failed to enlist." });
+        setStatusMsg({ type: "error", text: data.error || "Failed to register." });
       }
     } catch {
-      setStatusMsg({ type: "error", text: "Network error. Please try again." });
+      setStatusMsg({ type: "error", text: "Network connection error. Try again." });
     } finally {
       setLoading(false);
     }
@@ -78,139 +71,135 @@ export function PioneerRegistry() {
 
   return (
     <section id="pioneers" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/[0.06]">
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-4">
-          <Users className="w-3.5 h-3.5" />
-          Frontier Pioneer Registry
+      {/* Header */}
+      <div className="max-w-3xl mb-16 text-left">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-zinc-400 font-mono text-[11px] uppercase tracking-widest mb-4">
+          <Users className="w-3 h-3 text-zinc-400" />
+          PERSONNEL ROSTER
         </div>
-        <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-          Enlist in the Chronicle Roster
+        <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-[-0.03em] mb-4">
+          Frontier Pioneer Registry
         </h2>
-        <p className="text-slate-400 text-sm sm:text-base">
-          Register your Minecraft in-game name to claim your Pioneer status and reserve your spot in upcoming world events.
+        <p className="text-zinc-400 text-base sm:text-lg font-normal leading-relaxed">
+          Enlist your official Minecraft handle into the server registry to track achievements and participate in global world milestones.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Enlistment Form Card */}
-        <div className="lg:col-span-6 bg-[#0b0e17]/80 backdrop-blur-xl border border-white/[0.1] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-cyan-400">
-              <UserPlus className="w-5 h-5" />
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-white">Pioneer Enlistment</h3>
-              <p className="text-xs text-slate-400">Takes less than 10 seconds. Free forever.</p>
-            </div>
+        {/* Left: Terminal Enlistment Form */}
+        <div className="lg:col-span-5 bg-[#0b0d13] border border-white/[0.08] rounded-2xl p-6 sm:p-8">
+          <div className="flex items-center justify-between pb-4 border-b border-white/[0.06] mb-6">
+            <span className="font-mono text-xs uppercase tracking-wider text-zinc-300">
+              Identity Verification Terminal
+            </span>
+            <span className="font-mono text-[11px] text-zinc-400">
+              {totalPioneers} ENLISTED
+            </span>
           </div>
 
           <form onSubmit={handleEnlist} className="space-y-4">
             <div>
-              <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
-                Minecraft In-Game Name (IGN) <span className="text-cyan-400">*</span>
+              <label className="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                Minecraft In-Game Name (IGN) *
               </label>
               <input
                 type="text"
                 required
-                maxLength={16}
-                placeholder="e.g. Primalkin"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/[0.08] focus:border-cyan-500/80 focus:ring-1 focus:ring-cyan-500/80 text-sm text-white font-mono placeholder:text-slate-600 outline-none transition-all"
+                placeholder="e.g. CommanderRosario"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/[0.08] text-white text-xs sm:text-sm font-mono placeholder:text-zinc-600 focus:outline-none focus:border-white/30 transition-colors"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
-                Discord Tag <span className="text-slate-500">(Optional)</span>
+              <label className="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                Discord Tag (Optional)
               </label>
               <input
                 type="text"
-                placeholder="e.g. primalkin#0000 or username"
                 value={discordTag}
                 onChange={(e) => setDiscordTag(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/[0.08] focus:border-cyan-500/80 focus:ring-1 focus:ring-cyan-500/80 text-sm text-white font-mono placeholder:text-slate-600 outline-none transition-all"
+                placeholder="e.g. ventrix#0001"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/[0.08] text-white text-xs sm:text-sm font-mono placeholder:text-zinc-600 focus:outline-none focus:border-white/30 transition-colors"
               />
             </div>
 
+            <button
+              type="submit"
+              disabled={loading || !username.trim()}
+              className="w-full py-2.5 rounded-xl bg-white text-black font-medium text-xs sm:text-sm hover:bg-zinc-200 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+            >
+              {loading ? (
+                <span>Verifying Credentials...</span>
+              ) : (
+                <>
+                  <span>Enlist in Roster</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </>
+              )}
+            </button>
+
             {statusMsg && (
               <div
-                className={`p-3.5 rounded-xl border flex items-center gap-2.5 text-xs font-medium ${
+                className={`p-3 rounded-xl text-xs font-mono flex items-center gap-2 border ${
                   statusMsg.type === "success"
-                    ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
-                    : "bg-rose-500/10 border-rose-500/30 text-rose-300"
+                    ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
+                    : "bg-red-500/10 border-red-500/20 text-red-400"
                 }`}
               >
                 {statusMsg.type === "success" ? (
-                  <CheckCircle className="w-4 h-4 shrink-0 text-emerald-400" />
+                  <CheckCircle className="w-4 h-4 shrink-0" />
                 ) : (
-                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+                  <AlertCircle className="w-4 h-4 shrink-0" />
                 )}
                 <span>{statusMsg.text}</span>
               </div>
             )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 hover:from-blue-500 hover:via-cyan-400 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/20 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 transition-all cursor-pointer flex items-center justify-center gap-2"
-            >
-              {loading ? (
-                <span>Registering...</span>
-              ) : (
-                <>
-                  <Sparkles className="w-4 h-4" />
-                  <span>Enlist in Pioneer Roster</span>
-                </>
-              )}
-            </button>
           </form>
-
-          <div className="mt-6 pt-5 border-t border-white/[0.06] text-[11px] text-slate-500 flex items-center gap-1.5">
-            <Shield className="w-3.5 h-3.5 text-slate-400" />
-            <span>Pioneer registration stores zero passwords. Only public Minecraft usernames are tracked.</span>
-          </div>
         </div>
 
-        {/* Live Pioneer Feed Card */}
-        <div className="lg:col-span-6 bg-[#0b0e17]/80 backdrop-blur-xl border border-white/[0.1] rounded-3xl p-6 sm:p-8 shadow-2xl">
-          <div className="flex items-center justify-between pb-6 border-b border-white/[0.06] mb-6">
-            <div>
-              <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider">Live Enlistments</span>
-              <h3 className="text-lg font-bold text-white mt-0.5">Recently Registered Explorers</h3>
-            </div>
-            <span className="text-xs font-mono text-cyan-300 font-bold bg-cyan-950/40 px-3 py-1 rounded-full border border-cyan-500/30">
-              {totalPioneers} Enlisted
+        {/* Right: Enlisted Pioneers Roster */}
+        <div className="lg:col-span-7 bg-[#0b0d13] border border-white/[0.08] rounded-2xl p-6 sm:p-8">
+          <div className="flex items-center justify-between pb-4 border-b border-white/[0.06] mb-6">
+            <span className="font-mono text-xs uppercase tracking-wider text-zinc-300">
+              Active Manifest
+            </span>
+            <span className="font-mono text-[11px] text-zinc-400">
+              STATUS: AUTHENTICATED
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[360px] overflow-y-auto pr-1">
+          <div className="space-y-2.5">
             {pioneers.map((pioneer) => (
               <div
                 key={pioneer.id}
-                className="p-3.5 rounded-xl bg-black/40 border border-white/[0.05] flex items-center justify-between gap-3"
+                className="flex items-center justify-between p-3.5 rounded-xl bg-black/40 border border-white/[0.05]"
               >
-                <div className="flex items-center gap-2.5 truncate">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center text-white font-mono text-xs font-bold shrink-0">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center font-mono font-bold text-xs text-zinc-300">
                     {pioneer.minecraftUsername.slice(0, 2).toUpperCase()}
                   </div>
-                  <div className="truncate">
-                    <div className="text-sm font-bold text-white truncate font-mono">
+                  <div>
+                    <span className="font-mono text-xs sm:text-sm font-semibold text-white">
                       {pioneer.minecraftUsername}
-                    </div>
-                    <div className="text-[10px] text-slate-400 truncate">
-                      {pioneer.badge || "Pioneer"}
-                    </div>
+                    </span>
+                    {pioneer.discordTag && (
+                      <span className="block text-[11px] font-mono text-zinc-500">
+                        {pioneer.discordTag}
+                      </span>
+                    )}
                   </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-[10px] font-mono">
+                  <span className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-zinc-400">
+                    {pioneer.badge || "FOUNDING PIONEER"}
+                  </span>
+                  <span className="text-zinc-500 hidden sm:inline">{pioneer.enlistedAt}</span>
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="mt-6 pt-5 border-t border-white/[0.06] text-center">
-            <span className="text-xs font-mono text-slate-400">
-              Direct connection address: <span className="text-cyan-300 font-semibold">mc.ventrixagency.com</span>
-            </span>
           </div>
         </div>
       </div>

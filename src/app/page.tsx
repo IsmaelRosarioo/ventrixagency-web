@@ -16,7 +16,7 @@ export default function Home() {
   const [blueMapModalOpen, setBlueMapModalOpen] = useState(false);
 
   return (
-    <main className="relative min-h-screen bg-[#06080d] overflow-x-hidden">
+    <main className="relative min-h-screen bg-[#050608] overflow-x-hidden">
       {/* Navigation */}
       <Navbar
         onOpenJoinModal={() => setJoinModalOpen(true)}
