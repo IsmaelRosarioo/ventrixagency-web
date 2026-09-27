@@ -22,6 +22,7 @@
   --ease-bebored: cubic-bezier(0.2, 0.9, 0.25, 1);
   --spring-bebored: cubic-bezier(0.34, 1.26, 0.44, 1);
   --nav-sheen: rgba(255, 255, 255, 0.22);
+  --serif: var(--font-fraunces), "EB Garamond", Georgia, serif;
 }
 
 @theme inline {
@@ -29,6 +30,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-fraunces);
 }
 
 * {

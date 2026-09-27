@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { IntentGateway } from "@/components/IntentGateway";
-import { ModpackPillars } from "@/components/ModpackPillars";
+import { CelestialRadarSection } from "@/components/CelestialRadarSection";
+import { FrontierShowcase } from "@/components/FrontierShowcase";
 import { QuestChronicles } from "@/components/QuestChronicles";
 import { ServerGuidelines } from "@/components/ServerGuidelines";
 import { PioneerRegistry } from "@/components/PioneerRegistry";
@@ -67,8 +68,17 @@ export default function Home() {
       {/* Luminous Transition: Cosmic Expedition */}
       <SectionTransition glowColor="indigo" />
 
-      {/* The Four Architectural Pillars */}
-      <ModpackPillars />
+      {/* 3D Celestial Dotted Radar & Planetary Reconnaissance */}
+      <CelestialRadarSection />
+
+      {/* Luminous Transition: Amber Rail Transit */}
+      <SectionTransition glowColor="amber" />
+
+      {/* Living Frontier Showcase: Rail Corridors, Sovereign Claims, Living Biomes */}
+      <FrontierShowcase
+        onOpenBlueMapModal={() => setBlueMapModalOpen(true)}
+        onOpenJoinModal={() => setJoinModalOpen(true)}
+      />
 
       {/* Luminous Transition: Warm Hearth Chronicles */}
       <SectionTransition glowColor="amber" />

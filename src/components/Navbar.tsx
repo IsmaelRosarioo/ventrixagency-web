@@ -19,7 +19,6 @@ export interface NavItem {
   label: string;
   href?: string;
   onClick?: () => void;
-  pillarTab?: "space" | "rail" | "civilization" | "world";
 }
 
 export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
@@ -29,9 +28,6 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
   const [isScrolling, setIsScrolling] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
-  const [activePillarTab, setActivePillarTab] = useState<
-    "space" | "rail" | "civilization" | "world"
-  >("space");
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
 
   const isManuallyExpandedRef = useRef(false);
@@ -52,10 +48,10 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
   });
 
   const navItems: NavItem[] = [
-    { id: "expeditions", label: "Expeditions", href: "#pillars", pillarTab: "space" },
-    { id: "corridors", label: "Corridors", href: "#pillars", pillarTab: "rail" },
-    { id: "sovereignty", label: "Sovereignty", href: "#pillars", pillarTab: "civilization" },
-    { id: "stratigraphy", label: "Stratigraphy", href: "#pillars", pillarTab: "world" },
+    { id: "radar", label: "Celestial Radar", href: "#radar" },
+    { id: "corridors", label: "Rail Corridors", href: "#corridors" },
+    { id: "sovereignty", label: "Land Claims", href: "#sovereignty" },
+    { id: "biomes", label: "Living Biomes", href: "#biomes" },
     { id: "bluemap", label: "3D Map", onClick: onOpenBlueMapModal },
     { id: "directives", label: "Directives", href: "#guidelines" },
   ];
@@ -121,7 +117,7 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
 
   // Section observer for active indicator tracking
   useEffect(() => {
-    const sectionIds = ["pillars", "guidelines"];
+    const sectionIds = ["radar", "corridors", "sovereignty", "biomes", "chronicles", "guidelines"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -142,18 +138,6 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
     });
 
     return () => observer.disconnect();
-  }, []);
-
-  // Active pillar sync listener
-  useEffect(() => {
-    const handlePillarSync = (e: Event) => {
-      const custom = e as CustomEvent<"space" | "rail" | "civilization" | "world">;
-      if (custom.detail) {
-        setActivePillarTab(custom.detail);
-      }
-    };
-    window.addEventListener("ventrix:set-pillar-tab", handlePillarSync);
-    return () => window.removeEventListener("ventrix:set-pillar-tab", handlePillarSync);
   }, []);
 
   // Live telemetry fetch
@@ -268,11 +252,7 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
           {navItems.map((item) => {
             const isHighlighted = hoveredNav
               ? hoveredNav === item.id
-              : activeSection === "guidelines"
-              ? item.id === "directives"
-              : activeSection === "pillars"
-              ? item.pillarTab === activePillarTab
-              : false;
+              : activeSection === item.id;
 
             return (
               <div key={item.id} className="relative">
@@ -286,14 +266,6 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
                 {item.href ? (
                   <a
                     href={item.href}
-                    onClick={() => {
-                      if (item.pillarTab) {
-                        setActivePillarTab(item.pillarTab);
-                        window.dispatchEvent(
-                          new CustomEvent("ventrix:set-pillar-tab", { detail: item.pillarTab })
-                        );
-                      }
-                    }}
                     onMouseEnter={() => setHoveredNav(item.id)}
                     className={`relative z-10 block text-xs px-3 py-1.5 rounded-full transition-colors duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] select-none cursor-pointer ${
                       isHighlighted
@@ -307,7 +279,11 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
                   <button
                     onClick={item.onClick}
                     onMouseEnter={() => setHoveredNav(item.id)}
-                    className="relative z-10 block text-xs px-3 py-1.5 rounded-full text-zinc-400 hover:text-white transition-colors duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] cursor-pointer select-none"
+                    className={`relative z-10 block text-xs px-3 py-1.5 rounded-full transition-colors duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] cursor-pointer select-none ${
+                      isHighlighted
+                        ? "text-white font-medium"
+                        : "text-zinc-400 hover:text-white"
+                    }`}
                   >
                     {item.label}
                   </button>
@@ -422,15 +398,7 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
                   <a
                     key={item.id}
                     href={item.href}
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      if (item.pillarTab) {
-                        setActivePillarTab(item.pillarTab);
-                        window.dispatchEvent(
-                          new CustomEvent("ventrix:set-pillar-tab", { detail: item.pillarTab })
-                        );
-                      }
-                    }}
+                    onClick={() => setMobileMenuOpen(false)}
                     className="py-2.5 px-3.5 rounded-xl hover:bg-white/[0.04] transition-colors"
                   >
                     {item.label}
