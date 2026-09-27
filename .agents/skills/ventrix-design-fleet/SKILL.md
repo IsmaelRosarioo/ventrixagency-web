@@ -84,6 +84,15 @@ The fleet is structured as a hierarchical execution ladder with strict separatio
   - Fonts: Vercel Geist Sans and Geist Mono.
   - Headlines: Tight negative kerning (`tracking-[-0.035em]`), medium-to-semibold weights.
   - Metadata: Uppercase monospace micro-labels (`text-[11px] font-mono tracking-widest text-zinc-400`).
+- **Content Philosophy (Server Life over Mod Mechanics)**:
+  - Showcase what players actually **do and experience** on the official multiplayer server:
+    * Interplanetary Space Program (Moon, Mars, Venus, Mercury, Glacio expeditions)
+    * Continental Rail & Transit Networks (high-speed transit, automated freight, station timetables)
+    * Sovereign Land Claims & Civilizations (grief-free SMP, town founding, player trading)
+    * Living World & Biomes (85+ Terralith biomes, vertical Y=-64 to 320 elevation, custom wildlife)
+    * 500+ Guided Quests (structured progression across 4 Acts, zero aimless grind)
+    * Live 3D Satellite BlueMap & Dallas Core 20.0 locked TPS
+  - Strictly forbid hyper-niche mod-internal simulations (spinning gear cogs, ME drive storage bits, acoustic waveforms). Focus on the multiplayer server grandeur.
 - **Provider Stealth**:
   - Absolutely zero references to external hosting providers (Foxomy, etc.).
   - Always use: `Ventrix Cloud Core`, `Dallas Core Cluster (Tier 4 Facility)`, `US-Central`.
