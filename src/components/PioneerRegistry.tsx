@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Users, CheckCircle, AlertCircle, Terminal, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Users, CheckCircle, AlertCircle, ArrowRight } from "lucide-react";
 
 interface Pioneer {
   id: string;
@@ -128,7 +129,7 @@ export function PioneerRegistry() {
             <button
               type="submit"
               disabled={loading || !username.trim()}
-              className="w-full py-2.5 rounded-xl bg-white text-black font-medium text-xs sm:text-sm hover:bg-zinc-200 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+              className="w-full py-2.5 rounded-xl bg-white hover:bg-[#ededed] active:bg-[#e4e4e7] text-black font-medium text-xs sm:text-sm active:scale-[0.98] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:shadow-[0_2px_14px_rgba(255,255,255,0.18)] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2 select-none"
             >
               {loading ? (
                 <span>Verifying Credentials...</span>
@@ -140,22 +141,28 @@ export function PioneerRegistry() {
               )}
             </button>
 
-            {statusMsg && (
-              <div
-                className={`p-3 rounded-xl text-xs font-mono flex items-center gap-2 border ${
-                  statusMsg.type === "success"
-                    ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
-                    : "bg-red-500/10 border-red-500/20 text-red-400"
-                }`}
-              >
-                {statusMsg.type === "success" ? (
-                  <CheckCircle className="w-4 h-4 shrink-0" />
-                ) : (
-                  <AlertCircle className="w-4 h-4 shrink-0" />
-                )}
-                <span>{statusMsg.text}</span>
-              </div>
-            )}
+            <AnimatePresence>
+              {statusMsg && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  className={`p-3 rounded-xl text-xs font-mono flex items-center gap-2 border ${
+                    statusMsg.type === "success"
+                      ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
+                      : "bg-red-500/10 border-red-500/20 text-red-400"
+                  }`}
+                >
+                  {statusMsg.type === "success" ? (
+                    <CheckCircle className="w-4 h-4 shrink-0" />
+                  ) : (
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                  )}
+                  <span>{statusMsg.text}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </form>
         </div>
 

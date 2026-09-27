@@ -8,6 +8,8 @@
   --surface-border-hover: rgba(255, 255, 255, 0.18);
   --accent-white: #ffffff;
   --accent-muted: #71717a;
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple-subtle: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 @theme inline {
@@ -23,6 +25,7 @@
 
 html {
   color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -106,3 +109,120 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.25);
 }
+
+/* Apple-grade Interactive Buttons & Morph Physics */
+.btn-press {
+  transition: transform 0.22s var(--ease-apple),
+              background-color 0.22s var(--ease-apple),
+              border-color 0.22s var(--ease-apple),
+              color 0.22s var(--ease-apple),
+              box-shadow 0.28s var(--ease-apple),
+              opacity 0.2s var(--ease-apple);
+  will-change: transform;
+}
+
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+.btn-primary-apple {
+  background-color: #ffffff;
+  color: #050608;
+  font-weight: 500;
+  box-shadow: 0 4px 18px -2px rgba(255, 255, 255, 0.12),
+              0 2px 6px -1px rgba(0, 0, 0, 0.4);
+  transition: transform 0.24s var(--ease-apple),
+              background-color 0.24s var(--ease-apple),
+              box-shadow 0.3s var(--ease-apple),
+              opacity 0.2s var(--ease-apple);
+  will-change: transform;
+}
+
+.btn-primary-apple:hover {
+  background-color: #f0f0f2;
+  box-shadow: 0 6px 24px -2px rgba(255, 255, 255, 0.22),
+              0 2px 6px -1px rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary-apple:active {
+  transform: scale(0.98);
+  background-color: #e4e4e7;
+}
+
+.btn-secondary-apple {
+  background-color: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #d4d4d8;
+  transition: transform 0.24s var(--ease-apple),
+              background-color 0.24s var(--ease-apple),
+              border-color 0.24s var(--ease-apple),
+              color 0.24s var(--ease-apple),
+              box-shadow 0.3s var(--ease-apple);
+  will-change: transform;
+}
+
+.btn-secondary-apple:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.btn-secondary-apple:active {
+  transform: scale(0.98);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Precision Gradient Fade Masks */
+.mask-gradient-b {
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+.mask-gradient-t {
+  mask-image: linear-gradient(to top, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%);
+}
+
+.mask-gradient-x {
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.mask-radial-subtle {
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 85%);
+}
+
+/* Keyframe Animations & Smooth Motion Utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.transition-apple {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+

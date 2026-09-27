@@ -29,10 +29,10 @@ export function ModpackPillars() {
         <div className="flex flex-wrap gap-2 mt-8">
           <button
             onClick={() => setActiveTab("cosmos")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none ${
               activeTab === "cosmos"
-                ? "bg-white text-black font-semibold shadow-lg"
-                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06]"
+                ? "bg-white text-black font-semibold shadow-lg shadow-white/10"
+                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06] hover:border-white/[0.15]"
             }`}
           >
             <Rocket className="w-3.5 h-3.5" />
@@ -41,10 +41,10 @@ export function ModpackPillars() {
 
           <button
             onClick={() => setActiveTab("kinetic")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none ${
               activeTab === "kinetic"
-                ? "bg-white text-black font-semibold shadow-lg"
-                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06]"
+                ? "bg-white text-black font-semibold shadow-lg shadow-white/10"
+                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06] hover:border-white/[0.15]"
             }`}
           >
             <Cog className="w-3.5 h-3.5" />
@@ -53,10 +53,10 @@ export function ModpackPillars() {
 
           <button
             onClick={() => setActiveTab("ae2")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none ${
               activeTab === "ae2"
-                ? "bg-white text-black font-semibold shadow-lg"
-                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06]"
+                ? "bg-white text-black font-semibold shadow-lg shadow-white/10"
+                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06] hover:border-white/[0.15]"
             }`}
           >
             <Cpu className="w-3.5 h-3.5" />
@@ -65,10 +65,10 @@ export function ModpackPillars() {
 
           <button
             onClick={() => setActiveTab("ecology")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none ${
               activeTab === "ecology"
-                ? "bg-white text-black font-semibold shadow-lg"
-                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06]"
+                ? "bg-white text-black font-semibold shadow-lg shadow-white/10"
+                : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06] hover:border-white/[0.15]"
             }`}
           >
             <Globe className="w-3.5 h-3.5" />

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, CheckCircle } from "lucide-react";
 
 interface QuestAct {
@@ -13,6 +14,8 @@ interface QuestAct {
   highlights: string[];
   progressionNote: string;
 }
+
+const appleEase = [0.16, 1, 0.3, 1] as const;
 
 const ACTS: QuestAct[] = [
   {
@@ -108,10 +111,10 @@ export function QuestChronicles() {
             <button
               key={act.id}
               onClick={() => setActiveActIndex(index)}
-              className={`p-5 rounded-xl text-left border transition-all cursor-pointer ${
+              className={`p-5 rounded-xl text-left border cursor-pointer select-none transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.985] ${
                 activeActIndex === index
-                  ? "bg-[#10131a] border-white/[0.2] text-white shadow-lg"
-                  : "bg-[#090b10] border-white/[0.06] hover:bg-white/[0.02] text-zinc-400 hover:text-zinc-200"
+                  ? "bg-[#10131a] border-white/[0.22] text-white shadow-lg shadow-black/40"
+                  : "bg-[#090b10] border-white/[0.06] hover:bg-white/[0.02] text-zinc-400 hover:text-zinc-200 hover:border-white/[0.12]"
               }`}
             >
               <div className="flex items-center justify-between mb-1.5">
@@ -131,39 +134,49 @@ export function QuestChronicles() {
         </div>
 
         {/* Selected Act Detail Panel */}
-        <div className="lg:col-span-7 bg-[#0b0d13] border border-white/[0.08] rounded-2xl p-6 sm:p-8">
-          <div className="flex items-center justify-between pb-5 border-b border-white/[0.06] mb-6">
-            <div>
-              <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest">
-                CHAPTER DIRECTIVE // {activeAct.badge}
-              </span>
-              <h3 className="text-2xl font-semibold text-white tracking-tight mt-1">
-                {activeAct.title}
-              </h3>
-            </div>
-            <div className="font-mono text-xs text-zinc-400 bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/[0.08]">
-              {activeAct.questCount} Objectives
-            </div>
-          </div>
-
-          <p className="text-zinc-300 text-sm leading-relaxed mb-6 font-mono">
-            {"//"} {activeAct.progressionNote}
-          </p>
-
-          <div className="space-y-3 mb-8">
-            <span className="text-xs font-mono uppercase tracking-wider text-zinc-400 block mb-2">
-              Key Chapter Milestones:
-            </span>
-            {activeAct.highlights.map((highlight) => (
-              <div
-                key={highlight}
-                className="flex items-start gap-3 p-3.5 rounded-xl bg-black/40 border border-white/[0.05]"
-              >
-                <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                <span className="text-xs sm:text-sm text-zinc-200">{highlight}</span>
+        <div className="lg:col-span-7 bg-[#0b0d13] border border-white/[0.08] rounded-2xl p-6 sm:p-8 min-h-[380px] flex flex-col justify-between">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeAct.id}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.22, ease: appleEase }}
+            >
+              <div className="flex items-center justify-between pb-5 border-b border-white/[0.06] mb-6">
+                <div>
+                  <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest">
+                    CHAPTER DIRECTIVE // {activeAct.badge}
+                  </span>
+                  <h3 className="text-2xl font-semibold text-white tracking-tight mt-1">
+                    {activeAct.title}
+                  </h3>
+                </div>
+                <div className="font-mono text-xs text-zinc-400 bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/[0.08]">
+                  {activeAct.questCount} Objectives
+                </div>
               </div>
-            ))}
-          </div>
+
+              <p className="text-zinc-300 text-sm leading-relaxed mb-6 font-mono">
+                {"//"} {activeAct.progressionNote}
+              </p>
+
+              <div className="space-y-3 mb-8">
+                <span className="text-xs font-mono uppercase tracking-wider text-zinc-400 block mb-2">
+                  Key Chapter Milestones:
+                </span>
+                {activeAct.highlights.map((highlight) => (
+                  <div
+                    key={highlight}
+                    className="flex items-start gap-3 p-3.5 rounded-xl bg-black/40 border border-white/[0.05]"
+                  >
+                    <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                    <span className="text-xs sm:text-sm text-zinc-200">{highlight}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
           <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-zinc-400">
             <span>FTB QUEST SYSTEM V21.1</span>

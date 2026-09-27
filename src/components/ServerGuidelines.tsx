@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Terminal, Shield, Cpu, Activity, Check, Copy } from "lucide-react";
+import { Terminal, Cpu, Check, Copy } from "lucide-react";
 
 const COMMANDS = [
   {
@@ -138,7 +138,7 @@ export function ServerGuidelines() {
               <div
                 key={c.cmd}
                 onClick={() => copyCommand(c.cmd)}
-                className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] hover:border-white/[0.18] transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer group"
+                className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.02] active:scale-[0.99] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer group select-none"
               >
                 <div>
                   <div className="flex items-center gap-2">

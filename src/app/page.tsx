@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { IntentGateway } from "@/components/IntentGateway";
 import { ModpackPillars } from "@/components/ModpackPillars";
 import { QuestChronicles } from "@/components/QuestChronicles";
 import { ServerGuidelines } from "@/components/ServerGuidelines";
@@ -25,6 +26,12 @@ export default function Home() {
 
       {/* Hero Section */}
       <Hero
+        onOpenJoinModal={() => setJoinModalOpen(true)}
+        onOpenBlueMapModal={() => setBlueMapModalOpen(true)}
+      />
+
+      {/* Dual-Track Intent Gateway (New Explorer & Returning Pioneer) */}
+      <IntentGateway
         onOpenJoinModal={() => setJoinModalOpen(true)}
         onOpenBlueMapModal={() => setBlueMapModalOpen(true)}
       />
