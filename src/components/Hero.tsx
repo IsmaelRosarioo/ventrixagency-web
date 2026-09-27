@@ -367,7 +367,7 @@ export function Hero({ onOpenJoinModal, onOpenBlueMapModal }: HeroProps) {
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, ease: EASING.apple, delay: 0.2 }}
-          className="text-5xl sm:text-7xl lg:text-8xl font-medium tracking-[-0.04em] text-white leading-[1.0] mb-6 text-balance hero-headline-shadow"
+          className="text-5xl sm:text-7xl lg:text-8xl font-serif font-normal tracking-[-0.03em] text-white leading-[1.0] mb-6 text-balance hero-headline-shadow"
           style={{
             textShadow: "0 2px 18px rgba(0, 0, 0, 0.7), 0 4px 60px rgba(0, 0, 0, 0.5)",
           }}

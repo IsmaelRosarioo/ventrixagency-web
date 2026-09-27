@@ -66,7 +66,7 @@ export function ServerGuidelines() {
           <Terminal className="w-3 h-3 text-emerald-400" />
           INFRASTRUCTURE DIRECTIVES & TELEMETRY
         </div>
-        <h2 className="text-3xl sm:text-5xl font-medium text-white tracking-[-0.035em] leading-[1.08] mb-4">
+        <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.12] mb-4">
           Bare-Metal Enterprise Hardware. Locked 20.0 TPS.
         </h2>
         <p className="text-zinc-400 text-base sm:text-lg font-normal leading-relaxed">
@@ -78,7 +78,7 @@ export function ServerGuidelines() {
         {/* Left: Hardware Spec Sheet & Directives */}
         <div className="lg:col-span-5 space-y-5">
           {/* Hardware Specs Card */}
-          <div className="p-6 rounded-2xl bg-[#0c0d12] border border-white/[0.08] shadow-xl">
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#0c0d12]/90 border border-white/10 shadow-[0_24px_70px_rgba(0,0,0,0.5)] backdrop-blur-xl">
             <div className="flex items-center gap-2.5 pb-4 border-b border-white/[0.06] mb-5">
               <Cpu className="w-4 h-4 text-zinc-400" />
               <span className="font-mono text-xs uppercase tracking-wider text-zinc-200">
@@ -111,7 +111,7 @@ export function ServerGuidelines() {
           </div>
 
           {/* Directives Card */}
-          <div className="p-6 rounded-2xl bg-[#0c0d12] border border-white/[0.08] space-y-4 shadow-xl">
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#0c0d12]/90 border border-white/10 space-y-4 shadow-[0_24px_70px_rgba(0,0,0,0.5)] backdrop-blur-xl">
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-200 block">
               Frontier Operational Directives:
             </span>
@@ -139,7 +139,7 @@ export function ServerGuidelines() {
         </div>
 
         {/* Right: Interactive Command Directory */}
-        <div className="lg:col-span-7 bg-[#0c0d12] border border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-xl">
+        <div className="lg:col-span-7 bg-[#0c0d12]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_24px_70px_rgba(0,0,0,0.5)] backdrop-blur-xl">
           <div className="flex items-center justify-between pb-4 border-b border-white/[0.06] mb-6">
             <div className="flex items-center gap-2">
               <Terminal className="w-4 h-4 text-zinc-400" />

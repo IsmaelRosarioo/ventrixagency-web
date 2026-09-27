@@ -55,22 +55,22 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
           </h4>
           <ul className="space-y-2 text-xs font-mono">
             <li>
-              <a href="#pillars" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <a href="#radar" className="hover:text-white transition-colors flex items-center gap-1.5">
                 <span>Cosmic Expeditions</span>
               </a>
             </li>
             <li>
-              <a href="#pillars" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <a href="#corridors" className="hover:text-white transition-colors flex items-center gap-1.5">
                 <span>Continental Rail</span>
               </a>
             </li>
             <li>
-              <a href="#guidelines" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <a href="#sovereignty" className="hover:text-white transition-colors flex items-center gap-1.5">
                 <span>Sovereign Land Claims</span>
               </a>
             </li>
             <li>
-              <a href="#pillars" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <a href="#biomes" className="hover:text-white transition-colors flex items-center gap-1.5">
                 <span>Living Biomes</span>
               </a>
             </li>

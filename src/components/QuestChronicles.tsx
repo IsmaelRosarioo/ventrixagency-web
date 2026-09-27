@@ -98,7 +98,7 @@ export function QuestChronicles() {
             <BookOpen className="w-3 h-3 text-emerald-400" />
             PROGRESSION BLUEPRINT // 513 QUESTS
           </div>
-          <h2 className="text-3xl sm:text-5xl font-medium text-white tracking-[-0.035em] leading-[1.08] mb-3">
+          <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.12] mb-3">
             Clear Progression. Zero Aimless Grind.
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
@@ -152,7 +152,7 @@ export function QuestChronicles() {
         </div>
 
         {/* Selected Act Detail Panel */}
-        <div className="lg:col-span-7 bg-[#0c0d12] border border-white/[0.08] rounded-2xl p-6 sm:p-8 min-h-[420px] flex flex-col justify-between shadow-2xl">
+        <div className="lg:col-span-7 bg-[#0c0d12]/90 border border-white/10 rounded-3xl p-6 sm:p-8 min-h-[420px] flex flex-col justify-between shadow-[0_34px_90px_rgba(0,0,0,0.5)] backdrop-blur-xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeAct.id}

@@ -130,7 +130,7 @@ export function IntentGateway({
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span>EXPEDITION ARCHITECTURE // INTENT GATEWAY</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-medium text-white tracking-[-0.035em] leading-[1.08] mb-3">
+          <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.12] mb-3">
             Tailored for Every Pioneer.
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed text-balance">
