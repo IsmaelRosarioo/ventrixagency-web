@@ -82,7 +82,7 @@ export function QuestChronicles() {
   const activeAct = ACTS[activeActIndex];
 
   return (
-    <section id="chronicles" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/[0.06]">
+    <section id="chronicles" className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/[0.06]">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
         <div>

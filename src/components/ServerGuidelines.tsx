@@ -52,7 +52,7 @@ export function ServerGuidelines() {
   };
 
   return (
-    <section id="guidelines" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/[0.06]">
+    <section id="guidelines" className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/[0.06]">
       {/* Section Header */}
       <div className="max-w-3xl mb-16 text-left">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-zinc-400 font-mono text-[11px] uppercase tracking-widest mb-4">
@@ -81,7 +81,7 @@ export function ServerGuidelines() {
             <div className="space-y-4 text-xs font-mono">
               <div className="flex items-center justify-between pb-3 border-b border-white/[0.04]">
                 <span className="text-zinc-400">HOST FACILITY</span>
-                <span className="text-zinc-200 font-medium">Foxomy Dallas (Tier 4 Datacenter)</span>
+                <span className="text-zinc-200 font-medium">Ventrix Dallas Core (Tier 4 Enterprise)</span>
               </div>
               <div className="flex items-center justify-between pb-3 border-b border-white/[0.04]">
                 <span className="text-zinc-400">PROCESSOR</span>

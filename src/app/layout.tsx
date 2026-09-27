@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "Ad Astra",
     "Create Mod",
     "Malum",
-    "Foxomy Cloud",
+    "Ventrix Cloud Core",
     "Modpack",
   ],
   authors: [{ name: "Ventrix Agency", url: "https://ventrixagency.com" }],

@@ -11,7 +11,7 @@ interface BlueMapModalProps {
 export function BlueMapModal({ isOpen, onClose }: BlueMapModalProps) {
   if (!isOpen) return null;
 
-  const bluemapUrl = "http://dal2.foxomy.com:25670";
+  const bluemapUrl = "/map";
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-xl animate-in fade-in duration-200">
@@ -29,7 +29,7 @@ export function BlueMapModal({ isOpen, onClose }: BlueMapModalProps) {
                   REAL-TIME
                 </span>
               </div>
-              <p className="text-[11px] text-zinc-400 font-mono">Foxomy Dallas BlueMap Engine</p>
+              <p className="text-[11px] text-zinc-400 font-mono">Ventrix High-Resolution Satellite Telemetry</p>
             </div>
           </div>
 

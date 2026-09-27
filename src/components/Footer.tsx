@@ -31,7 +31,7 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
               </span>
             </div>
             <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-sm mb-6">
-              The flagship digital gateway for Ventrix: Frontier. A deeply integrated Minecraft survival chronicle hosted on Foxomy enterprise cloud hardware.
+              The flagship digital gateway for Ventrix: Frontier. A deeply integrated Minecraft survival chronicle hosted on dedicated enterprise cloud hardware.
             </p>
           </div>
 
@@ -123,7 +123,7 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
             Cloud Specification
           </h4>
           <div className="p-4 rounded-xl bg-black/40 border border-white/[0.06] text-[11px] font-mono space-y-1.5 text-zinc-400">
-            <div><span className="text-zinc-600">HOST:</span> Foxomy Dallas (Tier 4)</div>
+            <div><span className="text-zinc-600">CLUSTER:</span> Dallas Core (Tier 4 Facility)</div>
             <div><span className="text-zinc-600">CPU:</span> AMD Ryzen 9 9950X3D</div>
             <div><span className="text-zinc-600">JVM:</span> Eclipse Temurin 21 (Gen-ZGC)</div>
             <div><span className="text-zinc-600">PROTOCOL:</span> NeoForge 21.1.249</div>
