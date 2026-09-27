@@ -117,7 +117,7 @@ export function LivingWorldExplorer() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
       {/* Visual Elevation Gauge & Stratigraphy Scanner (Left Column) */}
-      <div className="lg:col-span-7 bg-[#0c0d12] border border-white/[0.08] rounded-2xl p-4 sm:p-6 flex flex-col justify-between relative overflow-hidden">
+      <div className="lg:col-span-7 bg-white/[0.02] border border-white/[0.06] backdrop-blur-xl rounded-3xl p-5 sm:p-7 flex flex-col justify-between relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.36)] hover:border-white/[0.14] transition-all duration-300">
         {/* Top Header */}
         <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-white/[0.06] mb-4 z-10">
           <div className="flex items-center gap-2">
@@ -266,7 +266,7 @@ export function LivingWorldExplorer() {
       </div>
 
       {/* Biome Climate & Ecological Stratigraphy HUD (Right Column) */}
-      <div className="lg:col-span-5 bg-[#0c0d12] border border-white/[0.08] rounded-2xl p-6 sm:p-7 flex flex-col justify-between">
+      <div className="lg:col-span-5 bg-white/[0.02] border border-white/[0.06] backdrop-blur-xl rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-[0_8px_32px_rgba(0,0,0,0.36)] hover:border-white/[0.14] transition-all duration-300">
         <div>
           {/* Header */}
           <div className="flex items-center justify-between pb-4 border-b border-white/[0.06] mb-5">

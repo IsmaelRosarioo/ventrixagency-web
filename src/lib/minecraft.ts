@@ -126,7 +126,7 @@ export async function queryMinecraftServer(
       try {
         const { value: packetLen, size: lenSize } = readVarInt(incoming, 0);
         if (incoming.length >= packetLen + lenSize) {
-          const { value: packetId, size: idSize } = readVarInt(incoming, lenSize);
+          const { size: idSize } = readVarInt(incoming, lenSize);
           const { value: strLen, size: strLenSize } = readVarInt(
             incoming,
             lenSize + idSize

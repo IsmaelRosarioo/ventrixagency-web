@@ -11,7 +11,7 @@ interface FooterProps {
 
 export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
   return (
-    <footer className="bg-[#050608] border-t border-white/[0.06] pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-zinc-400">
+    <footer className="bg-[#050608] pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-zinc-400">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-white/[0.06]">
         {/* Brand Identity */}
         <div className="md:col-span-5 flex flex-col justify-between">

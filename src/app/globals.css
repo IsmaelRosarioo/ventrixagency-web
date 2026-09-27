@@ -3,13 +3,18 @@
 :root {
   --background: #050608;
   --foreground: #f4f4f5;
-  --surface-card: rgba(14, 16, 22, 0.85);
-  --surface-border: rgba(255, 255, 255, 0.08);
-  --surface-border-hover: rgba(255, 255, 255, 0.18);
+  --surface-card: rgba(14, 16, 22, 0.75);
+  --surface-border: rgba(255, 255, 255, 0.06);
+  --surface-border-hover: rgba(255, 255, 255, 0.16);
+  --surface-highlight: rgba(255, 255, 255, 0.12);
   --accent-white: #ffffff;
   --accent-muted: #71717a;
+  
+  /* Apple Liquid Spring Easing */
   --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-apple-subtle: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  --ease-liquid: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -39,35 +44,330 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Precision Hairline Cards & Panels */
-.editorial-card {
-  background: rgba(12, 14, 18, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+/* ==========================================================================
+   Ethereal Ambient Light Blooms (Aurora Glow, Cosmic Indigo, Hearth Amber)
+   ========================================================================== */
+
+/* Alpine Frontier Aurora Borealis Bloom */
+.ambient-bloom-aurora {
+  background: radial-gradient(
+    65% 55% at 50% 50%,
+    rgba(52, 211, 153, 0.14) 0%,
+    rgba(45, 212, 191, 0.08) 35%,
+    rgba(167, 139, 250, 0.05) 65%,
+    transparent 85%
+  );
+  filter: blur(52px);
+  pointer-events: none;
+}
+
+/* Deep Space & Orbit Cosmic Indigo Bloom */
+.ambient-bloom-cosmic {
+  background: radial-gradient(
+    65% 55% at 50% 50%,
+    rgba(99, 102, 241, 0.13) 0%,
+    rgba(139, 92, 246, 0.08) 38%,
+    rgba(56, 189, 248, 0.04) 70%,
+    transparent 90%
+  );
+  filter: blur(56px);
+  pointer-events: none;
+}
+
+/* Warm Frontier Hearth & Cabin Amber Bloom */
+.ambient-bloom-hearth {
+  background: radial-gradient(
+    60% 50% at 50% 50%,
+    rgba(245, 158, 11, 0.12) 0%,
+    rgba(217, 119, 6, 0.07) 35%,
+    rgba(239, 68, 68, 0.03) 65%,
+    transparent 85%
+  );
+  filter: blur(48px);
+  pointer-events: none;
+}
+
+/* Ethereal Halo & Radial Highlights */
+.ambient-glow {
+  position: relative;
+}
+
+.ambient-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.02) 65%,
+    transparent 85%
+  );
+  border-radius: inherit;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.75;
+  transition: opacity 0.3s var(--ease-apple);
+}
+
+.ambient-glow:hover::before {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Apple Liquid Spring Curves & Keyframe Motion
+   ========================================================================== */
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.35deg);
+  }
+}
+
+@keyframes pulseGentle {
+  0%, 100% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(0.988);
+  }
+}
+
+@keyframes auroraShift {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+    filter: hue-rotate(0deg);
+  }
+  33% {
+    transform: translate(2.5%, -3%) scale(1.06);
+    filter: hue-rotate(18deg);
+  }
+  66% {
+    transform: translate(-3%, 2.5%) scale(0.97);
+    filter: hue-rotate(-16deg);
+  }
+  100% {
+    transform: translate(0%, 0%) scale(1);
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes shimmerSlow {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes luminousPulse {
+  0%, 100% {
+    opacity: 0.45;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.15));
+  }
+  50% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.3));
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+.animate-pulse-gentle {
+  animation: pulseGentle 4.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  will-change: opacity, transform;
+}
+
+.animate-aurora-shift {
+  animation: auroraShift 20s ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+.animate-shimmer-slow {
+  background-size: 200% 100%;
+  animation: shimmerSlow 8s linear infinite;
+}
+
+.animate-luminous-pulse {
+  animation: luminousPulse 4s ease-in-out infinite;
+}
+
+.transition-apple {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.transition-liquid {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   Glassmorphic Classes & Soft Radial Surfaces (Eliminates Sharp Box Borders)
+   ========================================================================== */
+
+/* Liquid Glass Surface (Replaces Flat Tech Boxes) */
+.glass-surface {
+  position: relative;
+  background: radial-gradient(
+    130% 100% at 50% 0%,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.015) 50%,
+    rgba(12, 14, 20, 0.6) 100%
+  );
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 0 24px 0 rgba(255, 255, 255, 0.015),
+    0 20px 48px -12px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.28s var(--ease-apple),
+              box-shadow 0.28s var(--ease-apple),
+              transform 0.28s var(--ease-apple),
+              background 0.28s var(--ease-apple);
+}
+
+.glass-surface:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 0 32px 0 rgba(255, 255, 255, 0.03),
+    0 24px 60px -10px rgba(0, 0, 0, 0.75);
+}
+
+/* Glass Pill (Refined Navigation & Filter Chips) */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.14);
+  transition: all 0.24s var(--ease-apple);
+}
+
+.glass-pill:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
+              0 8px 24px -4px rgba(0, 0, 0, 0.4);
+}
+
+/* Precision Inner Specular Highlights */
+.shadow-specular {
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.shadow-glass-float {
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 0 24px 0 rgba(255, 255, 255, 0.02),
+    0 24px 64px -12px rgba(0, 0, 0, 0.7);
+}
+
+/* Elevated Editorial Cards with Inner Specular Illumination */
+.editorial-card {
+  background: radial-gradient(
+    120% 90% at 50% 0%,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(14, 16, 22, 0.7) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.11),
+    0 16px 40px -10px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: border-color 0.24s var(--ease-apple),
+              box-shadow 0.24s var(--ease-apple),
+              background 0.24s var(--ease-apple),
+              transform 0.24s var(--ease-apple);
 }
 
 .editorial-card:hover {
-  border-color: rgba(255, 255, 255, 0.16);
-  background: rgba(16, 19, 26, 0.85);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.18),
+    0 20px 48px -8px rgba(0, 0, 0, 0.65);
 }
 
 .editorial-panel {
-  background: rgba(10, 11, 15, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: radial-gradient(
+    140% 100% at 50% 0%,
+    rgba(255, 255, 255, 0.035) 0%,
+    rgba(10, 12, 17, 0.85) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12),
+    0 24px 64px -16px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+}
+
+/* ==========================================================================
+   Edge-to-Edge Fluid Blends & Gradient Masks
+   ========================================================================== */
+
+.fluid-blend-t {
+  background: linear-gradient(to top, transparent 0%, var(--background) 100%);
+}
+
+.fluid-blend-b {
+  background: linear-gradient(to bottom, transparent 0%, var(--background) 100%);
+}
+
+.fluid-blend-y {
+  background: linear-gradient(to bottom, var(--background) 0%, transparent 20%, transparent 80%, var(--background) 100%);
+}
+
+/* Precision Gradient Fade Masks */
+.mask-gradient-b {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.mask-gradient-t {
+  mask-image: linear-gradient(to top, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 80%, transparent 100%);
+}
+
+.mask-gradient-x {
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.mask-cinematic-edge {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+              linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+                      linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+}
+
+.mask-radial-subtle {
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 85%);
+}
+
+.mask-soft-edges {
+  mask-image: radial-gradient(ellipse 94% 90% at 50% 50%, black 65%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 94% 90% at 50% 50%, black 65%, transparent 100%);
 }
 
 /* Refined Subtle Radial Spotlight */
 .hero-spotlight {
   background: radial-gradient(
-    60% 50% at 50% 0%,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(255, 255, 255, 0.015) 45%,
+    65% 55% at 50% 0%,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 45%,
     transparent 80%
   );
 }
@@ -78,8 +378,8 @@ body {
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 85%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 30%, #000 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 30%, #000 30%, transparent 85%);
 }
 
 /* Technical Monospace Micro-labels */
@@ -89,25 +389,6 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: #71717a;
-}
-
-/* Sleek Minimal Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #050608;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
 }
 
 /* Apple-grade Interactive Buttons & Morph Physics */
@@ -153,6 +434,7 @@ body {
   background-color: rgba(255, 255, 255, 0.035);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: #d4d4d8;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
   transition: transform 0.24s var(--ease-apple),
               background-color 0.24s var(--ease-apple),
               border-color 0.24s var(--ease-apple),
@@ -165,6 +447,8 @@ body {
   background-color: rgba(255, 255, 255, 0.07);
   border-color: rgba(255, 255, 255, 0.18);
   color: #ffffff;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.18),
+              0 4px 16px -2px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary-apple:active {
@@ -172,57 +456,21 @@ body {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* Precision Gradient Fade Masks */
-.mask-gradient-b {
-  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+/* Sleek Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-.mask-gradient-t {
-  mask-image: linear-gradient(to top, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%);
+::-webkit-scrollbar-track {
+  background: #050608;
 }
 
-.mask-gradient-x {
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
 }
 
-.mask-radial-subtle {
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 85%);
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
-
-/* Keyframe Animations & Smooth Motion Utilities */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulseSubtle {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.65;
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-pulse-subtle {
-  animation: pulseSubtle 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-}
-
-.transition-apple {
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
