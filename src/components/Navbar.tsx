@@ -36,11 +36,11 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
   });
 
   const navItems: NavItem[] = [
-    { id: "pillars", label: "Architecture", href: "#pillars" },
-    { id: "chronicles", label: "Chronicles", href: "#chronicles" },
-    { id: "bluemap", label: "Live Map", onClick: onOpenBlueMapModal },
+    { id: "pillars", label: "Expeditions", href: "#pillars" },
+    { id: "chronicles", label: "Progression", href: "#chronicles" },
+    { id: "bluemap", label: "3D Map", onClick: onOpenBlueMapModal },
     { id: "guidelines", label: "Directives", href: "#guidelines" },
-    { id: "pioneers", label: "Registry", href: "#pioneers" },
+    { id: "pioneers", label: "Pioneers", href: "#pioneers" },
   ];
 
   useEffect(() => {

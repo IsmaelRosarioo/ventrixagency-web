@@ -63,23 +63,23 @@ export function IntentGateway({
   const handleCopyIp = () => {
     navigator.clipboard.writeText("mc.ventrixagency.com");
     setCopied(true);
-    setTimeout(() => setCopied(false), 2200);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <section id="gateway" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/[0.06]">
+    <section id="gateway" className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/[0.06]">
       {/* Editorial Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-zinc-400 font-mono text-[11px] uppercase tracking-widest mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             EXPEDITION ARCHITECTURE // INTENT GATEWAY
           </div>
           <h2 className="text-3xl sm:text-5xl font-medium text-white tracking-[-0.035em] leading-[1.08] mb-3">
             Tailored for Every Pioneer.
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
-            Select your operational pathway. First-time visitors receive a concise 3-minute initialization sequence, while returning commanders access real-time Dallas Core cluster telemetry and release changelogs.
+            Select your operational pathway. First-time visitors receive a concise 3-minute onboarding sequence, while returning commanders access real-time Dallas Core cluster telemetry, 3.0.2 patch highlights, and orbital BlueMap cartography.
           </p>
         </div>
 
@@ -121,18 +121,18 @@ export function IntentGateway({
         </div>
       </div>
 
-      {/* TRACK 1: NEW EXPLORER */}
+      {/* TRACK A: NEW EXPLORER */}
       {activeTrack === "explorer" && (
         <div className="space-y-6 animate-in fade-in duration-300">
           {/* Timeline Bar Indicator */}
           <div className="hidden md:grid grid-cols-3 gap-4 pb-2 border-b border-white/[0.06] text-xs font-mono text-zinc-500">
             <div className="flex items-center gap-2">
               <span className="text-white font-medium">01</span>
-              <span>Client Launcher Provisioning</span>
+              <span>Client Launcher Choice</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-white font-medium">02</span>
-              <span>Memory Calibration (8 GB)</span>
+              <span>8–10 GB RAM Allocation</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-white font-medium">03</span>
@@ -142,12 +142,12 @@ export function IntentGateway({
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Card 1: Launcher Provisioning */}
-            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all">
+            {/* Card 1: Launcher Choice (Prism / CurseForge) */}
+            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all duration-200">
               <div>
                 <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
                   <span>STEP 01 // RUNTIME ENGINE</span>
-                  <span className="text-zinc-400">~60 SEC</span>
+                  <span className="text-zinc-400 font-medium">~60 SEC</span>
                 </div>
 
                 <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-200 mb-4">
@@ -155,26 +155,26 @@ export function IntentGateway({
                 </div>
 
                 <h3 className="text-xl font-medium text-white tracking-[-0.035em] mb-2">
-                  Client Launcher
+                  Client Launcher Choice
                 </h3>
                 <p className="text-zinc-300 text-sm leading-relaxed mb-6">
-                  Select your client orchestrator. Both options automatically download modpack dependencies, configure NeoForge 21.1.249, and isolate Java 21 runtimes.
+                  Select your client orchestrator. Both options automatically resolve modpack dependencies, configure NeoForge 21.1.249, and isolate Java 21 runtimes.
                 </p>
 
-                {/* Direct download options */}
+                {/* Launcher Selection Options */}
                 <div className="space-y-2.5 mb-6">
                   <a
                     href="https://prismlauncher.org/download/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.06] transition-all"
+                    className="group flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.06] active:scale-[0.98] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]"
                   >
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium text-white group-hover:text-white">
                           Prism Launcher
                         </span>
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] text-zinc-300">
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.08] text-zinc-200">
                           Recommended
                         </span>
                       </div>
@@ -187,7 +187,7 @@ export function IntentGateway({
                     href="https://www.curseforge.com/download/app"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.06] transition-all"
+                    className="group flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.06] active:scale-[0.98] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]"
                   >
                     <div>
                       <div className="flex items-center gap-2">
@@ -212,12 +212,12 @@ export function IntentGateway({
               </div>
             </div>
 
-            {/* Card 2: Memory Allocation */}
-            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all">
+            {/* Card 2: 8-10 GB RAM Allocation Guide */}
+            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all duration-200">
               <div>
                 <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
                   <span>STEP 02 // HEAP CALIBRATION</span>
-                  <span className="text-zinc-400">CRITICAL</span>
+                  <span className="text-amber-400 font-medium">8–10 GB REQUIRED</span>
                 </div>
 
                 <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-200 mb-4">
@@ -228,13 +228,13 @@ export function IntentGateway({
                   8 GB – 10 GB RAM Allocation
                 </h3>
                 <p className="text-zinc-300 text-sm leading-relaxed mb-6">
-                  Ventrix: Frontier harmonizes 514 complex modifications. Setting your launcher’s memory allocation prevents Java GC pauses during orbital re-entry and kinetic factory operation.
+                  Ventrix: Frontier harmonizes 514 complex modifications. Allocating 8 to 10 GB in your launcher settings eliminates Java GC micro-stutters during orbital re-entry and kinetic rail operation.
                 </p>
 
                 {/* Memory Allocation Gauge */}
                 <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] mb-5">
                   <div className="flex justify-between items-center text-xs font-mono mb-2">
-                    <span className="text-zinc-400">Heap Matrix</span>
+                    <span className="text-zinc-400">Target Heap Range</span>
                     <span className="text-white font-medium">8,192 MB – 10,240 MB</span>
                   </div>
 
@@ -243,24 +243,24 @@ export function IntentGateway({
                     <div className="bg-zinc-700 rounded-sm" title="<6GB: Inadequate" />
                     <div className="bg-zinc-700 rounded-sm" title="6GB: Marginal" />
                     <div className="bg-white rounded-sm" title="8GB: Baseline Target" />
-                    <div className="bg-zinc-400 rounded-sm" title="10GB: High Fidelity" />
+                    <div className="bg-zinc-300 rounded-sm" title="10GB: Recommended High-Fidelity" />
                   </div>
 
                   <div className="grid grid-cols-4 gap-1 text-[10px] font-mono text-center text-zinc-400">
                     <span>4 GB</span>
                     <span>6 GB</span>
                     <span className="text-white font-medium">8 GB</span>
-                    <span>10 GB</span>
+                    <span className="text-zinc-200 font-medium">10 GB</span>
                   </div>
                 </div>
 
-                {/* Architecture Note */}
+                {/* Architecture JVM Argument */}
                 <div className="p-3 rounded-lg bg-black/40 border border-white/[0.06] text-xs font-mono text-zinc-400 space-y-1">
                   <div className="flex items-center gap-1.5 text-zinc-300">
                     <Zap className="w-3 h-3 text-zinc-400" />
-                    <span>Garbage Collector Flag</span>
+                    <span>Recommended Java 21 GC Flags</span>
                   </div>
-                  <div className="text-[11px] text-zinc-400 break-all select-all">
+                  <div className="text-[11px] text-zinc-300 select-all break-all">
                     -XX:+UseZGC -XX:+ZGenerational
                   </div>
                 </div>
@@ -273,12 +273,12 @@ export function IntentGateway({
               </div>
             </div>
 
-            {/* Card 3: Direct Handshake */}
-            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all">
+            {/* Card 3: Direct Handshake (mc.ventrixagency.com) */}
+            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all duration-200">
               <div>
                 <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
                   <span>STEP 03 // CLUSTER HANDSHAKE</span>
-                  <span className="text-emerald-400">PUBLIC NODE</span>
+                  <span className="text-emerald-400 font-medium">PUBLIC NODE</span>
                 </div>
 
                 <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-200 mb-4">
@@ -286,10 +286,10 @@ export function IntentGateway({
                 </div>
 
                 <h3 className="text-xl font-medium text-white tracking-[-0.035em] mb-2">
-                  Direct 1-Click Connect
+                  Direct Connect Address
                 </h3>
                 <p className="text-zinc-300 text-sm leading-relaxed mb-6">
-                  Open Minecraft Java Edition 1.21.1, proceed to <strong>Multiplayer</strong> &rarr; <strong>Direct Connection</strong>, and paste the cluster host coordinates below.
+                  Launch Minecraft Java Edition 1.21.1, navigate to <strong>Multiplayer</strong> &rarr; <strong>Direct Connection</strong>, and input the official cluster endpoint below.
                 </p>
 
                 {/* IP address box */}
@@ -310,9 +310,9 @@ export function IntentGateway({
                     </span>
                     <button
                       onClick={handleCopyIp}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-[#ededed] active:bg-[#e4e4e7] text-black text-xs font-semibold transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer shrink-0 select-none shadow-sm"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-[#ededed] active:bg-[#e4e4e7] text-black text-xs font-semibold transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer shrink-0 select-none shadow-sm"
                     >
-                      {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                       <span>{copied ? "Copied" : "Copy IP"}</span>
                     </button>
                   </div>
@@ -322,7 +322,7 @@ export function IntentGateway({
                 {onOpenJoinModal && (
                   <button
                     onClick={onOpenJoinModal}
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.2] hover:bg-white/[0.06] text-xs font-mono text-zinc-300 hover:text-white transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.985] cursor-pointer select-none"
+                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.2] hover:bg-white/[0.06] text-xs font-mono text-zinc-300 hover:text-white transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none"
                   >
                     <BookOpen className="w-3.5 h-3.5 text-zinc-400" />
                     <span>View Step-by-Step Interactive Guide</span>
@@ -340,7 +340,7 @@ export function IntentGateway({
         </div>
       )}
 
-      {/* TRACK 2: RETURNING PIONEER */}
+      {/* TRACK B: RETURNING PIONEER */}
       {activeTrack === "pioneer" && (
         <div className="space-y-6 animate-in fade-in duration-300">
           {/* Top Banner Status */}
@@ -365,11 +365,11 @@ export function IntentGateway({
           {/* Cards Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Card 1: Dallas Core Telemetry */}
-            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all">
+            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all duration-200">
               <div>
                 <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
                   <span>LIVE TELEMETRY // DALLAS CORE</span>
-                  <span className="text-emerald-400 flex items-center gap-1">
+                  <span className="text-emerald-400 flex items-center gap-1 font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     ONLINE
                   </span>
@@ -410,10 +410,10 @@ export function IntentGateway({
 
                 {/* Host Quick Copy */}
                 <div className="flex items-center justify-between p-3 rounded-lg bg-white/[0.02] border border-white/[0.06] font-mono text-xs">
-                  <span className="text-zinc-400">mc.ventrixagency.com</span>
+                  <span className="text-zinc-300">mc.ventrixagency.com</span>
                   <button
                     onClick={handleCopyIp}
-                    className="text-zinc-300 hover:text-white transition-colors cursor-pointer flex items-center gap-1"
+                    className="text-zinc-300 hover:text-white transition-colors cursor-pointer flex items-center gap-1 active:scale-[0.98]"
                   >
                     {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                     <span>{copied ? "Copied" : "Copy"}</span>
@@ -428,12 +428,12 @@ export function IntentGateway({
               </div>
             </div>
 
-            {/* Card 2: 3.0.2 Patch Highlights */}
-            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all">
+            {/* Card 2: 3.0.2 Changelog Highlights (Glacio, Continental Rail, Expanded Quest Act IV) */}
+            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all duration-200">
               <div>
                 <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
                   <span>FIRMWARE UPDATE // PATCH 3.0.2</span>
-                  <span className="text-zinc-400">ACTIVE</span>
+                  <span className="text-zinc-300 font-medium">LATEST RELEASE</span>
                 </div>
 
                 <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-200 mb-4">
@@ -441,50 +441,50 @@ export function IntentGateway({
                 </div>
 
                 <h3 className="text-xl font-medium text-white tracking-[-0.035em] mb-2">
-                  3.0.2 Patch Highlights
+                  3.0.2 Changelog Highlights
                 </h3>
                 <p className="text-zinc-300 text-sm leading-relaxed mb-5">
                   Three major mechanical overhauls deployed across the frontier, expanding space logistics, rail automation, and quest milestones.
                 </p>
 
                 {/* Three Editorial Highlights */}
-                <div className="space-y-3.5 mb-4">
-                  {/* Highlight 1: Glacio */}
+                <div className="space-y-3 mb-4">
+                  {/* Highlight 1: Glacio Deep-Space Sector */}
                   <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] transition-colors">
                     <div className="flex items-center gap-2 mb-1">
                       <Rocket className="w-3.5 h-3.5 text-zinc-300" />
                       <h4 className="text-xs font-semibold text-white tracking-tight">
-                        Ad Astra Glacio Expansion
+                        Glacio Deep-Space Sector
                       </h4>
                     </div>
                     <p className="text-xs text-zinc-400 leading-relaxed">
-                      Tier-4 rocket staging, extreme sub-zero cryo environments, permafrost extraction drills, and frozen biome outpost colonization.
+                      Tier-4 aerospace rocket staging, extreme sub-zero cryo atmospheres, permafrost extraction drills, and frozen biome outpost colonization.
                     </p>
                   </div>
 
-                  {/* Highlight 2: Create Railway */}
+                  {/* Highlight 2: Continental Rail Corridors */}
                   <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] transition-colors">
                     <div className="flex items-center gap-2 mb-1">
                       <Train className="w-3.5 h-3.5 text-zinc-300" />
                       <h4 className="text-xs font-semibold text-white tracking-tight">
-                        Create Railway Signaling
+                        Continental Rail Corridors
                       </h4>
                     </div>
                     <p className="text-xs text-zinc-400 leading-relaxed">
-                      Automated semaphore block signaling, station schedule conductors, collision mitigation interlocking, and long-range logistics routing.
+                      Automated semaphore block signaling, station schedule conductors, collision mitigation interlocking, and long-range transcontinental freight routing.
                     </p>
                   </div>
 
-                  {/* Highlight 3: FTB Quests */}
+                  {/* Highlight 3: Expanded Quest Act IV */}
                   <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] transition-colors">
                     <div className="flex items-center gap-2 mb-1">
                       <Layers className="w-3.5 h-3.5 text-zinc-300" />
                       <h4 className="text-xs font-semibold text-white tracking-tight">
-                        FTB Quest Expansion (513 Quests)
+                        Expanded Quest Act IV: The Cosmic Voyage
                       </h4>
                     </div>
                     <p className="text-xs text-zinc-400 leading-relaxed">
-                      513 curated progression objectives rewritten with explicit Applied Energistics 2 autocrafting paths and planetary exploration rewards.
+                      Comprehensive cosmic progression objectives, deep-space automation tiers, endgame relic integration, and milestone exploration rewards.
                     </p>
                   </div>
                 </div>
@@ -497,12 +497,12 @@ export function IntentGateway({
               </div>
             </div>
 
-            {/* Card 3: 3D BlueMap Orbital Reconnaissance */}
-            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all">
+            {/* Card 3: 3D BlueMap Launcher */}
+            <div className="flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0c0d12] border border-white/[0.08] hover:border-white/[0.14] transition-all duration-200">
               <div>
                 <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
                   <span>CARTOGRAPHY // ORBITAL MESH</span>
-                  <span className="text-zinc-400">60 FPS 3D</span>
+                  <span className="text-zinc-300 font-medium">60 FPS 3D</span>
                 </div>
 
                 <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-200 mb-4">
@@ -510,13 +510,13 @@ export function IntentGateway({
                 </div>
 
                 <h3 className="text-xl font-medium text-white tracking-[-0.035em] mb-2">
-                  3D BlueMap Reconnaissance
+                  3D BlueMap Launcher
                 </h3>
                 <p className="text-zinc-300 text-sm leading-relaxed mb-6">
                   Inspect world territory, rail junctions, settlement claims, and expedition coordinates through our live GPU-accelerated volumetric 3D satellite feed.
                 </p>
 
-                {/* Map preview / telemetry box */}
+                {/* Map telemetry box */}
                 <div className="p-4 rounded-xl bg-black/60 border border-white/[0.06] font-mono text-xs space-y-3 mb-6">
                   <div className="flex justify-between items-center pb-2 border-b border-white/[0.06]">
                     <span className="text-zinc-500">Volumetric Engine</span>
@@ -537,7 +537,7 @@ export function IntentGateway({
                   {onOpenBlueMapModal && (
                     <button
                       onClick={onOpenBlueMapModal}
-                      className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white hover:bg-[#ededed] active:bg-[#e4e4e7] text-black text-xs font-semibold transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.985] cursor-pointer shadow-md shadow-white/5 select-none"
+                      className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white hover:bg-[#ededed] active:bg-[#e4e4e7] text-black text-xs font-semibold transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer shadow-md shadow-white/5 select-none"
                     >
                       <Map className="w-4 h-4" />
                       <span>Launch 3D World Map (Modal)</span>
@@ -548,7 +548,7 @@ export function IntentGateway({
                     href="/map"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.2] hover:bg-white/[0.06] active:bg-white/[0.04] text-xs font-mono text-zinc-300 hover:text-white transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.985] select-none"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.2] hover:bg-white/[0.06] active:bg-white/[0.04] text-xs font-mono text-zinc-300 hover:text-white transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] select-none"
                   >
                     <span>Open in Dedicated Browser Window</span>
                     <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />

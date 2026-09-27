@@ -31,49 +31,55 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
               </span>
             </div>
             <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-sm mb-6">
-              The flagship digital gateway for Ventrix: Frontier. A deeply integrated Minecraft survival chronicle hosted on dedicated enterprise cloud hardware.
+              The official digital portal for Ventrix: Frontier 3.0.2. A dedicated, grief-protected Minecraft survival server featuring interplanetary expeditions, automated continental railways, sovereign land claims, living biomes, and 500+ guided quests.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span>mc.ventrixagency.com:25686 • 20.0 TPS LOCKED</span>
+          {/* Hardware Pill */}
+          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-mono text-zinc-300 w-fit">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Dallas Core Cluster • 20.0 TPS Locked • Java 21 Gen-ZGC</span>
           </div>
         </div>
 
-        {/* Directory Links */}
+        {/* Directory Links: Server Focus */}
         <div className="md:col-span-2">
           <h4 className="text-[11px] font-mono uppercase tracking-widest text-zinc-200 mb-4">
-            Architecture
+            Server Systems
           </h4>
-          <ul className="space-y-2 text-xs">
+          <ul className="space-y-2 text-xs font-mono">
             <li>
-              <a href="#pillars" className="hover:text-white transition-colors">
-                The Four Pillars
+              <a href="#pillars" className="hover:text-white transition-colors flex items-center gap-1.5">
+                <span>Cosmic Expeditions</span>
               </a>
             </li>
             <li>
-              <a href="#chronicles" className="hover:text-white transition-colors">
-                Chronicles (513 Quests)
+              <a href="#pillars" className="hover:text-white transition-colors flex items-center gap-1.5">
+                <span>Continental Rail</span>
+              </a>
+            </li>
+            <li>
+              <a href="#guidelines" className="hover:text-white transition-colors flex items-center gap-1.5">
+                <span>Sovereign Land Claims</span>
+              </a>
+            </li>
+            <li>
+              <a href="#pillars" className="hover:text-white transition-colors flex items-center gap-1.5">
+                <span>Living Biomes</span>
+              </a>
+            </li>
+            <li>
+              <a href="#chronicles" className="hover:text-white transition-colors flex items-center gap-1.5">
+                <span>500+ Guided Quests</span>
               </a>
             </li>
             <li>
               <button
                 onClick={onOpenBlueMapModal}
-                className="hover:text-white transition-colors text-left cursor-pointer"
+                className="hover:text-white transition-colors text-left cursor-pointer flex items-center gap-1.5"
               >
-                3D World Map
+                <span>3D Live Satellite Map</span>
               </button>
-            </li>
-            <li>
-              <a href="#guidelines" className="hover:text-white transition-colors">
-                Server Directives
-              </a>
-            </li>
-            <li>
-              <a href="#pioneers" className="hover:text-white transition-colors">
-                Pioneer Registry
-              </a>
             </li>
           </ul>
         </div>
@@ -81,9 +87,9 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
         {/* Client Access */}
         <div className="md:col-span-2">
           <h4 className="text-[11px] font-mono uppercase tracking-widest text-zinc-200 mb-4">
-            Client Links
+            Client Access
           </h4>
-          <ul className="space-y-2 text-xs">
+          <ul className="space-y-2 text-xs font-mono">
             <li>
               <button
                 onClick={onOpenJoinModal}
@@ -93,15 +99,12 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
               </button>
             </li>
             <li>
-              <a
-                href="https://curseforge.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors flex items-center gap-1"
+              <button
+                onClick={onOpenBlueMapModal}
+                className="hover:text-white transition-colors text-left cursor-pointer"
               >
-                <span>CurseForge</span>
-                <ArrowUpRight className="w-3 h-3 text-zinc-500" />
-              </a>
+                3D World Map (Modal)
+              </button>
             </li>
             <li>
               <a
@@ -114,20 +117,32 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
                 <ArrowUpRight className="w-3 h-3 text-zinc-500" />
               </a>
             </li>
+            <li>
+              <a
+                href="https://curseforge.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors flex items-center gap-1"
+              >
+                <span>CurseForge App</span>
+                <ArrowUpRight className="w-3 h-3 text-zinc-500" />
+              </a>
+            </li>
           </ul>
         </div>
 
         {/* Infrastructure Specs */}
         <div className="md:col-span-3">
           <h4 className="text-[11px] font-mono uppercase tracking-widest text-zinc-200 mb-4">
-            Cloud Specification
+            Enterprise Infrastructure
           </h4>
           <div className="p-4 rounded-xl bg-black/40 border border-white/[0.06] text-[11px] font-mono space-y-1.5 text-zinc-400">
             <div><span className="text-zinc-600">CLUSTER:</span> Dallas Core (Tier 4 Facility)</div>
-            <div><span className="text-zinc-600">CPU:</span> AMD Ryzen 9 9950X3D</div>
-            <div><span className="text-zinc-600">JVM:</span> Eclipse Temurin 21 (Gen-ZGC)</div>
-            <div><span className="text-zinc-600">PROTOCOL:</span> NeoForge 21.1.249</div>
-            <div><span className="text-zinc-600">UPTIME:</span> 99.98% Monitored</div>
+            <div><span className="text-zinc-600">PROCESSOR:</span> AMD Ryzen 9 9950X3D (5.7 GHz)</div>
+            <div><span className="text-zinc-600">MEMORY:</span> 64 GB DDR5 6000MHz ECC</div>
+            <div><span className="text-zinc-600">RUNTIME:</span> Java 21 Gen-ZGC (&lt;1ms)</div>
+            <div><span className="text-zinc-600">UPLINK:</span> 10 Gbps Redundant Fiber</div>
+            <div><span className="text-zinc-600">STABILITY:</span> 20.0 TPS Locked (100%)</div>
           </div>
         </div>
       </div>

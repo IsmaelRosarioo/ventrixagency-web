@@ -1,14 +1,26 @@
 "use client";
 
 import React, { useState } from "react";
-import { Compass, Rocket, Cog, Cpu, Globe, Radio, Layers, Activity, Shield, Train, Wrench } from "lucide-react";
+import {
+  Compass,
+  Rocket,
+  Train,
+  Shield,
+  Globe,
+  Activity,
+  Box,
+  ShieldCheck,
+  Landmark,
+  Users,
+  Mountain,
+} from "lucide-react";
 import { CosmosOrbitalMap } from "./pillars/CosmosOrbitalMap";
-import { KineticDrivetrain } from "./pillars/KineticDrivetrain";
-import { QuantumDriveBay } from "./pillars/QuantumDriveBay";
-import { AcousticWaveformVisualizer } from "./pillars/AcousticWaveformVisualizer";
+import { ContinentalRailways } from "./pillars/ContinentalRailways";
+import { CivilizationClaims } from "./pillars/CivilizationClaims";
+import { LivingWorldExplorer } from "./pillars/LivingWorldExplorer";
 
 export function ModpackPillars() {
-  const [activeTab, setActiveTab] = useState<"cosmos" | "kinetic" | "ae2" | "ecology">("cosmos");
+  const [activeTab, setActiveTab] = useState<"space" | "rail" | "civilization" | "world">("space");
 
   return (
     <section id="pillars" className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/[0.06]">
@@ -19,66 +31,66 @@ export function ModpackPillars() {
           SYSTEM SPECIFICATION // TIER-ONE ARCHITECTURE
         </div>
         <h2 className="text-4xl sm:text-6xl font-medium text-white tracking-[-0.035em] mb-4">
-          Four Core Pillars. One Cohesive World.
+          The Frontier Experience. Four Pillars of Civilization.
         </h2>
         <p className="text-zinc-400 text-base sm:text-lg font-normal leading-relaxed">
-          Ventrix: Frontier eliminates mod bloat and recipe conflicts. Every mechanic connects directly into a unified progression framework engineered for deep-space colonization and automated industrial scale.
+          Ventrix: Frontier is designed as an enduring multiplayer world. Every system interconnects to support long-term settlement, continental trade, and cooperative deep-space exploration.
         </p>
 
         {/* Tab Switcher */}
         <div className="flex flex-wrap gap-2 mt-8">
           <button
-            onClick={() => setActiveTab("cosmos")}
+            onClick={() => setActiveTab("space")}
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none ${
-              activeTab === "cosmos"
+              activeTab === "space"
                 ? "bg-white text-black font-semibold shadow-lg shadow-white/10"
                 : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06] hover:border-white/[0.15]"
             }`}
           >
             <Rocket className="w-3.5 h-3.5" />
-            01 // Orbital Cosmos
+            01 // Interplanetary Space Program
           </button>
 
           <button
-            onClick={() => setActiveTab("kinetic")}
+            onClick={() => setActiveTab("rail")}
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none ${
-              activeTab === "kinetic"
+              activeTab === "rail"
                 ? "bg-white text-black font-semibold shadow-lg shadow-white/10"
                 : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06] hover:border-white/[0.15]"
             }`}
           >
-            <Cog className="w-3.5 h-3.5" />
-            02 // Kinetic Engineering
+            <Train className="w-3.5 h-3.5" />
+            02 // Continental Rail &amp; Transit
           </button>
 
           <button
-            onClick={() => setActiveTab("ae2")}
+            onClick={() => setActiveTab("civilization")}
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none ${
-              activeTab === "ae2"
+              activeTab === "civilization"
                 ? "bg-white text-black font-semibold shadow-lg shadow-white/10"
                 : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06] hover:border-white/[0.15]"
             }`}
           >
-            <Cpu className="w-3.5 h-3.5" />
-            03 // Quantum Logistics
+            <Shield className="w-3.5 h-3.5" />
+            03 // Sovereign Claims &amp; Civilizations
           </button>
 
           <button
-            onClick={() => setActiveTab("ecology")}
+            onClick={() => setActiveTab("world")}
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none ${
-              activeTab === "ecology"
+              activeTab === "world"
                 ? "bg-white text-black font-semibold shadow-lg shadow-white/10"
                 : "bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-white/[0.06] hover:border-white/[0.15]"
             }`}
           >
             <Globe className="w-3.5 h-3.5" />
-            04 // Living Ecology
+            04 // Living World &amp; Biomes
           </button>
         </div>
       </div>
 
-      {/* 01 // ORBITAL COSMOS (AD ASTRA) */}
-      {activeTab === "cosmos" && (
+      {/* 01 // INTERPLANETARY SPACE PROGRAM (AD ASTRA) */}
+      {activeTab === "space" && (
         <div className="space-y-8 animate-fadeIn">
           {/* Interactive SVG Orbital Trajectory Map */}
           <CosmosOrbitalMap />
@@ -120,202 +132,181 @@ export function ModpackPillars() {
                 <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-3">
                   <Compass className="w-3.5 h-3.5" />
                 </div>
-                <h4 className="text-sm font-semibold text-white mb-1.5">Planetary Rovers & Exploration</h4>
+                <h4 className="text-sm font-semibold text-white mb-1.5">Alien Resource Extraction</h4>
                 <p className="text-xs text-zinc-400 leading-relaxed">
-                  Traverse treacherous planetary terrain with specialized exploratory rovers equipped with storage containers, headlights, and high-traction suspension.
+                  Mine Desh from the Moon, Ostrum from Martian ravines, and Calorite from supercritical Venusian volcanoes to forge interstellar hyperdrive cores.
                 </p>
               </div>
               <div className="mt-4 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500">
-                MOBILITY: ALL-TERRAIN CRYO SUSPENSION
+                METALLURGY: EXOTIC PLANETARY ORES
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* 02 // KINETIC ENGINEERING (CREATE) */}
-      {activeTab === "kinetic" && (
+      {/* 02 // CONTINENTAL RAIL & TRANSIT (CREATE RAILWAYS) */}
+      {activeTab === "rail" && (
         <div className="space-y-8 animate-fadeIn">
-          {/* Interactive Rotational Drivetrain with Animated Gears & RPM Selector */}
-          <KineticDrivetrain />
+          {/* Interactive Continental Transit Dispatch HUD */}
+          <ContinentalRailways />
 
-          {/* Complementary Kinetic Subsystems */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-            <div className="p-6 rounded-2xl bg-[#0c0d12] border border-white/[0.08] flex flex-col justify-between">
+          {/* Three Complementary Rail Specs */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+            <div className="p-5 rounded-2xl bg-[#0c0d12] border border-white/[0.06] flex flex-col justify-between">
               <div>
-                <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
-                  <Train className="w-4 h-4" />
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-3">
+                  <Train className="w-3.5 h-3.5" />
                 </div>
-                <h3 className="text-base font-semibold text-white mb-2">Automated Transcontinental Rail</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed mb-6">
-                  Engineer automated high-speed locomotives connecting distant mining quarries, factory compounds, and rocket launch complexes with precision schedule tables and multi-track switching.
+                <h4 className="text-sm font-semibold text-white mb-1.5">Scheduled Passenger Lines</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Connect settlements across thousands of blocks with automated high-speed steam and electric locomotives running on deterministic schedule tables.
                 </p>
               </div>
-              <div className="p-4 rounded-xl bg-black/50 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Signal Frequency:</span>
-                  <span>Sub-tick Block Sync</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Track Gauge:</span>
-                  <span>Custom Bogie Curvature</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Cargo Transfer:</span>
-                  <span>Portable Storage Interfaces</span>
-                </div>
+              <div className="mt-4 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500">
+                PASSENGER: 45.0 M/S HIGH-SPEED RAPID
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0c0d12] border border-white/[0.08] flex flex-col justify-between">
+            <div className="p-5 rounded-2xl bg-[#0c0d12] border border-white/[0.06] flex flex-col justify-between">
               <div>
-                <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
-                  <Wrench className="w-4 h-4" />
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-3">
+                  <Box className="w-3.5 h-3.5" />
                 </div>
-                <h3 className="text-base font-semibold text-white mb-2">Sequenced Precision Assembly</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed mb-6">
-                  Construct automated conveyor tracks featuring mechanical deployers, presses, and spouts for multi-step precision crafting of electronic circuits and heavy machinery.
+                <h4 className="text-sm font-semibold text-white mb-1.5">Automated Bulk Freight</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Seamlessly shuttle heavy ores, fluids, and building materials between remote mining outposts and industrial complexes via Portable Storage Interfaces.
                 </p>
               </div>
-              <div className="p-4 rounded-xl bg-black/50 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Production Rate:</span>
-                  <span>64 Items / 2.4s Cycle</span>
+              <div className="mt-4 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500">
+                LOGISTICS: SUB-TICK CARGO TRANSFER
+              </div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-[#0c0d12] border border-white/[0.06] flex flex-col justify-between">
+              <div>
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-3">
+                  <ShieldCheck className="w-3.5 h-3.5" />
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Yield Reliability:</span>
-                  <span>100% Deterministic</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Mechanism:</span>
-                  <span>Precision Brass Invar</span>
-                </div>
+                <h4 className="text-sm font-semibold text-white mb-1.5">Collision-Mitigated Signaling</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Optical track block observers and automated signal semaphores dynamically govern track occupancy, preventing derailments and rear-end collisions.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500">
+                SAFETY: DALLAS CORE TICK SYNC
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* 03 // QUANTUM LOGISTICS (AE2) */}
-      {activeTab === "ae2" && (
+      {/* 03 // SOVEREIGN CLAIMS & CIVILIZATIONS (OPENPARTIESANDCLAIMS) */}
+      {activeTab === "civilization" && (
         <div className="space-y-8 animate-fadeIn">
-          {/* Interactive Crystalline Drive Bay & 32-Channel Smart Cable HUD */}
-          <QuantumDriveBay />
+          {/* Interactive Sovereign Claims & Player Civilizations Matrix */}
+          <CivilizationClaims />
 
-          {/* Complementary AE2 Subsystems */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-            <div className="p-6 rounded-2xl bg-[#0c0d12] border border-white/[0.08] flex flex-col justify-between">
+          {/* Three Complementary Claims Specs */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+            <div className="p-5 rounded-2xl bg-[#0c0d12] border border-white/[0.06] flex flex-col justify-between">
               <div>
-                <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
-                  <Radio className="w-4 h-4" />
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-3">
+                  <Shield className="w-3.5 h-3.5" />
                 </div>
-                <h3 className="text-base font-semibold text-white mb-2">Interdimensional Quantum Link</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed mb-6">
-                  Bridge remote outposts across planetary space dimensions using Quantum Entangled Singularities with zero latency, synchronized channels, and shared power grids.
+                <h4 className="text-sm font-semibold text-white mb-1.5">Instant Chunk Protection</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Claim land instantly from bedrock (Y=-64) to skybox (Y=+320) with deterministic anti-grief protection. Zero Creeper damage, zero fire spread, zero TNT griefing.
                 </p>
               </div>
-              <div className="p-4 rounded-xl bg-black/50 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Cross-Dimension Lag:</span>
-                  <span>0.0ms True Real-Time</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Quantum Range:</span>
-                  <span>Infinite (Interplanetary)</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Singularity Status:</span>
-                  <span className="text-emerald-400">Dallas Core Linked</span>
-                </div>
+              <div className="mt-4 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500">
+                SECURITY: 100% GRIEF-PROOF RADIUS
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0c0d12] border border-white/[0.08] flex flex-col justify-between">
+            <div className="p-5 rounded-2xl bg-[#0c0d12] border border-white/[0.06] flex flex-col justify-between">
               <div>
-                <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
-                  <Layers className="w-4 h-4" />
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-3">
+                  <Landmark className="w-3.5 h-3.5" />
                 </div>
-                <h3 className="text-base font-semibold text-white mb-2">Multi-Thread Auto-Crafting</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed mb-6">
-                  Assemble multi-core CPU co-processors to compute deeply nested recipes instantly. Order complex spacecraft parts and rocket components with a single terminal click.
+                <h4 className="text-sm font-semibold text-white mb-1.5">Collaborative Town Founding</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Charter towns and confederations with friends. Unlock collective chunk loading for 24/7 continuous factory processing and unified municipal borders.
                 </p>
               </div>
-              <div className="p-4 rounded-xl bg-black/50 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Co-processors:</span>
-                  <span>64 Execution Cores</span>
+              <div className="mt-4 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500">
+                GOVERNANCE: SHARED TOWN HALL BEACONS
+              </div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-[#0c0d12] border border-white/[0.06] flex flex-col justify-between">
+              <div>
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-3">
+                  <Users className="w-3.5 h-3.5" />
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Recursive Solver:</span>
-                  <span>Sub-tick Tree Compute</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Automation Mode:</span>
-                  <span>Pattern Provider Loop</span>
-                </div>
+                <h4 className="text-sm font-semibold text-white mb-1.5">Atomic Player Trading</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Establish sovereign player shops and trade depots with cryptographic chest locks and visitor passage whitelists that foster a thriving player economy.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500">
+                ECONOMY: FRAUD-PROOF BARTER &amp; CURRENCY
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* 04 // LIVING ECOLOGY (TERRALITH & SOUND PHYSICS) */}
-      {activeTab === "ecology" && (
+      {/* 04 // LIVING WORLD & BIOMES (TERRALITH & ALEX'S MOBS) */}
+      {activeTab === "world" && (
         <div className="space-y-8 animate-fadeIn">
-          {/* Interactive Volumetric Acoustic Waveform Visualizer */}
-          <AcousticWaveformVisualizer />
+          {/* Interactive 85+ Procedural Biomes & Elevation Stratigraphy Scanner */}
+          <LivingWorldExplorer />
 
-          {/* Complementary Ecological Subsystems */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-            <div className="p-6 rounded-2xl bg-[#0c0d12] border border-white/[0.08] flex flex-col justify-between">
+          {/* Three Complementary Living World Specs */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+            <div className="p-5 rounded-2xl bg-[#0c0d12] border border-white/[0.06] flex flex-col justify-between">
               <div>
-                <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
-                  <Globe className="w-4 h-4" />
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-3">
+                  <Mountain className="w-3.5 h-3.5" />
                 </div>
-                <h3 className="text-base font-semibold text-white mb-2">Terralith Biome Engine</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed mb-6">
-                  Over 85 realistic procedural biomes including volcanic calderas, glacial fjords, and alpine highlands built completely with vanilla block architecture and dramatic elevation gradients.
+                <h4 className="text-sm font-semibold text-white mb-1.5">Vertical Elevation Y=-64 to 320</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Terralith 2.0 expands the world into dramatic verticality. Traverse 384 meters of sheer elevation relief from sub-crustal caverns to towering alpine spires.
                 </p>
               </div>
-              <div className="p-4 rounded-xl bg-black/50 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">World Elevation:</span>
-                  <span>Y=-64 to Y=320</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Underground:</span>
-                  <span>Volumetric Cave Systems</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Biome Diversity:</span>
-                  <span>85+ Unique Ecoregions</span>
-                </div>
+              <div className="mt-4 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500">
+                WORLDGEN: 384-BLOCK VERTICAL RELIEF
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0c0d12] border border-white/[0.08] flex flex-col justify-between">
+            <div className="p-5 rounded-2xl bg-[#0c0d12] border border-white/[0.06] flex flex-col justify-between">
               <div>
-                <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-4">
-                  <Shield className="w-4 h-4" />
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-3">
+                  <Activity className="w-3.5 h-3.5" />
                 </div>
-                <h3 className="text-base font-semibold text-white mb-2">Dynamic Wildlife Ecology</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed mb-6">
-                  Alex&apos;s Mobs brings 89+ biologically modeled creatures with behavioral AI, realistic territorial habits, unique taming, and natural food webs across every climate zone.
+                <h4 className="text-sm font-semibold text-white mb-1.5">89+ Modeled Creatures</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Alex&apos;s Mobs populates every ecoregion with complex behavioral AI, natural predator-prey dynamics, territorial habitats, and unique taming mechanics.
                 </p>
               </div>
-              <div className="p-4 rounded-xl bg-black/50 border border-white/[0.06] font-mono text-[11px] text-zinc-300 space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Fauna Roster:</span>
-                  <span>89+ Dynamic Species</span>
+              <div className="mt-4 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500">
+                ECOLOGY: COMPLEX FAUNA SIMULATION
+              </div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-[#0c0d12] border border-white/[0.06] flex flex-col justify-between">
+              <div>
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 mb-3">
+                  <ShieldCheck className="w-3.5 h-3.5" />
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Behavioral AI:</span>
-                  <span>Territorial & Adaptive</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">Tick Optimization:</span>
-                  <span>Multi-threaded Entity AI</span>
-                </div>
+                <h4 className="text-sm font-semibold text-white mb-1.5">Vanilla Palette Harmony</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Over 85 unique procedural biomes formed exclusively from native vanilla blocks (deepslate, calcite, basalt, tuff). Guarantees flawless client FPS and zero missing textures.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500">
+                FIDELITY: PURE VANILLA COMPATIBILITY
               </div>
             </div>
           </div>

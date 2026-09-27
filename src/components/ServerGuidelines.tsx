@@ -1,9 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { Terminal, Cpu, Check, Copy } from "lucide-react";
+import { Terminal, Cpu, Check, Copy, ShieldCheck, Zap, Scale } from "lucide-react";
 
-const COMMANDS = [
+interface CommandItem {
+  cmd: string;
+  alias: string;
+  desc: string;
+  category: "Navigation" | "Social" | "Sovereignty" | "Economy" | "Diagnostics";
+}
+
+const COMMANDS: CommandItem[] = [
   {
     cmd: "/home [name]",
     alias: "/sethome",
@@ -13,8 +20,14 @@ const COMMANDS = [
   {
     cmd: "/tpa <player>",
     alias: "/tpaccept",
-    desc: "Send and confirm direct peer-to-peer teleport requests with safety checks.",
+    desc: "Send and confirm direct peer-to-peer teleport requests with safety verification.",
     category: "Social",
+  },
+  {
+    cmd: "/claim",
+    alias: "or press [M]",
+    desc: "Open territory claiming map to secure land with 100% sovereign grief protection.",
+    category: "Sovereignty",
   },
   {
     cmd: "/trade <player>",
@@ -23,22 +36,16 @@ const COMMANDS = [
     category: "Economy",
   },
   {
+    cmd: "/spawn",
+    alias: "/hub",
+    desc: "Instant return to the protected central planetary transit hub and market terminal.",
+    category: "Navigation",
+  },
+  {
     cmd: "/ping",
     alias: "/tps",
-    desc: "Query your authoritative network round-trip ping and real-time server tick health.",
+    desc: "Query your authoritative network round-trip ping and real-time 20.0 TPS health.",
     category: "Diagnostics",
-  },
-  {
-    cmd: "/mail send <player> <msg>",
-    alias: "/mail read",
-    desc: "Transmit asynchronous mail to offline players. Notifies on their next login.",
-    category: "Communication",
-  },
-  {
-    cmd: "/sweep",
-    alias: "/clearlag",
-    desc: "Player-triggered ground clutter cleanup. Preserves named pets, armor stands & NPCs.",
-    category: "Utility",
   },
 ];
 
@@ -56,32 +63,33 @@ export function ServerGuidelines() {
       {/* Section Header */}
       <div className="max-w-3xl mb-16 text-left">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-zinc-400 font-mono text-[11px] uppercase tracking-widest mb-4">
-          <Terminal className="w-3 h-3 text-zinc-400" />
-          SYSTEM DIRECTIVES & SPECS
+          <Terminal className="w-3 h-3 text-emerald-400" />
+          INFRASTRUCTURE DIRECTIVES & TELEMETRY
         </div>
-        <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-[-0.03em] mb-4">
-          Dedicated Hardware. Transparent Rules.
+        <h2 className="text-3xl sm:text-5xl font-medium text-white tracking-[-0.035em] leading-[1.08] mb-4">
+          Bare-Metal Enterprise Hardware. Locked 20.0 TPS.
         </h2>
         <p className="text-zinc-400 text-base sm:text-lg font-normal leading-relaxed">
-          Ventrix runs on bare-metal enterprise hardware tuned specifically for heavy modpack tick simulation.
+          Ventrix runs on dedicated bare-metal enterprise hardware tuned specifically for heavy simulation loads, uncompromised tick rates, and sovereign player protection.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left: Hardware Spec Sheet */}
-        <div className="lg:col-span-5 space-y-4">
-          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08]">
+        {/* Left: Hardware Spec Sheet & Directives */}
+        <div className="lg:col-span-5 space-y-5">
+          {/* Hardware Specs Card */}
+          <div className="p-6 rounded-2xl bg-[#0c0d12] border border-white/[0.08] shadow-xl">
             <div className="flex items-center gap-2.5 pb-4 border-b border-white/[0.06] mb-5">
               <Cpu className="w-4 h-4 text-zinc-400" />
               <span className="font-mono text-xs uppercase tracking-wider text-zinc-200">
-                Core Cloud Infrastructure
+                Dallas Core Cloud Infrastructure
               </span>
             </div>
 
-            <div className="space-y-4 text-xs font-mono">
+            <div className="space-y-3.5 text-xs font-mono">
               <div className="flex items-center justify-between pb-3 border-b border-white/[0.04]">
                 <span className="text-zinc-400">HOST FACILITY</span>
-                <span className="text-zinc-200 font-medium">Ventrix Dallas Core (Tier 4 Enterprise)</span>
+                <span className="text-zinc-200 font-medium text-right">Dallas Core (Tier 4 Enterprise Facility, Texas, USA)</span>
               </div>
               <div className="flex items-center justify-between pb-3 border-b border-white/[0.04]">
                 <span className="text-zinc-400">PROCESSOR</span>
@@ -93,36 +101,45 @@ export function ServerGuidelines() {
               </div>
               <div className="flex items-center justify-between pb-3 border-b border-white/[0.04]">
                 <span className="text-zinc-400">GARBAGE COLLECTOR</span>
-                <span className="text-emerald-400 font-medium">Eclipse Temurin 21 + Gen-ZGC</span>
+                <span className="text-emerald-400 font-medium">Eclipse Temurin Java 21 Gen-ZGC (&lt;1ms pauses)</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-zinc-400">NETWORK CAPACITY</span>
-                <span className="text-zinc-200 font-medium">10 Gbps Redundant + BGP Anycast</span>
+                <span className="text-zinc-400">NETWORK BACKBONE</span>
+                <span className="text-zinc-200 font-medium">10 Gbps Redundant Fiber</span>
               </div>
             </div>
           </div>
 
-          {/* Core Directives */}
-          <div className="p-6 rounded-2xl bg-[#0b0d13] border border-white/[0.08] space-y-3">
-            <span className="font-mono text-xs uppercase tracking-wider text-zinc-200 block mb-2">
-              Frontier Survival Directives:
+          {/* Directives Card */}
+          <div className="p-6 rounded-2xl bg-[#0c0d12] border border-white/[0.08] space-y-4 shadow-xl">
+            <span className="font-mono text-xs uppercase tracking-wider text-zinc-200 block">
+              Frontier Operational Directives:
             </span>
-            <div className="text-xs text-zinc-400 leading-relaxed space-y-2">
-              <p>
-                <strong className="text-zinc-200">1. Claim All Territory:</strong> Use FTB Chunks (keybind <span className="text-white font-mono">[M]</span>) to protect your base and industrial zones.
-              </p>
-              <p>
-                <strong className="text-zinc-200">2. Respect Tick Simulation:</strong> Structure automation loops with shut-off switches to preserve universal 20.0 TPS.
-              </p>
-              <p>
-                <strong className="text-zinc-200">3. Fair Play Protocol:</strong> Zero pay-to-win, zero item spawning. All items must be engineered through survival gameplay.
-              </p>
+            <div className="text-xs text-zinc-400 leading-relaxed space-y-3">
+              <div className="flex items-start gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                <p>
+                  <strong className="text-zinc-200 font-medium">Respect Sovereign Claims:</strong> Claim all territory with FTB Chunks (<span className="text-white font-mono">[M]</span> or <span className="text-white font-mono">/claim</span>). Griefing and unauthorized invasions are strictly prevented by the server core.
+                </p>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <Zap className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
+                <p>
+                  <strong className="text-zinc-200 font-medium">Cooperative Industrial Ethos:</strong> Structure automated kinetic factories and power grids with shut-off switches to preserve universal 20.0 TPS for every pioneer.
+                </p>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <Scale className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
+                <p>
+                  <strong className="text-zinc-200 font-medium">Zero Pay-to-Win:</strong> Absolute parity across all explorers. No purchasable ranks, no paid advantage kits, and zero item spawning. Every achievement is earned through survival mastery.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Right: Interactive Command Shell */}
-        <div className="lg:col-span-7 bg-[#0b0d13] border border-white/[0.08] rounded-2xl p-6 sm:p-8">
+        {/* Right: Interactive Command Directory */}
+        <div className="lg:col-span-7 bg-[#0c0d12] border border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-xl">
           <div className="flex items-center justify-between pb-4 border-b border-white/[0.06] mb-6">
             <div className="flex items-center gap-2">
               <Terminal className="w-4 h-4 text-zinc-400" />
@@ -130,7 +147,7 @@ export function ServerGuidelines() {
                 Command Terminal Directory
               </span>
             </div>
-            <span className="text-[10px] font-mono text-zinc-400">CLICK TO COPY COMMAND</span>
+            <span className="text-[10px] font-mono text-zinc-400">CLICK TO COPY</span>
           </div>
 
           <div className="space-y-3">
@@ -138,7 +155,7 @@ export function ServerGuidelines() {
               <div
                 key={c.cmd}
                 onClick={() => copyCommand(c.cmd)}
-                className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.02] active:scale-[0.99] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer group select-none"
+                className="p-4 rounded-xl bg-black/50 border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.02] active:scale-[0.98] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer group select-none"
               >
                 <div>
                   <div className="flex items-center gap-2">
@@ -147,14 +164,14 @@ export function ServerGuidelines() {
                     </span>
                     <span className="text-[10px] font-mono text-zinc-500">{c.alias}</span>
                   </div>
-                  <p className="text-xs text-zinc-400 mt-1">{c.desc}</p>
+                  <p className="text-xs text-zinc-400 mt-1 leading-relaxed">{c.desc}</p>
                 </div>
 
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-zinc-400">
+                <div className="flex items-center gap-2.5 shrink-0">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-zinc-400">
                     {c.category}
                   </span>
-                  <div className="w-6 h-6 rounded flex items-center justify-center bg-white/[0.03] text-zinc-500 group-hover:text-zinc-200">
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-white/[0.03] border border-white/[0.06] text-zinc-400 group-hover:text-white group-hover:border-white/[0.15] transition-all">
                     {copiedCmd === c.cmd ? (
                       <Check className="w-3.5 h-3.5 text-emerald-400" />
                     ) : (
