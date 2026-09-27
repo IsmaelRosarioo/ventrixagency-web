@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { BookOpen, CheckCircle, Award, Terminal, ArrowRight } from "lucide-react";
+import { BookOpen, CheckCircle } from "lucide-react";
 
 interface QuestAct {
   id: string;
@@ -147,7 +147,7 @@ export function QuestChronicles() {
           </div>
 
           <p className="text-zinc-300 text-sm leading-relaxed mb-6 font-mono">
-            // {activeAct.progressionNote}
+            {"//"} {activeAct.progressionNote}
           </p>
 
           <div className="space-y-3 mb-8">
