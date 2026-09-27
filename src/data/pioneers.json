@@ -1,0 +1,30 @@
+[
+  {
+    "id": "pioneer-001",
+    "minecraftUsername": "Primalkin",
+    "discordTag": "primalkin",
+    "enlistedAt": "2026-09-20T10:00:00.000Z",
+    "badge": "Frontier Founder"
+  },
+  {
+    "id": "pioneer-002",
+    "minecraftUsername": "IShoot_4Fun",
+    "discordTag": "",
+    "enlistedAt": "2026-09-22T14:30:00.000Z",
+    "badge": "Frontier Pioneer"
+  },
+  {
+    "id": "pioneer-003",
+    "minecraftUsername": "IsmaelRosarioo",
+    "discordTag": "ismael",
+    "enlistedAt": "2026-09-25T08:15:00.000Z",
+    "badge": "Frontier Architect"
+  },
+  {
+    "id": "pioneer-mujy03c8",
+    "minecraftUsername": "CyberPioneer",
+    "discordTag": "cyber#1234",
+    "enlistedAt": "2026-09-27T14:57:28.808Z",
+    "badge": "Early Pioneer"
+  }
+]
