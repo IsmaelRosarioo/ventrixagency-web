@@ -49,9 +49,9 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
 
   const navItems: NavItem[] = [
     { id: "radar", label: "Celestial Radar", href: "#radar" },
+    { id: "horizons", label: "World Horizons", href: "#horizons" },
     { id: "corridors", label: "Rail Corridors", href: "#corridors" },
     { id: "sovereignty", label: "Land Claims", href: "#sovereignty" },
-    { id: "biomes", label: "Living Biomes", href: "#biomes" },
     { id: "bluemap", label: "3D Map", onClick: onOpenBlueMapModal },
     { id: "directives", label: "Directives", href: "#guidelines" },
   ];
@@ -117,7 +117,7 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
 
   // Section observer for active indicator tracking
   useEffect(() => {
-    const sectionIds = ["radar", "corridors", "sovereignty", "biomes", "chronicles", "guidelines"];
+    const sectionIds = ["radar", "horizons", "corridors", "sovereignty", "biomes", "chronicles", "guidelines"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

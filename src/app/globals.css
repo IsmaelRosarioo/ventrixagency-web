@@ -23,6 +23,15 @@
   --spring-bebored: cubic-bezier(0.34, 1.26, 0.44, 1);
   --nav-sheen: rgba(255, 255, 255, 0.22);
   --serif: var(--font-fraunces), "EB Garamond", Georgia, serif;
+
+  /* World Horizons Explorer Tokens */
+  --bloom-glacio: #38bdf8;
+  --bloom-geode: #a855f7;
+  --bloom-foundry: #f59e0b;
+  --bloom-alpine: #10b981;
+  --lightbox-bg: rgba(6, 7, 11, 0.94);
+  --lightbox-border: rgba(255, 255, 255, 0.1);
+  --lightbox-specular: rgba(255, 255, 255, 0.22);
 }
 
 @theme inline {
@@ -31,6 +40,10 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-fraunces);
+  --color-bloom-glacio: var(--bloom-glacio);
+  --color-bloom-geode: var(--bloom-geode);
+  --color-bloom-foundry: var(--bloom-foundry);
+  --color-bloom-alpine: var(--bloom-alpine);
 }
 
 * {
@@ -1038,4 +1051,530 @@ body {
   pointer-events: none;
   z-index: 10;
 }
+
+/* ==========================================================================
+   World Horizons Explorer: Lightbox Architecture, Telemetry & Horizon Blooms
+   ========================================================================== */
+
+/* ── 1. Specular Lightbox Borders & Frames ── */
+
+.border-specular-lightbox {
+  border: 1px solid var(--lightbox-border);
+  box-shadow:
+    inset 0 1px 0 0 var(--lightbox-specular),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 24px 64px -16px rgba(0, 0, 0, 0.85);
+}
+
+.lightbox-frame {
+  position: relative;
+  background: radial-gradient(
+    140% 120% at 50% 0%,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(14, 16, 22, 0.82) 40%,
+    rgba(6, 7, 11, 0.96) 100%
+  );
+  border: 1px solid var(--lightbox-border);
+  box-shadow:
+    inset 0 1px 0 0 var(--lightbox-specular),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.6),
+    0 32px 96px -16px rgba(0, 0, 0, 0.85),
+    0 0 40px -8px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+}
+
+.specular-rim {
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 20;
+}
+
+.specular-rim-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 20%,
+    rgba(255, 255, 255, 0.38) 50%,
+    rgba(255, 255, 255, 0.18) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 20;
+}
+
+.shadow-lightbox {
+  box-shadow:
+    0 32px 96px -16px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+
+/* ── 2. Soft Cinematic Vignettes ── */
+
+.vignette-cinematic {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 95% 85% at 50% 50%,
+    transparent 42%,
+    rgba(5, 6, 8, 0.38) 72%,
+    rgba(5, 6, 8, 0.92) 100%
+  );
+}
+
+.vignette-cinematic-b {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(5, 6, 8, 0.5) 72%,
+    rgba(5, 6, 8, 0.96) 100%
+  );
+}
+
+.vignette-cinematic-t {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    transparent 55%,
+    rgba(5, 6, 8, 0.45) 80%,
+    rgba(5, 6, 8, 0.85) 100%
+  );
+}
+
+.vignette-cinematic-dual {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 95% 85% at 50% 50%,
+      transparent 40%,
+      rgba(5, 6, 8, 0.32) 70%,
+      rgba(5, 6, 8, 0.88) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(5, 6, 8, 0.6) 0%,
+      transparent 20%,
+      transparent 70%,
+      rgba(5, 6, 8, 0.95) 100%
+    );
+}
+
+
+/* ── 3. Lens Flare Accent Blooms & Anamorphic Streaks ── */
+
+/* Glacio Cryo Colony (Sub-zero Azure & Deep Space Cyan) */
+.bloom-glacio {
+  background: radial-gradient(
+    65% 55% at 50% 50%,
+    rgba(56, 189, 248, 0.22) 0%,
+    rgba(14, 165, 233, 0.12) 35%,
+    rgba(2, 132, 199, 0.04) 65%,
+    transparent 85%
+  );
+  filter: blur(56px);
+  pointer-events: none;
+}
+
+/* Deep Caverns Geode (Luminous Amethyst & Violet Luminescence) */
+.bloom-geode {
+  background: radial-gradient(
+    65% 55% at 50% 50%,
+    rgba(168, 85, 247, 0.22) 0%,
+    rgba(147, 51, 234, 0.12) 35%,
+    rgba(126, 34, 206, 0.04) 65%,
+    transparent 85%
+  );
+  filter: blur(56px);
+  pointer-events: none;
+}
+
+/* Kinetic Locomotive Foundry (Molten Brass & Incandescent Heat Amber) */
+.bloom-foundry {
+  background: radial-gradient(
+    62% 52% at 50% 50%,
+    rgba(245, 158, 11, 0.22) 0%,
+    rgba(217, 119, 6, 0.12) 35%,
+    rgba(239, 68, 68, 0.04) 65%,
+    transparent 85%
+  );
+  filter: blur(52px);
+  pointer-events: none;
+}
+
+/* Alpine Mountain Frontier (Emerald Glacier & Conifer Aurora) */
+.bloom-alpine {
+  background: radial-gradient(
+    65% 55% at 50% 50%,
+    rgba(16, 185, 129, 0.22) 0%,
+    rgba(45, 212, 191, 0.12) 35%,
+    rgba(5, 150, 105, 0.04) 65%,
+    transparent 85%
+  );
+  filter: blur(54px);
+  pointer-events: none;
+}
+
+/* Anamorphic Lens Flare Horizontal Streaks */
+.flare-glacio {
+  position: absolute;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.85) 50%, transparent);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.7);
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+.flare-geode {
+  position: absolute;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(192, 132, 252, 0.85) 50%, transparent);
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.7);
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+.flare-foundry {
+  position: absolute;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.9) 50%, transparent);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.7);
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+.flare-alpine {
+  position: absolute;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.85) 50%, transparent);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.7);
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+
+/* ── 4. Monospace Telemetry Badges & Stratigraphic Elevation Indicators ── */
+
+.telemetry-badge {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 11px;
+  border-radius: 9999px;
+  background: rgba(10, 12, 18, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.14),
+    0 4px 14px rgba(0, 0, 0, 0.4);
+  color: #d4d4d8;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.22s var(--ease-apple);
+}
+
+.telemetry-badge:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
+    0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.telemetry-badge-active {
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(20, 24, 34, 0.85);
+  color: #ffffff;
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.26),
+    0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+/* Status Indicator Pulse Dots */
+.telemetry-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.telemetry-dot-live {
+  background-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.telemetry-dot-glacio {
+  background-color: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.telemetry-dot-geode {
+  background-color: #c084fc;
+  box-shadow: 0 0 8px #c084fc;
+}
+
+.telemetry-dot-foundry {
+  background-color: #fbbf24;
+  box-shadow: 0 0 8px #fbbf24;
+}
+
+.telemetry-dot-alpine {
+  background-color: #34d399;
+  box-shadow: 0 0 8px #34d399;
+}
+
+/* Stratigraphic Elevation Badges (Y=-64 to Y=320) */
+.elevation-indicator {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(12, 14, 20, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.elevation-stratosphere {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.24);
+  background: rgba(56, 189, 248, 0.07);
+}
+
+.elevation-surface {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.24);
+  background: rgba(52, 211, 153, 0.07);
+}
+
+.elevation-subterranean {
+  color: #c084fc;
+  border-color: rgba(192, 132, 252, 0.24);
+  background: rgba(192, 132, 252, 0.07);
+}
+
+.elevation-foundry {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.24);
+  background: rgba(251, 191, 36, 0.07);
+}
+
+/* Stratigraphic Vertical Elevation Gauge */
+.elevation-gauge-track {
+  position: relative;
+  width: 4px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.elevation-gauge-thumb {
+  position: absolute;
+  width: 100%;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  transition: top 0.4s var(--ease-apple), height 0.4s var(--ease-apple);
+}
+
+
+/* ── 5. Fullscreen Lightbox Modal Styles ── */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 5, 8, 0.88);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  padding: 16px;
+}
+
+@media (min-width: 640px) {
+  .lightbox-overlay {
+    padding: 24px;
+  }
+}
+
+.lightbox-modal {
+  position: relative;
+  width: 100%;
+  max-width: 1360px;
+  max-height: 92vh;
+  border-radius: 28px;
+  background: #08090e;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 32px 100px -20px rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.lightbox-modal-fullscreen {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0;
+  border: none;
+}
+
+.lightbox-stage {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 360px;
+  background: #040508;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: rgba(8, 10, 14, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 20;
+}
+
+@media (min-width: 640px) {
+  .lightbox-header {
+    padding: 18px 24px;
+  }
+}
+
+.lightbox-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(8, 10, 14, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 20;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .lightbox-footer {
+    padding: 16px 24px;
+  }
+}
+
+.lightbox-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  color: #e4e4e7;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-apple);
+}
+
+.lightbox-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+  transform: scale(1.04);
+}
+
+.lightbox-nav-btn:active {
+  transform: scale(0.96);
+}
+
+.lightbox-thumbnail {
+  position: relative;
+  height: 42px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #a1a1aa;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.22s var(--ease-apple);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.lightbox-thumbnail:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.lightbox-thumbnail.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    0 0 18px rgba(255, 255, 255, 0.1);
+}
+
 

@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { IntentGateway } from "@/components/IntentGateway";
 import { CelestialRadarSection } from "@/components/CelestialRadarSection";
+import { WorldHorizonsExplorer } from "@/components/WorldHorizonsExplorer";
 import { FrontierShowcase } from "@/components/FrontierShowcase";
 import { QuestChronicles } from "@/components/QuestChronicles";
 import { ServerGuidelines } from "@/components/ServerGuidelines";
@@ -12,6 +13,7 @@ import { PioneerRegistry } from "@/components/PioneerRegistry";
 import { Footer } from "@/components/Footer";
 import { JoinModal } from "@/components/JoinModal";
 import { BlueMapModal } from "@/components/BlueMapModal";
+import { AmbientAtmosphere } from "@/components/AmbientAtmosphere";
 
 interface SectionTransitionProps {
   glowColor?: "emerald" | "indigo" | "amber" | "violet" | "white";
@@ -71,6 +73,15 @@ export default function Home() {
       {/* 3D Celestial Dotted Radar & Planetary Reconnaissance */}
       <CelestialRadarSection />
 
+      {/* Luminous Transition: World Horizons */}
+      <SectionTransition glowColor="emerald" />
+
+      {/* Six Panoramic World Horizons & In-Engine Survival Reality Explorer */}
+      <WorldHorizonsExplorer
+        onOpenBlueMapModal={() => setBlueMapModalOpen(true)}
+        onOpenJoinModal={() => setJoinModalOpen(true)}
+      />
+
       {/* Luminous Transition: Amber Rail Transit */}
       <SectionTransition glowColor="amber" />
 
@@ -117,6 +128,9 @@ export default function Home() {
         isOpen={blueMapModalOpen}
         onClose={() => setBlueMapModalOpen(false)}
       />
+
+      {/* 2026 Calm Luxury Audio Atmosphere Controller */}
+      <AmbientAtmosphere />
     </main>
   );
 }

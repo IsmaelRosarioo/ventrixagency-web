@@ -101,6 +101,40 @@ export const SPRINGS = {
     damping: 32,
     mass: 0.5,
   },
+
+  /**
+   * WorldHorizonsExplorer panoramic carousel slide transition spring.
+   * Cinematic inertia with gentle damping (stiffness: 220, damping: 28, mass: 0.8)
+   * Prevents harsh deceleration and eliminates cartoonish bounce.
+   */
+  horizonSlide: {
+    type: "spring" as const,
+    stiffness: 220,
+    damping: 28,
+    mass: 0.8,
+  },
+
+  /**
+   * WorldHorizonsExplorer panoramic viewport card hover spring.
+   * Subtle scale-up on hover (stiffness: 320, damping: 26, mass: 0.6)
+   */
+  horizonCard: {
+    type: "spring" as const,
+    stiffness: 320,
+    damping: 26,
+    mass: 0.6,
+  },
+
+  /**
+   * WorldHorizonsExplorer navigation pill / pagination indicator spring.
+   * Fluid expansion between slide indicators (stiffness: 420, damping: 30, mass: 0.5)
+   */
+  horizonIndicator: {
+    type: "spring" as const,
+    stiffness: 420,
+    damping: 30,
+    mass: 0.5,
+  },
 };
 
 // ============================================================================
@@ -290,3 +324,183 @@ export const islandVerdictVariants: Variants = {
     transition: SPRINGS.island,
   },
 };
+
+// ============================================================================
+// 5. WorldHorizonsExplorer Panoramic Carousel & Gallery Physics
+// ============================================================================
+
+export const HORIZON_PHYSICS = {
+  /** Cinematic slide transition duration (seconds) */
+  slideDuration: 0.8,
+
+  /** Cross-fade transition duration between panoramic viewports (seconds) */
+  crossfadeDuration: 0.65,
+
+  /** Luxury Apple Pro easing curve: cubic-bezier(0.16, 1, 0.3, 1) */
+  cubicBezier: [0.16, 1, 0.3, 1] as const,
+
+  /** Subtle scale-up on hover for panoramic imagery */
+  hoverScale: 1.035,
+
+  /** Inactive slide resting scale */
+  restingScale: 0.96,
+
+  /** Drag threshold in pixels to trigger slide advance */
+  dragThreshold: 45,
+
+  /** Drag velocity threshold */
+  velocityThreshold: 0.2,
+
+  /** Automatic ambient slide progression cycle (milliseconds) */
+  autoAdvanceInterval: 8000,
+
+  /** Parallax depth displacement factor */
+  parallaxFactor: 0.18,
+};
+
+/**
+ * WorldHorizonsExplorer panoramic viewport transitions.
+ * Supports smooth cross-fades, scale settling, and directional parallax transitions
+ * driven by Apple Pro spring physics (cubic-bezier(0.16, 1, 0.3, 1)).
+ */
+export const horizonSlideVariants: Variants = {
+  enter: (direction: number = 1) => ({
+    x: direction > 0 ? "28%" : "-28%",
+    opacity: 0,
+    scale: 0.95,
+    filter: "blur(6px)",
+    zIndex: 1,
+  }),
+  center: {
+    x: "0%",
+    opacity: 1,
+    scale: 1,
+    filter: "blur(0px)",
+    zIndex: 10,
+    transition: {
+      x: SPRINGS.horizonSlide,
+      opacity: { duration: 0.65, ease: EASING.apple },
+      scale: { duration: 0.75, ease: EASING.apple },
+      filter: { duration: 0.5, ease: EASING.apple },
+    },
+  },
+  exit: (direction: number = 1) => ({
+    x: direction > 0 ? "-28%" : "28%",
+    opacity: 0,
+    scale: 0.95,
+    filter: "blur(6px)",
+    zIndex: 0,
+    transition: {
+      x: SPRINGS.horizonSlide,
+      opacity: { duration: 0.6, ease: EASING.apple },
+      scale: { duration: 0.7, ease: EASING.apple },
+      filter: { duration: 0.5, ease: EASING.apple },
+    },
+  }),
+};
+
+/**
+ * WorldHorizonsExplorer panoramic atmosphere cross-fade variants.
+ * Clean, seamless cross-fade between atmospheric backdrop layers.
+ */
+export const horizonCrossFadeVariants: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: HORIZON_PHYSICS.crossfadeDuration,
+      ease: EASING.apple,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: HORIZON_PHYSICS.crossfadeDuration,
+      ease: EASING.apple,
+    },
+  },
+};
+
+/**
+ * WorldHorizonsExplorer panoramic imagery hover physics.
+ * Subtle scale-up on hover (scale: 1.035) with cubic-bezier(0.16, 1, 0.3, 1).
+ */
+export const horizonImageVariants: Variants = {
+  initial: {
+    scale: 1,
+  },
+  hover: {
+    scale: HORIZON_PHYSICS.hoverScale,
+    transition: {
+      duration: 0.7,
+      ease: EASING.apple,
+    },
+  },
+};
+
+/**
+ * WorldHorizonsExplorer panoramic card container variants.
+ * Subtle hover elevation and specular border highlight.
+ */
+export const horizonCardVariants: Variants = {
+  idle: {
+    y: 0,
+    boxShadow: "0 24px 60px rgba(0, 0, 0, 0.55)",
+    borderColor: "rgba(255, 255, 255, 0.08)",
+    transition: SPRINGS.horizonCard,
+  },
+  hover: {
+    y: -4,
+    boxShadow: "0 34px 85px rgba(0, 0, 0, 0.75)",
+    borderColor: "rgba(255, 255, 255, 0.22)",
+    transition: SPRINGS.horizonCard,
+  },
+};
+
+/**
+ * WorldHorizonsExplorer navigation pill / pagination indicator variants.
+ */
+export const horizonIndicatorVariants: Variants = {
+  inactive: {
+    width: 14,
+    opacity: 0.35,
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    transition: SPRINGS.horizonIndicator,
+  },
+  active: {
+    width: 44,
+    opacity: 1,
+    backgroundColor: "rgba(255, 255, 255, 1)",
+    transition: SPRINGS.horizonIndicator,
+  },
+};
+
+/**
+ * WorldHorizonsExplorer HUD telemetry reveal variants.
+ */
+export const horizonTelemetryVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 14,
+  },
+  visible: (index: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: 0.12 * index,
+      ease: EASING.apple,
+    },
+  }),
+  exit: {
+    opacity: 0,
+    y: -10,
+    transition: {
+      duration: 0.35,
+      ease: EASING.apple,
+    },
+  },
+};
+

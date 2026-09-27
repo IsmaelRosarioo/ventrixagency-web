@@ -17,6 +17,7 @@ import {
   Server,
 } from "lucide-react";
 import { EASING } from "@/lib/motion";
+import { playHapticClick } from "@/lib/sound";
 
 interface HeroProps {
   onOpenJoinModal: () => void;
@@ -115,6 +116,7 @@ export function Hero({ onOpenJoinModal, onOpenBlueMapModal }: HeroProps) {
   }, []);
 
   const triggerCopy = () => {
+    playHapticClick();
     navigator.clipboard.writeText("mc.ventrixagency.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -394,7 +396,10 @@ export function Hero({ onOpenJoinModal, onOpenBlueMapModal }: HeroProps) {
         >
           {/* Primary Action Button: Solid White Pill with .btn-sheen sweep */}
           <button
-            onClick={onOpenJoinModal}
+            onClick={() => {
+              playHapticClick();
+              onOpenJoinModal();
+            }}
             className="btn-sheen group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-white text-black font-medium text-sm transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:bg-[#ededed] active:scale-[0.98] shadow-[0_4px_24px_rgba(255,255,255,0.25),0_2px_6px_rgba(0,0,0,0.4)] cursor-pointer select-none"
           >
             <span className="font-medium tracking-tight">Join the Frontier</span>
@@ -421,7 +426,10 @@ export function Hero({ onOpenJoinModal, onOpenBlueMapModal }: HeroProps) {
 
           {/* Tertiary Action Button: Glass Pill 3D Satellite Radar */}
           <button
-            onClick={onOpenBlueMapModal}
+            onClick={() => {
+              playHapticClick();
+              onOpenBlueMapModal();
+            }}
             className="group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white/[0.05] hover:bg-white/[0.12] border border-white/15 hover:border-white/30 text-zinc-200 hover:text-white text-xs sm:text-sm transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl cursor-pointer select-none"
           >
             <Map className="w-4 h-4 text-sky-400 group-hover:text-sky-300 transition-colors" />

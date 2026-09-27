@@ -60,6 +60,11 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
               </a>
             </li>
             <li>
+              <a href="#horizons" className="hover:text-white transition-colors flex items-center gap-1.5">
+                <span>World Horizons</span>
+              </a>
+            </li>
+            <li>
               <a href="#corridors" className="hover:text-white transition-colors flex items-center gap-1.5">
                 <span>Continental Rail</span>
               </a>
