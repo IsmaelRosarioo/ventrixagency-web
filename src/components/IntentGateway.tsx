@@ -331,7 +331,7 @@ export function IntentGateway({
 
                   {/* Quick-Select Presets */}
                   <div className="flex items-center gap-1.5 pt-1">
-                    {[6, 8, 10, 12].map((gb) => (
+                    {[6, 8, 10, 12, 16].map((gb) => (
                       <button
                         key={gb}
                         onClick={() => setRamAllocation(gb)}
