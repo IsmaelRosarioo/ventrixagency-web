@@ -53,7 +53,6 @@ export function Navbar({
   });
 
   const navItems: NavItem[] = [
-    { id: "radar", label: "Radar", href: "#radar" },
     { id: "horizons", label: "Horizons", href: "#horizons" },
     { id: "corridors", label: "Railways", href: "#corridors" },
     { id: "sovereignty", label: "Claims", href: "#sovereignty" },
@@ -122,7 +121,7 @@ export function Navbar({
 
   // Section observer for active indicator tracking
   useEffect(() => {
-    const sectionIds = ["radar", "horizons", "corridors", "sovereignty", "biomes", "chronicles", "guidelines"];
+    const sectionIds = ["horizons", "corridors", "sovereignty", "biomes", "chronicles", "guidelines"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

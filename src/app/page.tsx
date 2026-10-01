@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { IntentGateway } from "@/components/IntentGateway";
-import { CelestialRadarSection } from "@/components/CelestialRadarSection";
 import { WorldHorizonsExplorer } from "@/components/WorldHorizonsExplorer";
 import { FrontierShowcase } from "@/components/FrontierShowcase";
 import { QuestChronicles } from "@/components/QuestChronicles";
@@ -71,12 +70,6 @@ export default function Home() {
         onOpenBlueMapModal={() => setBlueMapModalOpen(true)}
         onOpenCurseForgeModal={() => setCurseForgeModalOpen(true)}
       />
-
-      {/* Luminous Transition: Cosmic Expedition */}
-      <SectionTransition glowColor="indigo" />
-
-      {/* 3D Celestial Dotted Radar & Planetary Reconnaissance */}
-      <CelestialRadarSection />
 
       {/* Luminous Transition: World Horizons */}
       <SectionTransition glowColor="emerald" />

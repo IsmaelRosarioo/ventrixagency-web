@@ -60,11 +60,6 @@ export function Footer({
           </h4>
           <ul className="space-y-2 text-xs font-mono">
             <li>
-              <a href="#radar" className="hover:text-white transition-colors flex items-center gap-1.5">
-                <span>Cosmic Expeditions</span>
-              </a>
-            </li>
-            <li>
               <a href="#horizons" className="hover:text-white transition-colors flex items-center gap-1.5">
                 <span>World Horizons</span>
               </a>
