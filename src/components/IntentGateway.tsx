@@ -20,6 +20,7 @@ import {
   Sliders,
   ShieldCheck,
   Flame,
+  Sparkles,
 } from "lucide-react";
 
 interface IntentGatewayProps {
@@ -273,6 +274,21 @@ export function IntentGateway({
                       <span>Open CurseForge Download Hub</span>
                     </button>
                   )}
+                </div>
+
+                {/* Ventrix Frontier 4 Coming Soon Teaser */}
+                <div className="mb-4 p-3 rounded-2xl bg-gradient-to-r from-cyan-950/40 to-emerald-950/30 border border-cyan-500/25 flex items-center justify-between gap-2.5">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2 shrink-0">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
+                    </span>
+                    <div className="text-[11px] leading-snug">
+                      <span className="font-mono font-bold text-cyan-300 uppercase mr-1">Ventrix Frontier 4:</span>
+                      <span className="text-zinc-300">Coming soon with new mods and optimizations to improve gameplay!</span>
+                    </div>
+                  </div>
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-400 shrink-0 hidden sm:block animate-pulse" />
                 </div>
 
                 {/* Auxiliary Links */}

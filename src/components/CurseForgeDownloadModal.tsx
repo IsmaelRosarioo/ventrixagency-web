@@ -114,6 +114,32 @@ export function CurseForgeDownloadModal({
               </button>
             </div>
 
+            {/* Ventrix Frontier 4 Coming Soon Teaser */}
+            <div className="mb-5 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-cyan-950/40 via-[#0d121c] to-emerald-950/30 border border-cyan-500/30 flex items-center justify-between gap-3 shadow-[0_0_24px_rgba(6,182,212,0.12)]">
+              <div className="flex items-center gap-2.5">
+                <span className="relative flex h-2.5 w-2.5 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                </span>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider">
+                      Ventrix Frontier 4
+                    </span>
+                    <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-200 border border-cyan-500/30 uppercase tracking-wider">
+                      Coming Soon
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-zinc-300 font-medium mt-0.5">
+                    New mods and optimizations to improve gameplay!
+                  </p>
+                </div>
+              </div>
+              <span className="hidden sm:inline-flex text-[10px] font-mono text-cyan-300 px-2.5 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/25 shrink-0">
+                In Staging
+              </span>
+            </div>
+
             {/* Method Switcher Tabs */}
             <div className="flex p-1 rounded-2xl bg-white/[0.03] border border-white/[0.08] mb-6 gap-1">
               <button

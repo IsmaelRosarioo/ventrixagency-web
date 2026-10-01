@@ -16,6 +16,7 @@ import {
   X,
   Server,
   Flame,
+  Sparkles,
 } from "lucide-react";
 import { EASING } from "@/lib/motion";
 import { playHapticClick } from "@/lib/sound";
@@ -458,6 +459,30 @@ export function Hero({
               511 MODS
             </span>
           </button>
+        </motion.div>
+
+        {/* Ventrix Frontier 4 Coming Soon Teaser */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: EASING.apple, delay: 0.44 }}
+          className="mt-3 sm:mt-4 mb-2 group relative inline-flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-gradient-to-r from-cyan-950/60 via-[#0a0f18]/85 to-emerald-950/60 hover:from-cyan-950/80 hover:to-emerald-950/80 border border-cyan-500/35 hover:border-cyan-400/60 backdrop-blur-2xl shadow-[0_0_30px_rgba(6,182,212,0.18)] transition-all duration-300"
+        >
+          <span className="relative flex h-2 w-2 shrink-0">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.9)]" />
+          </span>
+          <span className="font-mono text-xs sm:text-[13px] font-bold tracking-wider text-cyan-300 uppercase">
+            Ventrix Frontier 4
+          </span>
+          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-200 border border-cyan-500/30 tracking-widest uppercase">
+            Coming Soon
+          </span>
+          <span className="text-zinc-600 select-none text-xs hidden sm:inline">•</span>
+          <span className="text-xs sm:text-[13px] text-zinc-200 font-medium tracking-tight">
+            New mods and optimizations to improve gameplay!
+          </span>
+          <Sparkles className="w-3.5 h-3.5 text-cyan-400 ml-0.5 animate-pulse" />
         </motion.div>
       </div>
 
