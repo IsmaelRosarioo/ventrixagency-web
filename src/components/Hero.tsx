@@ -15,6 +15,7 @@ import {
   ChevronDown,
   X,
   Server,
+  Flame,
 } from "lucide-react";
 import { EASING } from "@/lib/motion";
 import { playHapticClick } from "@/lib/sound";
@@ -22,6 +23,7 @@ import { playHapticClick } from "@/lib/sound";
 interface HeroProps {
   onOpenJoinModal: () => void;
   onOpenBlueMapModal: () => void;
+  onOpenCurseForgeModal?: () => void;
 }
 
 interface ServerData {
@@ -60,7 +62,11 @@ const metricPillars = [
   },
 ];
 
-export function Hero({ onOpenJoinModal, onOpenBlueMapModal }: HeroProps) {
+export function Hero({
+  onOpenJoinModal,
+  onOpenBlueMapModal,
+  onOpenCurseForgeModal,
+}: HeroProps) {
   const [copied, setCopied] = useState(false);
   const [isIslandExpanded, setIsIslandExpanded] = useState(false);
   const islandRef = useRef<HTMLDivElement>(null);
@@ -434,6 +440,23 @@ export function Hero({ onOpenJoinModal, onOpenBlueMapModal }: HeroProps) {
           >
             <Map className="w-4 h-4 text-sky-400 group-hover:text-sky-300 transition-colors" />
             <span className="font-medium tracking-tight">3D Satellite Radar</span>
+          </button>
+
+          {/* Quaternary Action Button: CurseForge Modpack v3.0.2 */}
+          <button
+            onClick={() => {
+              playHapticClick();
+              if (onOpenCurseForgeModal) onOpenCurseForgeModal();
+              else onOpenJoinModal();
+            }}
+            className="btn-sheen group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 hover:border-amber-500/50 text-amber-300 hover:text-amber-200 text-xs sm:text-sm font-medium transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] shadow-[0_8px_32px_rgba(245,158,11,0.15)] backdrop-blur-xl cursor-pointer select-none"
+            title="Download VENTRIX: Frontier 3.0.2 Modpack (CurseForge 1-Click / Prism Zip)"
+          >
+            <Flame className="w-4 h-4 text-amber-400 fill-amber-400/30 group-hover:scale-110 transition-transform" />
+            <span className="font-mono font-medium tracking-tight whitespace-nowrap">CurseForge v3.0.2</span>
+            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              511 MODS
+            </span>
           </button>
         </motion.div>
       </div>

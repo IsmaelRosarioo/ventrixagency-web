@@ -2,14 +2,19 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Flame, Download } from "lucide-react";
 
 interface FooterProps {
   onOpenJoinModal: () => void;
   onOpenBlueMapModal: () => void;
+  onOpenCurseForgeModal?: () => void;
 }
 
-export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
+export function Footer({
+  onOpenJoinModal,
+  onOpenBlueMapModal,
+  onOpenCurseForgeModal,
+}: FooterProps) {
   return (
     <footer className="relative bg-gradient-to-b from-[#0c0d14] via-[#07080c] to-[#040507] rounded-t-[48px] sm:rounded-t-[64px] md:rounded-t-[80px] border-t border-white/[0.08] pt-16 sm:pt-20 pb-8 px-4 sm:px-6 lg:px-8 text-zinc-400 overflow-hidden shadow-[0_-24px_80px_rgba(0,0,0,0.7)]">
       {/* Specular hairline top rim highlight */}
@@ -101,6 +106,27 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
             Client Access
           </h4>
           <ul className="space-y-2 text-xs font-mono">
+            {onOpenCurseForgeModal && (
+              <li>
+                <button
+                  onClick={onOpenCurseForgeModal}
+                  className="hover:text-amber-400 text-amber-300 font-semibold transition-colors text-left cursor-pointer flex items-center gap-1.5"
+                >
+                  <Flame className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>CurseForge v3.0.2</span>
+                </button>
+              </li>
+            )}
+            <li>
+              <a
+                href="/downloads/VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
+                download="VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
+                className="hover:text-cyan-300 text-zinc-300 transition-colors flex items-center gap-1.5"
+              >
+                <Download className="w-3 h-3 text-cyan-400 shrink-0" />
+                <span>Client Zip (192 MB)</span>
+              </a>
+            </li>
             <li>
               <button
                 onClick={onOpenJoinModal}
@@ -119,23 +145,23 @@ export function Footer({ onOpenJoinModal, onOpenBlueMapModal }: FooterProps) {
             </li>
             <li>
               <a
-                href="https://prismlauncher.org"
+                href="https://www.curseforge.com/minecraft/modpacks/1692187"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors flex items-center gap-1"
               >
-                <span>Prism Launcher</span>
+                <span>CurseForge #1692187</span>
                 <ArrowUpRight className="w-3 h-3 text-zinc-500" />
               </a>
             </li>
             <li>
               <a
-                href="https://curseforge.com"
+                href="https://prismlauncher.org/download/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors flex items-center gap-1"
               >
-                <span>CurseForge App</span>
+                <span>Prism Launcher</span>
                 <ArrowUpRight className="w-3 h-3 text-zinc-500" />
               </a>
             </li>

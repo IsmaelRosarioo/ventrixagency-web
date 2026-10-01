@@ -236,7 +236,7 @@ export const navDropVariants: Variants = {
  */
 export const capsuleMiniVariants: Variants = {
   expanded: {
-    width: "min(1140px, 92%)",
+    width: "min(1260px, 94%)",
     height: 60,
     x: "-50%",
     borderRadius: 9999,

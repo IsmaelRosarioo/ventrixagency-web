@@ -19,11 +19,13 @@ import {
   Zap,
   Sliders,
   ShieldCheck,
+  Flame,
 } from "lucide-react";
 
 interface IntentGatewayProps {
   onOpenJoinModal?: () => void;
   onOpenBlueMapModal?: () => void;
+  onOpenCurseForgeModal?: () => void;
 }
 
 interface ServerTelemetry {
@@ -38,6 +40,7 @@ interface ServerTelemetry {
 export function IntentGateway({
   onOpenJoinModal,
   onOpenBlueMapModal,
+  onOpenCurseForgeModal,
 }: IntentGatewayProps) {
   const [activeTrack, setActiveTrack] = useState<"explorer" | "pioneer">("explorer");
   const [ramAllocation, setRamAllocation] = useState<number>(8);
@@ -199,77 +202,106 @@ export function IntentGateway({
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-            {/* Card 1: Launcher Choice (Prism / CurseForge) */}
+            {/* Card 1: Launcher Choice & Modpack Download */}
             <div className="floating-showcase-panel rounded-[30px] p-6 sm:p-8 border border-white/10 shadow-[0_34px_90px_rgba(0,0,0,0.5)] flex flex-col justify-between hover:border-white/[0.18] transition-all duration-300">
               <div>
                 <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
-                  <span>STEP 01 // RUNTIME ENGINE</span>
-                  <span className="text-zinc-400 font-medium">~60 SEC</span>
+                  <span>STEP 01 // MODPACK & RUNTIME</span>
+                  <span className="text-amber-400 font-medium">v3.0.2 LIVE</span>
                 </div>
 
-                <div className="w-10 h-10 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-200 mb-4">
-                  <Download className="w-4 h-4 text-cyan-400" />
+                <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4">
+                  <Flame className="w-4 h-4 text-amber-400" />
                 </div>
 
                 <h3 className="text-xl font-medium text-white tracking-[-0.035em] mb-2">
-                  Client Launcher Choice
+                  CurseForge Modpack & Client
                 </h3>
-                <p className="text-zinc-300 text-sm leading-relaxed mb-6">
-                  Select your client orchestrator. Both options automatically resolve modpack dependencies, configure NeoForge 21.1.249, and isolate Java 21 runtimes.
+                <p className="text-zinc-300 text-sm leading-relaxed mb-5">
+                  Install <strong>VENTRIX: Frontier 3.0.2</strong> automatically with CurseForge, or download the official thin client package for Prism Launcher. Resolves 511 mods with NeoForge 21.1.249.
                 </p>
 
-                {/* Launcher Selection Options */}
-                <div className="space-y-3 mb-6">
+                {/* Modpack Download Options */}
+                <div className="space-y-2.5 mb-4">
+                  <a
+                    href="curseforge://install?addonId=1692187"
+                    className="group flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-transparent border border-amber-500/30 hover:border-amber-500/50 hover:bg-amber-500/20 active:scale-[0.98] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]"
+                  >
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-semibold text-white group-hover:text-amber-300 transition-colors">
+                          CurseForge App (1-Click)
+                        </span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 font-semibold">
+                          1-Click
+                        </span>
+                      </div>
+                      <span className="text-xs text-zinc-400 font-mono block mt-0.5">
+                        Auto-registers profile • Project #1692187
+                      </span>
+                    </div>
+                    <Flame className="w-4 h-4 text-amber-400 shrink-0" />
+                  </a>
+
+                  <a
+                    href="/downloads/VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
+                    download="VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
+                    className="group flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.06] active:scale-[0.98] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]"
+                  >
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-white group-hover:text-cyan-300 transition-colors">
+                          Direct Client Thin Zip
+                        </span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
+                          192 MB
+                        </span>
+                      </div>
+                      <span className="text-xs text-zinc-400 font-mono block mt-0.5">
+                        For Prism / MultiMC • SHA-256 verified
+                      </span>
+                    </div>
+                    <Download className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors shrink-0" />
+                  </a>
+
+                  {onOpenCurseForgeModal && (
+                    <button
+                      onClick={onOpenCurseForgeModal}
+                      className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-white/[0.2] hover:bg-white/[0.08] text-xs font-mono text-zinc-300 hover:text-white transition-all cursor-pointer active:scale-[0.98]"
+                    >
+                      <BookOpen className="w-3.5 h-3.5 text-amber-400" />
+                      <span>Open CurseForge Download Hub</span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Auxiliary Links */}
+                <div className="flex items-center justify-between pt-1 text-[11px] font-mono text-zinc-400">
                   <a
                     href="https://prismlauncher.org/download/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.06] active:scale-[0.98] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]"
+                    className="hover:text-white transition-colors flex items-center gap-1"
                   >
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-white group-hover:text-cyan-300 transition-colors">
-                          Prism Launcher
-                        </span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
-                          Recommended
-                        </span>
-                      </div>
-                      <span className="text-xs text-zinc-400 font-mono block mt-0.5">
-                        Clean instance isolation • Java 21 auto-detect
-                      </span>
-                    </div>
-                    <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors shrink-0" />
+                    <span>Get Prism Launcher</span>
+                    <ExternalLink className="w-3 h-3 text-zinc-500" />
                   </a>
-
                   <a
-                    href="https://www.curseforge.com/download/app"
+                    href="https://www.curseforge.com/minecraft/modpacks/1692187"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.06] active:scale-[0.98] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]"
+                    className="hover:text-white transition-colors flex items-center gap-1"
                   >
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-white group-hover:text-cyan-300 transition-colors">
-                          CurseForge App
-                        </span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.06] text-zinc-400">
-                          One-Click
-                        </span>
-                      </div>
-                      <span className="text-xs text-zinc-400 font-mono block mt-0.5">
-                        Automated package synchronization
-                      </span>
-                    </div>
-                    <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors shrink-0" />
+                    <span>CurseForge Web</span>
+                    <ExternalLink className="w-3 h-3 text-zinc-500" />
                   </a>
                 </div>
               </div>
 
               {/* Monospace Footer Spec */}
-              <div className="pt-4 border-t border-white/[0.05] flex items-center justify-between text-[11px] font-mono text-zinc-400">
-                <span>PROFILE: 3.0.2</span>
-                <span>NEOFORGE 21.1.249</span>
+              <div className="pt-4 border-t border-white/[0.05] flex items-center justify-between text-[11px] font-mono text-zinc-400 mt-4">
+                <span>PROJECT: #1692187</span>
+                <span>511 MODS • NEOFORGE 21.1.249</span>
               </div>
             </div>
 

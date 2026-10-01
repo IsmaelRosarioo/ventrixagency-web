@@ -12,12 +12,32 @@ interface BlueMapModalProps {
 export function BlueMapModal({ isOpen, onClose }: BlueMapModalProps) {
   const bluemapUrl = "/map/#world:0:0:0:1500:0:0:0:0:perspective";
 
+  // Escape key listener & body scroll lock
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-xl">
+        <div
+          className="fixed inset-0 z-[2000] flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-xl"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="bluemap-modal-title"
+        >
           {/* Backdrop dismiss */}
-          <div className="absolute inset-0" onClick={onClose} />
+          <div className="absolute inset-0 cursor-pointer" onClick={onClose} aria-label="Dismiss modal" />
 
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 10 }}
@@ -34,7 +54,7 @@ export function BlueMapModal({ isOpen, onClose }: BlueMapModalProps) {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-semibold text-white">Live 3D World Map</h3>
+                    <h3 id="bluemap-modal-title" className="text-sm font-semibold text-white">Live 3D World Map</h3>
                     <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                       REAL-TIME
                     </span>

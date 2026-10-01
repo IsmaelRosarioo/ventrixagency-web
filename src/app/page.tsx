@@ -13,6 +13,7 @@ import { PioneerRegistry } from "@/components/PioneerRegistry";
 import { Footer } from "@/components/Footer";
 import { JoinModal } from "@/components/JoinModal";
 import { BlueMapModal } from "@/components/BlueMapModal";
+import { CurseForgeDownloadModal } from "@/components/CurseForgeDownloadModal";
 import { AmbientAtmosphere } from "@/components/AmbientAtmosphere";
 
 interface SectionTransitionProps {
@@ -43,6 +44,7 @@ function SectionTransition({ glowColor = "white" }: SectionTransitionProps) {
 export default function Home() {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [blueMapModalOpen, setBlueMapModalOpen] = useState(false);
+  const [curseForgeModalOpen, setCurseForgeModalOpen] = useState(false);
 
   return (
     <main className="relative min-h-screen bg-[#050608] overflow-x-hidden">
@@ -50,12 +52,14 @@ export default function Home() {
       <Navbar
         onOpenJoinModal={() => setJoinModalOpen(true)}
         onOpenBlueMapModal={() => setBlueMapModalOpen(true)}
+        onOpenCurseForgeModal={() => setCurseForgeModalOpen(true)}
       />
 
       {/* Hero Section */}
       <Hero
         onOpenJoinModal={() => setJoinModalOpen(true)}
         onOpenBlueMapModal={() => setBlueMapModalOpen(true)}
+        onOpenCurseForgeModal={() => setCurseForgeModalOpen(true)}
       />
 
       {/* Luminous Transition: Aurora Alpine Twilight */}
@@ -65,6 +69,7 @@ export default function Home() {
       <IntentGateway
         onOpenJoinModal={() => setJoinModalOpen(true)}
         onOpenBlueMapModal={() => setBlueMapModalOpen(true)}
+        onOpenCurseForgeModal={() => setCurseForgeModalOpen(true)}
       />
 
       {/* Luminous Transition: Cosmic Expedition */}
@@ -116,6 +121,7 @@ export default function Home() {
       <Footer
         onOpenJoinModal={() => setJoinModalOpen(true)}
         onOpenBlueMapModal={() => setBlueMapModalOpen(true)}
+        onOpenCurseForgeModal={() => setCurseForgeModalOpen(true)}
       />
 
       {/* Interactive Modals */}
@@ -127,6 +133,11 @@ export default function Home() {
       <BlueMapModal
         isOpen={blueMapModalOpen}
         onClose={() => setBlueMapModalOpen(false)}
+      />
+
+      <CurseForgeDownloadModal
+        isOpen={curseForgeModalOpen}
+        onClose={() => setCurseForgeModalOpen(false)}
       />
 
       {/* 2026 Calm Luxury Audio Atmosphere Controller */}

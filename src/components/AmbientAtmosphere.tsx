@@ -22,7 +22,7 @@ export function AmbientAtmosphere() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 select-none">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 select-none">
       <button
         onClick={handleToggle}
         aria-label={muted ? "Enable Calm Ambient Atmosphere Synth" : "Mute Ambient Atmosphere"}

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Copy, Check, Menu, X } from "lucide-react";
+import { Copy, Check, Menu, X, Flame } from "lucide-react";
 import {
   capsuleMiniVariants,
   capsuleContentVariants,
@@ -12,6 +12,7 @@ import {
 export interface NavbarProps {
   onOpenJoinModal: () => void;
   onOpenBlueMapModal: () => void;
+  onOpenCurseForgeModal?: () => void;
 }
 
 export interface NavItem {
@@ -21,7 +22,11 @@ export interface NavItem {
   onClick?: () => void;
 }
 
-export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
+export function Navbar({
+  onOpenJoinModal,
+  onOpenBlueMapModal,
+  onOpenCurseForgeModal,
+}: NavbarProps) {
   const [copied, setCopied] = useState(false);
   const [isMini, setIsMini] = useState(false);
   const [isManuallyExpanded, setIsManuallyExpanded] = useState(false);
@@ -48,10 +53,10 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
   });
 
   const navItems: NavItem[] = [
-    { id: "radar", label: "Celestial Radar", href: "#radar" },
-    { id: "horizons", label: "World Horizons", href: "#horizons" },
-    { id: "corridors", label: "Rail Corridors", href: "#corridors" },
-    { id: "sovereignty", label: "Land Claims", href: "#sovereignty" },
+    { id: "radar", label: "Radar", href: "#radar" },
+    { id: "horizons", label: "Horizons", href: "#horizons" },
+    { id: "corridors", label: "Railways", href: "#corridors" },
+    { id: "sovereignty", label: "Claims", href: "#sovereignty" },
     { id: "bluemap", label: "3D Map", onClick: onOpenBlueMapModal },
     { id: "directives", label: "Directives", href: "#guidelines" },
   ];
@@ -298,21 +303,21 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
           variants={capsuleContentVariants}
           className="header-cta flex items-center gap-2 relative z-10 shrink-0"
         >
-          {/* Live Telemetry Chip: Pulsing Emerald Beacon + 20.0 TPS Locked • Dallas Core */}
+          {/* Live Telemetry Chip: Pulsing Emerald Beacon + TPS Locked • Dallas Core */}
           <button
             onClick={handleCopyIp}
-            className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.18] hover:bg-white/[0.06] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none group"
+            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.18] hover:bg-white/[0.06] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none group shrink-0"
             title="Click to copy server IP (mc.ventrixagency.com)"
           >
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            <span className="text-[11px] font-mono text-zinc-200 group-hover:text-white transition-colors">
-              {serverStats.tps.toFixed(1)} TPS Locked
+            <span className="text-[11px] font-mono text-zinc-200 group-hover:text-white transition-colors whitespace-nowrap">
+              {serverStats.tps.toFixed(1)} TPS
             </span>
-            <span className="text-zinc-600 text-[10px] select-none">•</span>
-            <span className="text-[11px] font-mono text-zinc-400 group-hover:text-zinc-300 transition-colors">
+            <span className="text-zinc-600 text-[10px] select-none hidden xl:inline">•</span>
+            <span className="text-[11px] font-mono text-zinc-400 group-hover:text-zinc-300 transition-colors hidden xl:inline whitespace-nowrap">
               Dallas Core
             </span>
             {copied ? (
@@ -322,13 +327,24 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
             )}
           </button>
 
+          {/* CurseForge Modpack v3.0.2 Action Chip */}
+          {onOpenCurseForgeModal && (
+            <button
+              onClick={onOpenCurseForgeModal}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/25 hover:border-amber-500/40 text-amber-300 text-xs font-mono transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none shrink-0 whitespace-nowrap"
+              title="CurseForge Modpack v3.0.2 (1-Click Install & Zip Download)"
+            >
+              <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400/20 shrink-0" />
+              <span className="font-semibold">CurseForge v3.0.2</span>
+            </button>
+          )}
+
           {/* Liquid Action CTA with .btn-sheen sweep on hover */}
           <button
             onClick={onOpenJoinModal}
-            className="btn-sheen relative px-4 py-1.5 rounded-full bg-white hover:bg-zinc-100 active:bg-zinc-200 text-black text-xs font-medium tracking-tight shadow-[0_2px_14px_rgba(255,255,255,0.18)] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none flex items-center gap-1.5 shrink-0"
+            className="btn-sheen relative px-3.5 py-1.5 rounded-full bg-white hover:bg-zinc-100 active:bg-zinc-200 text-black text-xs font-medium tracking-tight shadow-[0_2px_14px_rgba(255,255,255,0.18)] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] cursor-pointer select-none flex items-center gap-1 shrink-0 whitespace-nowrap"
           >
-            <span className="hidden sm:inline">Initialize Access</span>
-            <span className="sm:hidden">Connect</span>
+            <span>Connect</span>
           </button>
 
           {/* Mobile Menu Toggle Button */}
@@ -390,6 +406,25 @@ export function Navbar({ onOpenJoinModal, onOpenBlueMapModal }: NavbarProps) {
                 )}
               </button>
             </div>
+
+            {/* Mobile CurseForge Direct Download Action */}
+            {onOpenCurseForgeModal && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenCurseForgeModal();
+                }}
+                className="w-full flex items-center justify-between p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 text-amber-300 mb-3 font-mono text-xs cursor-pointer hover:bg-amber-500/20 active:scale-[0.98] transition-all"
+              >
+                <div className="flex items-center gap-2">
+                  <Flame className="w-4 h-4 text-amber-400 fill-amber-400/20" />
+                  <span className="font-semibold text-white">CurseForge Modpack v3.0.2</span>
+                </div>
+                <span className="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 border border-amber-500/30 text-amber-300 font-semibold">
+                  INSTALL
+                </span>
+              </button>
+            )}
 
             {/* Mobile Navigation List */}
             <div className="flex flex-col space-y-1 text-sm font-normal text-zinc-300">
