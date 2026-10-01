@@ -1,0 +1,5 @@
+*.zip
+public/downloads/*.zip
+.git
+.next
+node_modules
