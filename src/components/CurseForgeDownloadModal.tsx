@@ -180,7 +180,7 @@ export function CurseForgeDownloadModal({
                       </a>
 
                       <a
-                        href="https://www.curseforge.com/minecraft/modpacks/1692187"
+                        href="https://www.curseforge.com/minecraft/modpacks/ventrix-frontier"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 py-3 px-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-xs font-mono text-zinc-200 transition-colors cursor-pointer"
@@ -234,7 +234,7 @@ export function CurseForgeDownloadModal({
 
                   <div className="flex flex-wrap items-center gap-3 mb-3">
                     <a
-                      href="/downloads/VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
+                      href="/api/download/modpack"
                       download="VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
                       onClick={playHapticClick}
                       className="flex-1 min-w-[200px] flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-white hover:bg-zinc-200 text-black font-semibold text-xs sm:text-sm shadow-md active:scale-[0.98] transition-all cursor-pointer"

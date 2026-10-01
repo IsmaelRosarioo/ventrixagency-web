@@ -119,7 +119,7 @@ export function JoinModal({ isOpen, onClose }: JoinModalProps) {
                     </a>
 
                     <a
-                      href="/downloads/VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
+                      href="/api/download/modpack"
                       download="VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
                       onClick={playHapticClick}
                       className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] text-xs font-mono text-white transition-all cursor-pointer active:scale-[0.97]"
@@ -129,7 +129,7 @@ export function JoinModal({ isOpen, onClose }: JoinModalProps) {
                     </a>
 
                     <a
-                      href="https://www.curseforge.com/minecraft/modpacks/1692187"
+                      href="https://www.curseforge.com/minecraft/modpacks/ventrix-frontier"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-xs font-mono text-zinc-400 hover:text-white transition-colors cursor-pointer"

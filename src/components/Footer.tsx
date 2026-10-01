@@ -119,7 +119,7 @@ export function Footer({
             )}
             <li>
               <a
-                href="/downloads/VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
+                href="/api/download/modpack"
                 download="VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
                 className="hover:text-cyan-300 text-zinc-300 transition-colors flex items-center gap-1.5"
               >
@@ -145,12 +145,12 @@ export function Footer({
             </li>
             <li>
               <a
-                href="https://www.curseforge.com/minecraft/modpacks/1692187"
+                href="https://www.curseforge.com/minecraft/modpacks/ventrix-frontier"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors flex items-center gap-1"
               >
-                <span>CurseForge #1692187</span>
+                <span>CurseForge (Frontier)</span>
                 <ArrowUpRight className="w-3 h-3 text-zinc-500" />
               </a>
             </li>

@@ -29,6 +29,10 @@ const nextConfig: NextConfig = {
         source: "/textures.json",
         destination: `${MAP_UPSTREAM}/textures.json`,
       },
+      {
+        source: "/downloads/:path*",
+        destination: "/api/download/modpack",
+      },
     ];
   },
 };

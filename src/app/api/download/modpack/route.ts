@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { CURSEFORGE_FILES_URL } from "@/lib/minecraft";
 
 export const dynamic = "force-dynamic";
 
@@ -22,9 +23,9 @@ export async function GET() {
     : null;
 
   if (!targetPath) {
-    // If local file is somehow missing, redirect to CurseForge project files
+    // If local file is somehow missing on serverless, redirect to official CurseForge files
     return NextResponse.redirect(
-      "https://www.curseforge.com/minecraft/modpacks/1692187/files",
+      CURSEFORGE_FILES_URL,
       302
     );
   }

@@ -1,5 +1,11 @@
 import net from "net";
 
+export const CURSEFORGE_PROJECT_ID = "1692187";
+export const CURSEFORGE_SLUG = "ventrix-frontier";
+export const CURSEFORGE_PROJECT_URL = "https://www.curseforge.com/minecraft/modpacks/ventrix-frontier";
+export const CURSEFORGE_FILES_URL = "https://www.curseforge.com/minecraft/modpacks/ventrix-frontier/files";
+export const CURSEFORGE_APP_PROTOCOL = "curseforge://install?addonId=1692187";
+
 export interface MinecraftServerStatus {
   online: boolean;
   host: string;

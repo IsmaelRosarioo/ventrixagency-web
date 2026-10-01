@@ -244,7 +244,7 @@ export function IntentGateway({
                   </a>
 
                   <a
-                    href="/downloads/VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
+                    href="/api/download/modpack"
                     download="VENTRIX-Modpack-3.0.2-Frontier-cf.zip"
                     className="group flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.06] active:scale-[0.98] transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]"
                   >
@@ -287,7 +287,7 @@ export function IntentGateway({
                     <ExternalLink className="w-3 h-3 text-zinc-500" />
                   </a>
                   <a
-                    href="https://www.curseforge.com/minecraft/modpacks/1692187"
+                    href="https://www.curseforge.com/minecraft/modpacks/ventrix-frontier"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-white transition-colors flex items-center gap-1"
