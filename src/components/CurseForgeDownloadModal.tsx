@@ -79,7 +79,7 @@ export function CurseForgeDownloadModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-2xl bg-[#090b10] border border-white/[0.12] rounded-3xl p-6 sm:p-8 shadow-[0_32px_100px_rgba(0,0,0,0.9)] overflow-hidden z-10 max-h-[92vh] overflow-y-auto"
+            className="relative w-full max-w-2xl liquid-glass-refract rounded-3xl p-6 sm:p-8 shadow-[0_32px_100px_rgba(0,0,0,0.95)] overflow-hidden z-10 max-h-[92vh] overflow-y-auto"
           >
             {/* Top Specular Line */}
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />

@@ -159,8 +159,9 @@ export function Hero({
       {/* Subtle geometric grid */}
       <div className="absolute inset-0 bg-subtle-grid opacity-25 pointer-events-none z-[3]" />
 
-      {/* Atmospheric Corner Clouds (100% radius & soft blur) */}
+      {/* Atmospheric Corner Clouds & Center Ambient Drift (100% radius & soft blur) */}
       <div className="hero-cloud left" />
+      <div className="hero-cloud center-drift" />
       <div className="hero-cloud right" />
 
       {/* Bottom Atmospheric Floor Haze */}
@@ -371,27 +372,29 @@ export function Hero({
           </span>
         </motion.div>
 
-        {/* Majestic Headline with double text-shadow */}
+        {/* Majestic Headline with editorial serif accents & double text-shadow */}
         <motion.h1
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: EASING.apple, delay: 0.2 }}
-          className="text-5xl sm:text-7xl lg:text-8xl font-serif font-normal tracking-[-0.03em] text-white leading-[1.0] mb-6 text-balance hero-headline-shadow"
+          transition={{ duration: 0.9, ease: EASING.apple, delay: 0.2 }}
+          className="text-5xl sm:text-7xl lg:text-8xl font-normal tracking-[-0.035em] text-white leading-[1.02] mb-6 text-balance hero-headline-shadow"
           style={{
             textShadow: "0 2px 18px rgba(0, 0, 0, 0.7), 0 4px 60px rgba(0, 0, 0, 0.5)",
           }}
         >
-          A Living Multiplayer Frontier.
+          <span className="font-sans font-light">The Living </span>
+          <span className="font-serif italic font-light text-white/95 tracking-normal">Multiplayer</span>
+          <span className="font-sans font-normal"> Frontier.</span>
         </motion.h1>
 
-        {/* Subheadline */}
+        {/* Subheadline with editorial accents */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: EASING.apple, delay: 0.28 }}
-          className="text-base sm:text-lg md:text-xl text-zinc-300/90 max-w-3xl font-normal leading-relaxed mb-8 sm:mb-10 text-balance drop-shadow-md"
+          transition={{ duration: 0.9, ease: EASING.apple, delay: 0.28 }}
+          className="text-base sm:text-lg md:text-xl text-zinc-300/90 max-w-3xl font-normal leading-relaxed mb-8 sm:mb-10 text-balance drop-shadow-md font-sans"
         >
-          Establish sovereign civilizations, engineer automated continental rail corridors, and launch interplanetary expeditions across a living, grief-protected survival world — sustained on dedicated, uninterrupted Dallas Core silicon.
+          Establish <span className="font-serif italic text-white font-light">sovereign civilizations</span>, engineer <span className="font-serif italic text-white font-light">automated rail corridors</span>, and launch <span className="font-serif italic text-white font-light">interplanetary expeditions</span> across a living, grief-protected survival world — sustained on dedicated, uninterrupted Dallas Core silicon.
         </motion.p>
 
         {/* Liquid Sheen Action Buttons */}

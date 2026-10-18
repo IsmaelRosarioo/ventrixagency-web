@@ -134,8 +134,8 @@ export function IntentGateway({
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span>EXPEDITION ARCHITECTURE // INTENT GATEWAY</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.12] mb-3">
-            Tailored for Every Pioneer.
+          <h2 className="text-3xl sm:text-5xl font-sans text-white tracking-[-0.03em] font-light leading-[1.12] mb-3">
+            Tailored for <span className="font-serif italic font-light text-white/95">Every Pioneer</span>.
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed text-balance">
             Select your operational pathway. First-time explorers receive a streamlined 3-minute onboarding terminal with interactive heap calibration, while returning commanders access real-time Dallas Core cluster telemetry, 3.0.2 changelog briefs, and orbital BlueMap cartography.
@@ -204,11 +204,23 @@ export function IntentGateway({
           {/* Cards Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
             {/* Card 1: Launcher Choice & Modpack Download */}
-            <div className="floating-showcase-panel rounded-[30px] p-6 sm:p-8 border border-white/10 shadow-[0_34px_90px_rgba(0,0,0,0.5)] flex flex-col justify-between hover:border-white/[0.18] transition-all duration-300">
+            <div className="floating-showcase-panel relative rounded-[32px] p-6 sm:p-8 border border-white/[0.12] hover:border-white/[0.24] shadow-[0_24px_70px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition-all duration-300 flex flex-col justify-between group overflow-hidden">
+              {/* Top Specular Rim */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+
               <div>
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
-                  <span>STEP 01 // MODPACK & RUNTIME</span>
-                  <span className="text-amber-400 font-medium">v3.0.2 LIVE</span>
+                <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/[0.06]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/[0.16] shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] flex items-center justify-center font-mono text-xs font-semibold text-white group-hover:scale-105 group-hover:border-amber-400/40 transition-all duration-300">
+                      01
+                    </span>
+                    <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-400">
+                      LAUNCHER SELECTION
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-semibold">
+                    v3.0.2 LIVE
+                  </span>
                 </div>
 
                 <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4">
@@ -322,12 +334,22 @@ export function IntentGateway({
             </div>
 
             {/* Card 2: Interactive RAM Allocation Slider & Visual Meter */}
-            <div className="floating-showcase-panel rounded-[30px] p-6 sm:p-8 border border-white/10 shadow-[0_34px_90px_rgba(0,0,0,0.5)] flex flex-col justify-between hover:border-white/[0.18] transition-all duration-300">
+            <div className="floating-showcase-panel relative rounded-[32px] p-6 sm:p-8 border border-white/[0.12] hover:border-white/[0.24] shadow-[0_24px_70px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition-all duration-300 flex flex-col justify-between group overflow-hidden">
+              {/* Top Specular Rim */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+
               <div>
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
-                  <span>STEP 02 // HEAP CALIBRATION</span>
-                  <span className={`font-medium ${ramEvaluation.colorText}`}>
-                    {ramAllocation} GB ALLOCATED
+                <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/[0.06]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/[0.16] shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] flex items-center justify-center font-mono text-xs font-semibold text-white group-hover:scale-105 group-hover:border-emerald-400/40 transition-all duration-300">
+                      02
+                    </span>
+                    <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-400">
+                      HEAP CALIBRATION
+                    </span>
+                  </div>
+                  <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${ramEvaluation.bgBadge} font-semibold`}>
+                    {ramAllocation} GB TARGET
                   </span>
                 </div>
 
@@ -430,11 +452,24 @@ export function IntentGateway({
             </div>
 
             {/* Card 3: Direct Handshake (mc.ventrixagency.com) */}
-            <div className="floating-showcase-panel rounded-[30px] p-6 sm:p-8 border border-white/10 shadow-[0_34px_90px_rgba(0,0,0,0.5)] flex flex-col justify-between hover:border-white/[0.18] transition-all duration-300">
+            <div className="floating-showcase-panel relative rounded-[32px] p-6 sm:p-8 border border-white/[0.12] hover:border-white/[0.24] shadow-[0_24px_70px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition-all duration-300 flex flex-col justify-between group overflow-hidden">
+              {/* Top Specular Rim */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+
               <div>
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
-                  <span>STEP 03 // CLUSTER HANDSHAKE</span>
-                  <span className="text-emerald-400 font-medium">PUBLIC NODE</span>
+                <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/[0.06]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/[0.16] shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] flex items-center justify-center font-mono text-xs font-semibold text-white group-hover:scale-105 group-hover:border-cyan-400/40 transition-all duration-300">
+                      03
+                    </span>
+                    <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-400">
+                      DIRECT HANDSHAKE
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-semibold flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    20.0 TPS LOCKED
+                  </span>
                 </div>
 
                 <div className="w-10 h-10 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-200 mb-4">
@@ -523,12 +558,22 @@ export function IntentGateway({
           {/* Cards Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
             {/* Card 1: Dallas Core Telemetry */}
-            <div className="floating-showcase-panel rounded-[30px] p-6 sm:p-8 border border-white/10 shadow-[0_34px_90px_rgba(0,0,0,0.5)] flex flex-col justify-between hover:border-white/[0.18] transition-all duration-300">
+            <div className="floating-showcase-panel relative rounded-[32px] p-6 sm:p-8 border border-white/[0.12] hover:border-white/[0.24] shadow-[0_24px_70px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition-all duration-300 flex flex-col justify-between group overflow-hidden">
+              {/* Top Specular Rim */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+
               <div>
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
-                  <span>LIVE TELEMETRY // DALLAS CORE</span>
-                  <span className="text-emerald-400 flex items-center gap-1 font-medium">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/[0.06]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/[0.16] shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] flex items-center justify-center font-mono text-xs font-semibold text-white group-hover:scale-105 group-hover:border-emerald-400/40 transition-all duration-300">
+                      01
+                    </span>
+                    <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-400">
+                      LIVE CLUSTER TELEMETRY
+                    </span>
+                  </div>
+                  <span className="text-emerald-400 flex items-center gap-1 font-mono text-[10px] font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     ONLINE
                   </span>
                 </div>
@@ -587,11 +632,23 @@ export function IntentGateway({
             </div>
 
             {/* Card 2: 3.0.2 Changelog Highlights */}
-            <div className="floating-showcase-panel rounded-[30px] p-6 sm:p-8 border border-white/10 shadow-[0_34px_90px_rgba(0,0,0,0.5)] flex flex-col justify-between hover:border-white/[0.18] transition-all duration-300">
+            <div className="floating-showcase-panel relative rounded-[32px] p-6 sm:p-8 border border-white/[0.12] hover:border-white/[0.24] shadow-[0_24px_70px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition-all duration-300 flex flex-col justify-between group overflow-hidden">
+              {/* Top Specular Rim */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+
               <div>
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
-                  <span>FIRMWARE UPDATE // PATCH 3.0.2</span>
-                  <span className="text-zinc-300 font-medium">LATEST RELEASE</span>
+                <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/[0.06]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/[0.16] shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] flex items-center justify-center font-mono text-xs font-semibold text-white group-hover:scale-105 group-hover:border-cyan-400/40 transition-all duration-300">
+                      02
+                    </span>
+                    <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-400">
+                      FIRMWARE CHANGELOG
+                    </span>
+                  </div>
+                  <span className="text-zinc-300 font-mono text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/[0.06] border border-white/[0.1]">
+                    PATCH 3.0.2
+                  </span>
                 </div>
 
                 <div className="w-10 h-10 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-200 mb-4">
@@ -653,11 +710,23 @@ export function IntentGateway({
             </div>
 
             {/* Card 3: 3D BlueMap Launcher */}
-            <div className="floating-showcase-panel rounded-[30px] p-6 sm:p-8 border border-white/10 shadow-[0_34px_90px_rgba(0,0,0,0.5)] flex flex-col justify-between hover:border-white/[0.18] transition-all duration-300">
+            <div className="floating-showcase-panel relative rounded-[32px] p-6 sm:p-8 border border-white/[0.12] hover:border-white/[0.24] shadow-[0_24px_70px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition-all duration-300 flex flex-col justify-between group overflow-hidden">
+              {/* Top Specular Rim */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+
               <div>
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-500 mb-4 pb-3 border-b border-white/[0.05]">
-                  <span>CARTOGRAPHY // ORBITAL MESH</span>
-                  <span className="text-zinc-300 font-medium">60 FPS 3D</span>
+                <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/[0.06]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/[0.16] shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] flex items-center justify-center font-mono text-xs font-semibold text-white group-hover:scale-105 group-hover:border-cyan-400/40 transition-all duration-300">
+                      03
+                    </span>
+                    <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-zinc-400">
+                      ORBITAL CARTOGRAPHY
+                    </span>
+                  </div>
+                  <span className="text-cyan-300 font-mono text-[10px] font-medium px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                    60 FPS 3D
+                  </span>
                 </div>
 
                 <div className="w-10 h-10 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-200 mb-4">

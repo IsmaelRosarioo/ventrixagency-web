@@ -175,6 +175,7 @@ export function Navbar({
   return (
     <>
       <motion.header
+        id="mainHeaderNav"
         variants={capsuleMiniVariants}
         initial="expanded"
         animate={isMini ? "collapsed" : "expanded"}

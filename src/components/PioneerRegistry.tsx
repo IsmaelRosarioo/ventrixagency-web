@@ -78,8 +78,8 @@ export function PioneerRegistry() {
           <Users className="w-3 h-3 text-zinc-400" />
           PERSONNEL ROSTER
         </div>
-        <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.12] mb-4">
-          Frontier Pioneer Registry
+        <h2 className="text-3xl sm:text-5xl font-sans text-white tracking-[-0.03em] font-light leading-[1.12] mb-4">
+          Frontier <span className="font-serif italic font-light text-white/95">Pioneer Registry</span>.
         </h2>
         <p className="text-zinc-400 text-base sm:text-lg font-normal leading-relaxed">
           Enlist your official Minecraft handle into the server registry to track achievements and participate in global world milestones.

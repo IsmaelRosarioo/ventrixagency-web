@@ -28,8 +28,8 @@ export function FrontierShowcase({ onOpenBlueMapModal, onOpenJoinModal }: Fronti
               INFRASTRUCTURE // HIGH-SPEED CORRIDORS
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.12]">
-              Transcontinental Transit. Across Living Biomes.
+            <h2 className="text-3xl sm:text-5xl font-sans text-white tracking-[-0.03em] font-light leading-[1.12]">
+              Transcontinental Transit. <span className="font-serif italic font-light text-white/95">Across Living Biomes</span>.
             </h2>
 
             <p className="text-zinc-400 text-sm sm:text-base font-normal leading-relaxed">
@@ -134,8 +134,8 @@ export function FrontierShowcase({ onOpenBlueMapModal, onOpenJoinModal }: Fronti
               CIVIL JURISDICTION // PEACEFUL SMP
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.12]">
-              Sovereign Land Claims. Unyielding Security.
+            <h2 className="text-3xl sm:text-5xl font-sans text-white tracking-[-0.03em] font-light leading-[1.12]">
+              Sovereign Land Claims. <span className="font-serif italic font-light text-white/95">Unyielding Security</span>.
             </h2>
 
             <p className="text-zinc-400 text-sm sm:text-base font-normal leading-relaxed">
@@ -181,8 +181,8 @@ export function FrontierShowcase({ onOpenBlueMapModal, onOpenJoinModal }: Fronti
             <Globe className="w-3.5 h-3.5 text-cyan-400" />
             CARTOGRAPHY // 85+ PROCEDURAL BIOMES
           </div>
-          <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.12] mb-4">
-            Colossal Topography. Bedrock to Stratosphere.
+          <h2 className="text-3xl sm:text-5xl font-sans text-white tracking-[-0.03em] font-light leading-[1.12] mb-4">
+            Colossal Topography. <span className="font-serif italic font-light text-white/95">Bedrock to Stratosphere</span>.
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base font-normal leading-relaxed">
             Powered by the acclaimed Terralith terrain engine, the world features realistic mountain elevations, towering waterfalls, and crystal cavern systems across a stratigraphic span of 384 blocks (Y=-64 to Y=320).

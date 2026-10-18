@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
+import { LiquidGlassFilter } from "@/components/LiquidGlassFilter";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -82,6 +83,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} dark scroll-smooth`}
     >
       <body className="min-h-screen bg-[#050608] text-zinc-100 antialiased selection:bg-white/20 selection:text-white">
+        <LiquidGlassFilter />
         {children}
       </body>
     </html>

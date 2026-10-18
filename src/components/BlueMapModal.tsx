@@ -44,7 +44,7 @@ export function BlueMapModal({ isOpen, onClose }: BlueMapModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
             transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-6xl h-[85vh] bg-[#0b0d13] border border-white/[0.1] rounded-2xl shadow-2xl flex flex-col overflow-hidden z-10"
+            className="relative w-full max-w-6xl h-[85vh] liquid-glass-refract rounded-2xl shadow-[0_32px_100px_rgba(0,0,0,0.95)] flex flex-col overflow-hidden z-10"
           >
             {/* Top Header */}
             <div className="flex items-center justify-between px-6 py-4 bg-[#080a0f] border-b border-white/[0.08]">

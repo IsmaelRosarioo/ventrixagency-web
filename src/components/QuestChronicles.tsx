@@ -98,8 +98,8 @@ export function QuestChronicles() {
             <BookOpen className="w-3 h-3 text-emerald-400" />
             PROGRESSION BLUEPRINT // 513 QUESTS
           </div>
-          <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.12] mb-3">
-            Clear Progression. Zero Aimless Grind.
+          <h2 className="text-3xl sm:text-5xl font-sans text-white tracking-[-0.03em] font-light leading-[1.12] mb-3">
+            Clear Progression. <span className="font-serif italic font-light text-white/95">Zero Aimless Grind</span>.
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
             Whether you are establishing your first survival outpost or preparing a deep-space expedition to Glacio, our comprehensive quest chronicles guide your journey with milestone rewards.

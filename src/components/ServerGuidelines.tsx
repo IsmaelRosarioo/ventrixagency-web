@@ -66,8 +66,8 @@ export function ServerGuidelines() {
           <Terminal className="w-3 h-3 text-emerald-400" />
           INFRASTRUCTURE DIRECTIVES & TELEMETRY
         </div>
-        <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.12] mb-4">
-          Bare-Metal Enterprise Hardware. Locked 20.0 TPS.
+        <h2 className="text-3xl sm:text-5xl font-sans text-white tracking-[-0.03em] font-light leading-[1.12] mb-4">
+          Bare-Metal Enterprise Hardware. <span className="font-serif italic font-light text-white/95">Locked 20.0 TPS</span>.
         </h2>
         <p className="text-zinc-400 text-base sm:text-lg font-normal leading-relaxed">
           Ventrix runs on dedicated bare-metal enterprise hardware tuned specifically for heavy simulation loads, uncompromised tick rates, and sovereign player protection.

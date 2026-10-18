@@ -193,8 +193,8 @@ export function WorldHorizonsExplorer({
             PANORAMIC EXPEDITION // 6 WORLD HORIZONS
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif text-white tracking-[-0.02em] font-normal leading-[1.08] mb-4">
-            Six Living Horizons. Real In-Engine Survival.
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-sans text-white tracking-[-0.03em] font-light leading-[1.08] mb-4">
+            Six Living Horizons. <span className="font-serif italic font-light text-white/95">Real In-Engine Survival</span>.
           </h2>
 
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl">
