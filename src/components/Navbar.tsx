@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Copy, Check, Menu, X, Flame } from "lucide-react";
 import {
@@ -207,33 +208,14 @@ export function Navbar({
             aria-label="Ventrix Frontier Home"
           >
             <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-white/[0.12] bg-[#0c0d12]/80 flex items-center justify-center transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:border-white/30 group-hover:scale-105 shadow-inner">
-              <svg
-                className="w-4 h-4 text-white transition-transform duration-300 group-hover:scale-110"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 2L4 5.5V11.5C4 16.5 7.5 21 12 22C16.5 21 20 16.5 20 11.5V5.5L12 2Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M12 7V17"
-                  stroke="rgba(255,255,255,0.7)"
-                  strokeWidth="1.25"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M9 10.5L12 7.5L15 10.5"
-                  stroke="rgba(255,255,255,0.7)"
-                  strokeWidth="1.25"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <Image
+                src="/branding/server-icon.png"
+                alt="Ventrix Frontier Emblem"
+                width={22}
+                height={22}
+                priority
+                className="object-contain transition-transform duration-300 group-hover:scale-110"
+              />
             </div>
             <div className="flex items-center gap-1.5">
               <span className="text-sm font-semibold tracking-tight text-white group-hover:text-zinc-200 transition-colors font-sans">

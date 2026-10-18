@@ -31,7 +31,7 @@ export function Footer({
               <div className="w-8 h-8 rounded-lg overflow-hidden border border-white/[0.1] bg-[#0c0d12] flex items-center justify-center">
                 <Image
                   src="/branding/server-icon.png"
-                  alt="Ventrix Emblem"
+                  alt="Ventrix Frontier Emblem"
                   width={22}
                   height={22}
                   className="object-contain"
